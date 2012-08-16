@@ -49,3 +49,6 @@ code.prettyprint {
 div.span4 table tbody  tr.current-week  td {
  background-color:#FF9;
 }
+.navbar .brand {
+	color:white;
+}
