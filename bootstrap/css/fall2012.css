@@ -45,3 +45,10 @@ code.prettyprint {
 #exerciseCarousel p {
 	font-weight: bold;
 }
+.comments {
+	background-color:#DDD;
+	
+}
+div.span4 table tbody  tr.current-week  td {
+ background-color:#FF9;
+}
