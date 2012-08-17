@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html lang=en>
+    <head>
+        <meta charset=UTF-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SRJC Fall 2012 Javascript &amp; JQuery CS55.11</title>
+        <link href=../bootstrap/css/bootstrap.css rel=stylesheet>
+        <link href=../lib/prettify/prettify.css rel=stylesheet>
+        <link href=../bootstrap/css/fall2012.css rel=stylesheet>
+    </head>
+    <body>
+        
+        <div class=container>
+            <div class=callout>
+                <h1>JavaScript Development Tools &mdash; Consoles</h1>
+                <p>Why isn't my code working?</p>
+            </div>
+            <div class=row>
+                <section class=span4>
+                    <h2>Introduction</h2>
+                    <p>There is nothing more frustrating than writing your first
+                        bit of JavaScript, loading it into the browser, and having
+                        NOTHING happen!  No errors on the screen.  No popups saying
+                        what is wrong.  It just doesn't work &mdash; but why?</p>
+                    <h3>What Went Wrong?</h3>
+                    <p>Do you have a syntax error in you code?  Did your code even
+                        get loaded onto the page?  Did you mispell a variable name?</p>
+                    <p>Without some kind of feedback from the browser (the runtime
+                        environment), you can't say for sure.  Sure you can go into
+                        your code and look at it line by line and hope that you
+                        recognize the error, but wouldn't it be nice if the browser
+                        told you what went wrong and even told you what line of your
+                        code caused the problem?</p>
+                    <p>Luckily, all modern browsers come with development tools either
+                        built in or easily added via an extension.  These tools include
+                        a JavaScript console, which will print out any errors encountered
+                        in parsing or executing your script, as well as the line number
+                        that produced the error.  Most will also write the line-number 
+                        as a link, so that you can jump right to the error-generating
+                        code.</p>
+                    <h3>Other Uses for the Console</h3>
+                    <p>Getting errors from the console is great, but it can do 
+                        much more.  You can also write and paste in small blocks
+                        of code for testing purposes.  Think of it like a text
+                        editor that will parse and execute your code as you type.
+                        This can be helpful for quickly testing your syntax (paste
+                        in your code and it will let you know right away if you
+                        have a syntax error.)  Later in the course, you might
+                        also find this very helpful for testing a jQuery selector.</p>
+                </section>
+                <section class=span4>
+                    <h2>Usage</h2>
+                    <p>The specifics of using each set of developer tools cannot
+                        be covered in depth here (refer to the resources section).  
+                        However, most will follow a common pattern:</p>
+                    <ol>
+                        <li>Install or activate the developer tools.</li>
+                        <li>Load the developer tools for your page.</li>
+                        <li>Activate the console if not already active.</li>
+                        <li>Find any error output.</li>
+                        <li>Click on the line number to view your code in the
+                            browser or go to that line in your text editor.</li>
+                        <li>Fix the error and reload.</li>
+                    </ol>
+                    <h3>What Are All These Other Tabs?</h3>
+                    <p>Most developer tools come with much more than a JavaScript
+                        console and will include information about the DOM, CSS
+                        styles, network requests made by the browser, etc.  All
+                        of these are very valuable to you as a web developer but
+                        will not be covered in this course.</p>
+                    <p>Many of the tools will also include a true <strong>JavaScript
+                        debugger</strong> which allows you to set breakpoints, watch
+                        expressions, and many of the other debugging features you might
+                        be familiar with from another programming language.  These
+                        are very powerful tools and indispensable for dealing with
+                        complex applications.  If you are already familiar with
+                        debugging, you are encouraged to begin to use these tools
+                        as well.  If, however, you have no idea what a breakpoint
+                        is, don't worry about these extra tabs, and get to know
+                        the console.</p>
+                </section>
+                <section class=span4>
+                    <section class=well>
+                        <h2>Take Aways</h2>
+                        <ul>
+                            <li>Learn how to use the JavaScript console in your
+                                browser of choice.</li>
+                            <li>Check the console for errors if your script is
+                                not executing properly.</li>
+                            <li>Use the console to live test small blocks of 
+                                code.</li>
+                        </ul>
+                    </section>
+                    <section class=well>
+                        <h2>Resources</h2>
+                        <h3>Downloads</h3>
+                        <ul>
+                            <li>
+                                <a href=http://getfirebug.com>
+                                    Firebug (Firefox)
+                                </a>
+                            </li>
+                        </ul>
+                        <h3>Documentation</h3>
+                        <ul>
+                            <li>
+                                <a href=https://developers.google.com/chrome-developer-tools/docs/overview>
+                                    Chrome Developer Tools
+                                </a>
+                            </li>
+                            <li>
+                                <a href=http://getfirebug.com/wiki/index.php/Main_Page>
+                                    Firebug
+                                </a>
+                            </li>
+                            <li>
+                                <a href=http://www.opera.com/dragonfly/documentation>
+                                    Safari Developer Tools
+                                </a>
+                            </li>
+                            <li>
+                                <a href=http://msdn.microsoft.com/en-us/library/dd565628(v=vs.85).aspx>
+                                    IE Developer Tools
+                                </a>
+                            </li>
+                            <li>
+                                <a href=http://www.opera.com/dragonfly/documentation>
+                                    Dragonfly (Opera)
+                                </a>
+                            </li>
+                        </ul>
+                        <h3>Videos</h3>
+                        <ul>
+                            <li>
+                                <a href=http://www.youtube.com/watch?v=54IgWgoFToc>
+                                    Chrome Developer Tools Console
+                                </a>
+                            </li>
+                            <li>
+                                <a href=http://www.youtube.com/watch?v=VHOg_Ks-a5E>
+                                    Firebug Console (Skip to about 6min in for
+                                    viewing JavaScript Errors in the console.)
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+            </div>
+        </div>
+        <script src=../bootstrap/js/jquery.js></script>
+        <script src=../bootstrap/js/fall2012.js></script>
+        <script src=../bootstrap/js/bootstrap.js></script>
+        <script src=../lib/prettify/prettify.js></script>
+        <script>
+            $(function() {
+                
+            });
+        </script>
+        <script src=../bootstrap/js/bootstrap-dropdowns-set.js></script>
+    </body>
+</html>
