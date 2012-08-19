@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html lang=en>
+    <head>
+        <meta charset=UTF-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SRJC Fall 2012 Javascript &amp; JQuery CS55.11</title>
+        <link href=../bootstrap/css/bootstrap.css rel=stylesheet>
+        <link href=../lib/prettify/prettify.css rel=stylesheet>
+        <link href=../bootstrap/css/fall2012.css rel=stylesheet>
+    </head>
+    <body>
+        
+        <div class=container>
+            <div class=callout>
+                <h1>JavaScript Development Tools &mdash; Code Sharing</h1>
+                <p>Learn how to share your code with other developers.</p>
+            </div>
+            <div class=row>
+                <section class=span4>
+                    <h2>Introduction</h2>
+                    <p>As you learn JavaScript, you will no doubt run into situations
+                        where your code just doesn't work and you can't figure out
+                        why.  In these situations, having someone else look at
+                        your code can be very helpful.</p>
+                    <p>The most primitive way of having someone review your code
+                        is giving it to them as plain text, either through an email,
+                        forum post, or the URL to your website.  While this method 
+                        works in some situations it assumes that the reviewer will 
+                        be able to see the problem without working with your code 
+                        in a live environment.</p>
+                    <p>If the reviewer needs a chance to modify and execute your
+                        code, this approach normally fails because it can be very
+                        difficult for the reviewer to recreate your full environment,
+                        and most casual reviewers will not take the time required
+                        for this.</p>
+                    <h3>Introducing JsFiddle</h3>
+                    <blockquote>
+                        JsFiddle is a playground for web developers, a tool which 
+                        may be used in many ways. One can use it as an online 
+                        editor for snippets build from HTML, CSS and JavaScript. 
+                        The code can then be shared with others, embedded on a 
+                        blog, etc. Using this approach, JavaScript developers can 
+                        very easily isolate bugs. 
+                        <small>doc.jsfiddle.net</small>
+                    </blockquote>
+                    <p><a href=http://jsfiddle.net/ target=_blank>JsFiddle</a>
+                        is relatively new and still officially in alpha.
+                        In spite of this, it has become the <em>de facto</em>
+                        standard for sharing JavaScript code and snippets for
+                        review on forum sites like <a href=http://stackoverflow.com/ 
+                        target=_blank>Stack Overflow</a>.</p>
+                    <p>The reasons for its popularity quickly become obvious as
+                        you begin to use it.  You can easily mockup a situation
+                        (in plain HTML, CSS, and JavaScript) that is giving you 
+                        trouble and send or post the link for review.  Other developers
+                        can then adjust your code in a live/executable
+                        environment and send it back to you once they've worked
+                        out the bugs.  There is no extra effort to recreate your
+                        environment as you are basically handing them an editable
+                        version of it.</p>
+                </section>
+                <section class=span4>
+                    <h2>Usage</h2>
+                    <section>
+                        <h3>Introduction to JsFiddle.net</h3>
+                        <iframe width="350" height="197" src="http://www.youtube.com/embed/zrWkRHSK6A8?rel=0" frameborder="0" allowfullscreen></iframe>
+                    </section>
+                    <section>
+                        <h3>Using the Different Panes</h3>
+                        <p>Generally you will place your HTML, CSS, and JavaScript
+                            into the different panes like you were creating a 
+                            webpage, with a few exceptions:</p>
+                        <dl>
+                            <dt>HTML Pane</dt>
+                            <dd>Only place the HTML markup that would go inside
+                                your &lt;body> tag.  Don't include any of the
+                                structure above it (&lt;html> or &lt;head> tags)
+                                </dd>
+                            <dt>CSS Pane</dt>
+                            <dd>Only place your CSS rules.  You can treat this
+                                pane as if it were an external CSS file.</dd>
+                            <dt>JavaScript Pane</dt>
+                            <dd>Only place your JavaScript code.  You can also
+                                treat this as if it contained the contents of an
+                                external JS file.</dd>
+                        </dl>
+                        <h3>Other Configuration Options</h3>
+                        <p>As we start the class you will probably want to configure
+                            your fiddles in the following way:</p>
+                        <img src=../images/jsfiddle-config.png alt="JsFiddle Configuration">
+                    </section>
+                </section>
+                <section class=span4>
+                    <section class=well>
+                        <h2>Take Aways</h2>
+                        <ul>
+                            <li>Whenever possible, use JsFiddle to share your code
+                                in this class and online.</li>
+                        </ul>
+                    </section>
+                    <section class=well>
+                        <h2>Resources</h2>
+                        <h3>Sites</h3>
+                        <ul>
+                            <li>
+                                <a href=http://www.jsfiddle.net/ target=_blank>
+                                    JsFiddle
+                                </a>
+                            </li>
+                        </ul>
+                        <h3>Documentation</h3>
+                        <ul>
+                            <li>
+                                <a href=http://doc.jsfiddle.net/index.html target=_blank>
+                                    JsFiddle Documentation
+                                </a>
+                            </li>
+                        </ul>
+                        <h3>Videos</h3>
+                        <ul>
+                            <li>
+                                <a href=http://www.youtube.com/watch?v=7hu8qOxxdwg target=_blank>
+                                    Awesome Developer Tools: JsFiddle
+                                </a>
+                            </li>
+                        </ul>
+                        <h3>For Fun</h3>
+                        <ul>
+                            <li>
+                                <a href=http://andrewwooldridge.com/blog/2011/03/16/stunning-examples-of-using-jsfiddle/ target=_blank>
+                                   Stunning Examples Using JsFiddle 
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+            </div>
+        </div>
+        <script src=../bootstrap/js/jquery.js></script>
+        <script src=../bootstrap/js/fall2012.js></script>
+        <script src=../bootstrap/js/bootstrap.js></script>
+        <script src=../lib/prettify/prettify.js></script>
+        <script>
+            $(function() {
+                
+            });
+        </script>
+        <script src=../bootstrap/js/bootstrap-dropdowns-set.js></script>
+    </body>
+</html>
