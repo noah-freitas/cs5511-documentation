@@ -16,7 +16,7 @@
                 <p>Basic programming concepts.</p>
             </div>
             <div class=row>
-                <section class=span4>
+                <section class="span4">
                     <h2>Introduction</h2>
                     <blockquote cite=http://www.wikipedia.com/javascript/>A good programming language helps the programmer by providing a more abstract means of expression ... hides uninteresting details ... provides convenient building blocks ... and allows the programmer to add new building blocks.<br>
 <small>paraphrased from Marijn Haverbeke, <em>Eloquent Javascript: A Modern Introduction to Programming<</em>/a></small>
@@ -24,79 +24,117 @@
                    <h3>The Basic Building Blocks of a Programming Language</h3>
                      <p>Computer languages 'abstract' real world information into data that can be manipulated. These terms and concepts will be familiar to people who have used programming languages such as C, Java, Basic, PHP, etc. </p>
                   
-                <h3>Terminology</h3>
+               
                     <dl class=dl-horizontal>
                         
                         <dt>Statement</dt>
-                        <dd>A line of Javascript code typically ending with a semicolon that performs a function and is executed in line sequence.  Specialized statements such as conditionals and iterators can contain inner blocks of statements.</dd>
+                        <dd>A line of Javascript code typically ending with a semicolon that performs a function and is executed in line sequence.  <blockquote>A command to the browser <small> -<a href="http://www.w3schools.com/js/js_statements.asp"> w3schools.com</a></small></blockquote></dd><code>
+                        <pre class="prettyprint linenums">
+var x;
+x = 18;
+var y = (x<21) ? "N" : "Y" // ternary assignment
+</pre>Statements
+                    </code>
                         <dt>Expression</dt>
                         <dd>A piece of Javascript code that produces a value.  An expression can be a literal, a name (variable) and/or can contain operators on or between literals and variables.</dd>
+                        <code>
+                        <pre class="prettyprint linenums">
+x
+8
+"N"
+</pre>Expressions
+                    </code>
                          <dt>Literal</dt>
                         <dd>An explicit expression of a value.   Numbers, strings, objects, arrays and even functions can be expressed as literals in Javascript.</dd>
+                        <code>
+                        <pre class="prettyprint linenums">
+(100 + 4) - 25 // numeric literal
+"Javascript" // string literal
+{reviewer:"George V",points:5}  // object literal
+</pre>Literals
+                    </code>
+                    </dl>
+                    </section>
+                
+                <section class="span4">
+                 <dl class=dl-horizontal>
                          <dt>Variable</dt>
-                        <dd>A named expression or value.  In Javascript there are six basic types of values, or things that can be named inherently:  numbers, strings, booleans, objects, functions and undefined.  The keyterm VAR is used to create a new variable.</dd>
-                    </dl> </section>
-                <section class=span4>
-                  <h3>Adding Javascript to a webpage</h3>
-                    <ul><li>A script can be placed within a SCRIPT tag in your HTML file, within either the HEAD or the BODY element.</li> <code>
+                        <dd>A named expression or value. The keyterm VAR is used to create a new variable. In Javascript there are six basic types of values, or things that can be named inherently:  numbers, strings, booleans, objects, functions and undefined.  Undefined is what makes Javascript a 'weakly-typed' programming language - types aren't required for defining variables. </dd>
+                          <code>
                         <pre class="prettyprint linenums">
-&lt;script type="text/javascript"&gt;
- alert("Hello, World");
-&lt;/script&gt;
-</pre>
+var x;
+var y:string;
+var z:Date;
+</pre>Declaration statements
                     </code>
-                    <li>A script can be placed in a separate .js file which is referenced within the SRC attribute of a SCRIPT tag.</li>
-                     <code>
+                         <dt>Value</dt>
+                        <dd>The inherent value of an expression, typically a number, string or object.   Javascript has built in values such as true, false, NaN (Not a Number), null, and undefined.</dd>
+                        <code>
                         <pre class="prettyprint linenums">
-&lt;script src="hello-world.js" type="text/javascript"&gt;&lt;/script&gt;
-</pre>
+x = 21;
+y = x-5;
+var z = y * 12;
+</pre>Assignment statements
                     </code>
-                    <li>A statement or short script can be placed in an event-handler attribute of a page element.                    </li>
+                        <dt>Operator</dt>
+                        <dd>Changes the value of expressions. There are mathematical, logical, assignment, comparison and other types of operators in Javascript.</dd>
+                    </dl>
+                    
                     <code>
                         <pre class="prettyprint linenums">
-&lt;input type="button" onclick=alert("Hello, World"); /&gt;
-</pre>
-                    </code>  </ul>
-                  <h3>Javascript 'Context' on a webpage</h3>
-                  <p>As you can see above, Javascript scripts can be loaded onto a webpage in many different ways.    Once a script is loaded onto the page, it has scope of all CURRENT elements of the page and of the variables, functions and resources of the other scripts on the webpage.</p>
-                  <p>However, a script does not have scope to page or script resources loaded onto the page subsequent to it.  Wepages load line by line from the top down.</p>
-                  <p>Some programming techniques load all scripts at the bottom of the page, others load their scripts wired to page events such as onLoad that fire after all page elements are loaded. </p>
+x = 21; //assignment operator
+y = x - 5; //mathematical MINUS operator
+y = !y;  // logical NOT operator
+</pre>Operators
+                    </code>
+                
+                 
                     
                
                 
-              </section>
+              </dl>
                 </section>
                 <section class=span4>
                     <section class=well>
                         <h2>Take Aways</h2>
                         <ul>
-                            <li>Javascript is accessible and easy to use</li>
-                            <li>Javascript works with elements I'm already familar with - HTML and CSS</li>
+                            <li>Programmers express behaviors abstractly through expressions and statements</li>
+                            <li>Javascript is similar to most programming languages, but has some interesting idiosyncrocies.</li>
                         </ul>
                     </section>
+                     <section class=well>
+                 <h2>Assigning webpage elements as Javascript variables</h2>
+                 
+                 <p>We will learn more about what this means, but for now, it is convenient for us to just understand that this function: <strong>document.getElementbyId("")</strong> can be used to access an handle to a page element (with the appropriate id attribute) and assign it to a variable.</p>
+                 </section>    
                     <section class="well exercises">
                         <h2>Exercises</h2>
                         <div class="alert alert-block alert-success">Exercises are optional 
                             and ungraded. </div>
-                        <p>Create an HTML5 webpage that introduces yourself and includes an image,  a short introduction and your objectives for taking this class. Create at least eight elements on the page overall.</p>
-                        <p>Publish the page and <a href="mailto:jperetz@santarosa.edu">email me a link</a>.    This will be your 'homepage' for this class and I will link it to the student gallery.</p>
-                        <p>Link the page to a CSS style sheet and develop a simple page layout and page design.</p>
-                        <p>(It's OK to use a page from a previous class as long as it is HTML5.)</p>
-                        <p>Create a Javascript script that changes the source image of the IMG element. Try loading this script in each of the three methods described. Using the browser developer tools, watch how the page loads the external resources. Experiment.</p>
-                        <p>Write a paragraph on your webpage describing your observations.</p>
+                     
                       
                     </section>
                     <section class=well>
                         <h2>Resources</h2>
                         <h3>Books</h3>
                         <ul>
-                            <li>Javascript: A Beginner's Guide &mdash; Chapter 2</li>
+                            <li>Javascript: A Beginner's Guide &mdash; Chapters 3 &amp; 5</li>
                         </ul>
                         <h3>Documentation</h3>
                         <ul>
+                        <li>
+                                <a href=http://www.w3schools.com/js/js_statements.asp>
+                                    w3schools: Javascript Statements
+                                </a>
+                            </li>
                             <li>
-                                <a href=http://stackoverflow.com/questions/1795438/load-and-execution-sequence-of-a-web-page>
-                                    StackOverflow: Load Sequence of a Webpage
+                                <a href=http://www.w3schools.com/js/js_variables.asp>
+                                    w3schools: Javascript Variables
+                                </a>
+                            </li>
+                            <li>
+                                <a href=http://www.w3schools.com/js/js_operators.asp>
+                                    w3schools: Javascript Operators
                                 </a>
                             </li>
                             
