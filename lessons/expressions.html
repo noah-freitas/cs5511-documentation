@@ -12,30 +12,30 @@
         
         <div class=container>
             <div class=callout>
-                <h1>Variables, Expressions and Operators</h1>
+                <h1>Variables, Expressions, Operators and Statements</h1>
                 <p>Basic programming concepts.</p>
             </div>
             <div class=row>
                 <section class=span4>
                     <h2>Introduction</h2>
-                    <blockquote cite=http://www.wikipedia.com/javascript/>JavaScript  is a <strong>multi-paradigm</strong> scripting language that is <strong>prototype-based, dynamic, weakly-typed</strong> and has <strong>first-class functions</strong> and supports <strong>object-oriented, imperative</strong>, and <strong>functional</strong> programming styles. <br>
-<br>
-Javascript uses sytax from C and naming conventions from <strong>Java</strong>.  Javascript is a registered trademark of <strong>Oracle Corporation</strong>.<small>paraphrased from<a href="http://en.wikipedia.org/wiki/JavaScript"> WikiPedia</a></small>
+                    <blockquote cite=http://www.wikipedia.com/javascript/>A good programming language helps the programmer by providing a more abstract means of expression ... hides uninteresting details ... provides convenient building blocks ... and allows the programmer to add new building blocks.<br>
+<small>paraphrased from Marijn Haverbeke, <em>Eloquent Javascript: A Modern Introduction to Programming<</em>/a></small>
                     </blockquote>
-                   <h3>What does Javascript do?</h3>
-                      <ul>
-                     <li>Like HTML and CSS, Javascript is intepreted and executed by web browsers.</li>
-                     <li>HTML is a markup language to structure content for users.</li>
-                     <li>CSS is a declarative language to format and style content for users.</li>
-                     <li>Javascript is a scripting language used to create dynamic behaviors between web content and users.</li> <li>For the purposes of this class, we'll always assume unless stated otherwise, that we are referring to Javascript running within a web browser. However, Javascript as a programming language may be implemented in a variety of ways on different platforms and is becoming increasingly popular for web server scripting (node.js) and embedded programming.    </li>
-                   </ul>
-                    <h3>A Brief History of Javascript</h3>
-                   <ul>
-                     <li>Introduced by Netscape in 1995 in the Navigator 2.0</li>
-                     <li>Adopted by Microsoft in 1996 in Internet Explorer 3.0</li>
-                     <li>Submitted in 1996 as ECMAScript standard</li>
-                     <li>JavaScript is now officially managed by <a href="http://en.wikipedia.org/wiki/Mozilla_Foundation" title="Mozilla Foundation">Mozilla Foundation</a>, and new language features are added periodically. Each browser's support for these new language features may vary, but all major current browser versions support Javascript.</li>
-                   </ul> </section>
+                   <h3>The Basic Building Blocks of a Programming Language</h3>
+                     <p>Computer languages 'abstract' real world information into data that can be manipulated. These terms and concepts will be familiar to people who have used programming languages such as C, Java, Basic, PHP, etc. </p>
+                  
+                <h3>Terminology</h3>
+                    <dl class=dl-horizontal>
+                        
+                        <dt>Statement</dt>
+                        <dd>A line of Javascript code typically ending with a semicolon that performs a function and is executed in line sequence.  Specialized statements such as conditionals and iterators can contain inner blocks of statements.</dd>
+                        <dt>Expression</dt>
+                        <dd>A piece of Javascript code that produces a value.  An expression can be a literal, a name (variable) and/or can contain operators on or between literals and variables.</dd>
+                         <dt>Literal</dt>
+                        <dd>An explicit expression of a value.   Numbers, strings, objects, arrays and even functions can be expressed as literals in Javascript.</dd>
+                         <dt>Variable</dt>
+                        <dd>A named expression or value.  In Javascript there are six basic types of values, or things that can be named inherently:  numbers, strings, booleans, objects, functions and undefined.  The keyterm VAR is used to create a new variable.</dd>
+                    </dl> </section>
                 <section class=span4>
                   <h3>Adding Javascript to a webpage</h3>
                     <ul><li>A script can be placed within a SCRIPT tag in your HTML file, within either the HEAD or the BODY element.</li> <code>
@@ -63,15 +63,6 @@ Javascript uses sytax from C and naming conventions from <strong>Java</strong>. 
                   <p>Some programming techniques load all scripts at the bottom of the page, others load their scripts wired to page events such as onLoad that fire after all page elements are loaded. </p>
                     
                
-                <h3>Terminology</h3>
-                    <dl class=dl-horizontal>
-                        <dt>Script</dt>
-                        <dd>A block of Javascript instructions</dd>
-                        <dt>Statement</dt>
-                        <dd>A line of Javascript code typically ending with a semicolon</dd>
-                        <dt>Expression</dt>
-                        <dd>A piece of Javascript code that produces a value</dd>
-                    </dl>
                 
               </section>
                 </section>
@@ -114,6 +105,27 @@ Javascript uses sytax from C and naming conventions from <strong>Java</strong>. 
                     </section>
                 </section>
             </div>
+            <div class="row comments">
+        <div class="span12">
+        <h3>Comments</h3>
+        <p>Please use this discussion form appropriately to ask questions of the instructor or to share information that is of interest to the class.</p>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'javascriptcs5511'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        </div>
+        </div>
         </div>
         <script src=../bootstrap/js/jquery.js></script>
         <script type="text/javascript"  src="../bootstrap/js/fall2012.js"></script>

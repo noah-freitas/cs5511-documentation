@@ -63,16 +63,15 @@ Javascript uses sytax from C and naming conventions from <strong>Java</strong>. 
                   <p>As you can see above, Javascript scripts can be loaded onto a webpage in many different ways.    Once a script is loaded onto the page, it has scope of all CURRENT elements of the page and of the variables, functions and resources of the other scripts on the webpage.</p>
                   <p>However, a script does not have scope to page or script resources loaded onto the page subsequent to it.  Wepages load line by line from the top down.</p>
                   <p>Some programming techniques load all scripts at the bottom of the page, others load their scripts wired to page events such as onLoad that fire after all page elements are loaded. </p>
-                    
+         <blockquote>In web browsers, each SCRIPT tag delivers a compilation unit that is compiled and immediately executed...Javascript throws them all together in a common global namespace.<small>Douglas Crockford, <em>Javacript: The Good Parts</em></small></blockquote>          
                
                 <h3>Terminology</h3>
                     <dl class=dl-horizontal>
                         <dt>Script</dt>
                         <dd>A block of Javascript instructions</dd>
-                        <dt>Statement</dt>
-                        <dd>A line of Javascript code typically ending with a semicolon</dd>
-                        <dt>Expression</dt>
-                        <dd>A piece of Javascript code that produces a value</dd>
+                        <dt>Page or Webpage</dt>
+                        <dd>An HTML document and its related files loaded in a web browser</dd>
+                       
                     </dl>
                 
               </section>
@@ -117,6 +116,27 @@ Javascript uses sytax from C and naming conventions from <strong>Java</strong>. 
                     </section>
                 </section>
             </div>
+            <div class="row comments">
+        <div class="span12">
+        <h3>Comments</h3>
+        <p>Please use this discussion form appropriately to ask questions of the instructor or to share information that is of interest to the class.</p>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'javascriptcs5511'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        </div>
+        </div>
         </div>
         <script src=../bootstrap/js/jquery.js></script>
         <script type="text/javascript"  src="../bootstrap/js/fall2012.js"></script>
