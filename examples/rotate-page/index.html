@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Rotating Page</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/rotate-page.js"></script>
+<style type="text/css">
+body {
+	background-color:#0CF;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+#container {
+	background-color:white;
+	width:680px;
+	padding: 20px;
+	margin-top: 20px;
+	margin-right: auto;
+	margin-bottom: 20px;
+	margin-left: auto;	
+}
+#spinner {
+	color:red;
+	cursor:pointer;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div id="container">
+  <h2>about this page</h2>
+  <p id="spinner">rotate this entire page</p>
+  <p>the javascript on this page is an attempt to replicate the behavior of the <a href="http://www.google.com/">Google search page</a> when you search for "do a barrel roll".  </p>
+  <p>the page relies on the jquery library, which is included in this folder but can be accessed via the cloud by adding this script tag to your webpage.</p>
+  <p> &lt;script           src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"&gt;&lt;/script&gt;</p>
+  <p>The <a href="js/rotate-page.js">custom jquery code</a> uses the<a href="http://api.jquery.com/ready/"> jquery .ready function</a> to ensure the page elements are fully loaded and then adds a 'click' event listener on the #spinner element. This code is a bit more involved than what we worked on in class, but it is able to stop itself when it turns the page one complete revolution. </p>
+  <p> C and Java programmers might recognize the recursion used in the rotate() function.</p>
+</div>
+</body>
+
+</html>
