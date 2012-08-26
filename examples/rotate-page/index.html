@@ -33,11 +33,35 @@ body {
 <div id="container">
   <h2>about this page</h2>
   <p id="spinner">rotate this entire page</p>
-  <p>the javascript on this page is an attempt to replicate the behavior of the <a href="http://www.google.com/">Google search page</a> when you search for "do a barrel roll".  </p>
+<p>  <em>This page is a bit different than the example we started working on in class, it uses a Javascript conditional statement (if (..) {}) </em></p>
+  <p>The javascript on this page is an attempt to replicate the behavior of the <a href="http://www.google.com/">Google search page</a> when you search for "do a barrel roll".  </p>
   <p>the page relies on the jquery library, which is included in this folder but can be accessed via the cloud by adding this script tag to your webpage.</p>
   <p> &lt;script           src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"&gt;&lt;/script&gt;</p>
   <p>The <a href="js/rotate-page.js">custom jquery code</a> uses the<a href="http://api.jquery.com/ready/"> jquery .ready function</a> to ensure the page elements are fully loaded and then adds a 'click' event listener on the #spinner element. This code is a bit more involved than what we worked on in class, but it is able to stop itself when it turns the page one complete revolution. </p>
   <p> C and Java programmers might recognize the recursion used in the rotate() function.</p>
+  
+  
+<!--  
+        <h3>Comments</h3>
+        <p>Please use this discussion form appropriately to ask questions of the instructor or to share information that is of interest to the class.</p>
+        <div id="disqus_thread"></div>
+  <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'javascriptcs5511'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+      -->
+  
+  
 </div>
 </body>
 

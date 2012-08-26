@@ -1,0 +1,44 @@
+@charset "UTF-8";
+/* CSS Document */
+html, body {
+      height: 100%;
+      margin: 0 0 1px;
+      padding: 0;
+    }
+
+body {
+	color: #000;
+	font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+	font-size: 100%;
+	line-height: 1.4;
+	background-image: url(../images/gridbg.jpg);
+	background-repeat: repeat;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+#wrapper {
+	padding: 20px;
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.twocolumn {
+	margin: 5px;
+	padding: 5px;
+	float: left;
+	width: 45%;
+}
+html .prettyprint li ,  html .prettyprint li .tag ,  html .prettyprint li .atn ,  html .prettyprint li .atv,  html .prettyprint li .pln,  html .prettyprint li .dec { font-size:125%; }
+
+form {
+margin:40px;
+padding:20px;
+border:#000 thin solid;
+background: #D6ECFF; /* old browsers */
+	background: -moz-linear-gradient(top, #D6ECFF 0%, #BCC6F4 100%, #207cca 100%, #7db9e8 100%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#D6ECFF), color-stop(100%,#BCC6F4), color-stop(100%,#207cca), color-stop(100%,#7db9e8)); /* webkit */
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#D6ECFF', endColorstr='#7db9e8',GradientType=0 ); /* ie */
+	background-repeat:no-repeat;
+
+}

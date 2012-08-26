@@ -1,0 +1,354 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>HTML5: New Adventures in Webpage Markup</title>
+<!-- Incude CSS for JQuery Vertical Tabs -->
+<link rel="stylesheet" type="text/css" href="../html5-nbwc/vtabs/css/jquery-jvert-tabs-1.1.4.css" />
+<!-- Include JQuery Core-->
+<script type="text/javascript" src="../html5-nbwc/vtabs/js/jquery-1.4.1.min.js"></script>
+<!-- Include JQuery Vertical Tabs plugin -->
+<script type="text/javascript" src="../html5-nbwc/vtabs/js/jquery-jvert-tabs-1.1.4.js"></script>
+<script type="text/javascript" src="../html5-nbwc/syntax-highlighter/scripts/jquery.syntaxhighlighter.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#vtabs1").jVertTabs();
+	$.SyntaxHighlighter.init({
+        'wrapLines':false,'alternateLines': true
+    });
+});
+</script>	
+<script type="application/x-javascript">
+function displayCanvas()
+	{
+      var canvas = document.getElementById("myCanvas");
+      if (canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+
+        ctx.fillStyle = "rgb(200,0,0)";
+        ctx.fillRect (0, 0, 150, 75);
+
+        ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+        ctx.fillRect (40, 30, 125, 75);
+
+        ctx.fillStyle = "rgb(0,0,150)";
+        ctx.strokeRect (20, 20, 50, 100); 
+      }
+    }
+</script>
+<link href="../html5-nbwc/nbwc.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+a:link {
+	color: #E44D25;
+}
+a:visited {
+	color: #F16529;
+}
+a:hover {
+	color: #F16529;
+}
+a:active {
+	color: #E44D25;
+}
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+<div id="header">
+<img src="../images/HTML5_Logo.png" width="128" height="128" alt="HTML5" style="float:left">
+        <h1>HTML5: New Adventures in Webpage Markup</h1>
+<br><br>
+<br clear="all">
+
+</div>
+  <div id="vtabs1">
+    <div>
+      <ul>
+        <li><a href="#html5">HTML5</a></li>
+         <li><a href="#html5why">HTML5: What To Use Today</a></li>
+        <li><a href="#doctype">Semantic Markup</a></li>
+       
+        <li><a href="#microformats">Microformats</a></li>
+        <li><a href="#media">Rich Media Elements</a></li>
+        <li><a href="#tools">Detecting User Agents</a></li>
+        <li><a href="#links">References</a></li>
+        </ul>
+        <br>
+        
+      </div>
+    <div>
+      <div id="#html5">
+       <ul style="font-size:150%;">
+         <li>What is HTML5?
+           <ul>
+             <li>Marketing term for Web 3.0?</li>
+             <li>Anti-Flash?</li>
+              <li>Video Format for iPhone?</li><br><br>
+             <li>Markup Language for the <a href="http://www.smashingmagazine.com/2011/03/29/designing-for-the-future-web/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed:+SmashingMagazine+%28Smashing+Magazine%29">FUTURE WEB</a>!</li>
+           </ul>
+         </li>
+         </ul>
+         </div>
+         <div id="#html5why">
+       <ul style="font-size:150%;">
+         <li>What can we do with HTML5 today?
+           <ul>
+             <li>Simplify webpage markup</li>
+             <li>Improve webpage structure </li>
+             <li>Deliver rich media to all user agents</li>
+           </ul>
+         </li>
+       </ul>
+</div>
+     
+      <div id="#doctype">
+        <h3>Document Definition</h3>
+         <code class="language-html">
+        &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+</code>
+<p>XHTML Transitional Document </p>
+        <code class="language-html">
+        &lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+        </code>
+      <p> HTML5 Document </p>
+        <h3>Semantic Page Structure</h3>
+        <code class="language-html">
+&lt;body&gt;
+&lt;header&gt;
+&lt;hgroup&gt;
+&lt;h1&gt;HTML5&lt;/h1&gt;
+&lt;h2&gt;The new standard for designing web pages&lt;/h2&gt;
+&lt;/hgroup&gt;
+&lt;/header&gt;
+&lt;section id="lsidebar"&gt;
+&lt;nav&gt;
+&lt;ul id="resources"&gt;
+&lt;li&gt;&lt;a href="products.html"&gt;Products&lt;/li&gt;
+&lt;li&gt;&lt;a href="services.html"&gt;Services&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="contact.html"&gt;Contact Us&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/section&gt;
+&lt;section id="maincontent"&gt;
+&lt;hgroup&gt;
+&lt;h1&gt;Welcome&lt;/h1&gt;
+&lt;article&gt; &lt;h2&gt;About Acme Corp.&lt;/h2&gt;
+&lt;/article&gt; &lt;/hgroup&gt;
+&lt;/section&gt;
+&lt;div class="clearfloat"&gt;&lt;/div&gt;
+&lt;footer&gt;
+&lt;aside id="disclaimer"&gt;Website Design and Development &copy;&nbsp;&nbsp;Jay Peretz 2010&lt;/aside&gt;
+&lt;/footer&gt;
+&lt;/body&gt;
+</code>
+<p>Add  semantic elements as tags</p>
+  <code class="language-html">
+  &lt;style&gt;
+        header, section, footer, aside, nav, article, figure {
+	display: block;
+    }
+    &lt;/style&gt;
+
+</code>
+       <p>Style semantic elements as block elements</p> 
+        
+      </div>
+      <div id="#microformats">
+        <h3>Structuring Rich Data Elements</h3>
+     
+  <code class="language-html">    
+      &lt;p class="vcard"&gt;
+&lt;a class="fn org url" href="http://www.santarosa.edu/instruction/instructional_departments/computer-studies/" title="Santa Rosa Junior College"&gt;&lt;span class="organization-name"&gt;SRJC&lt;/span&gt;/&lt;span class="organization-unit"&gt;Computer Studies&lt;/span&gt;&lt;/a&gt;&lt;br&gt;
+&lt;span class="adr"&gt;&lt;a class="extended-address" href="http://www.santarosa.edu/"&gt;Santa Rosa Junior College&lt;/a&gt;&lt;br&gt;
+&lt;span class="street-address"&gt;1501 Mendocino Ave.&lt;/span&gt;, &lt;span class="locality"&gt;Santa Rosa&lt;/span&gt;,&lt;br&gt;
+&lt;span class="region"&gt;CA&lt;/span&gt; &lt;span class="postal-code"&gt;95401&lt;/span&gt; &lt;b class="country"&gt;USA&lt;/b&gt;&lt;br&gt;
+&lt;span class="tel"&gt;Telephone: &lt;span class="value"&gt;1-707-527-4011&lt;/span&gt;&lt;/span&gt;&lt;br&gt;
+&lt;span class="email"&gt;&lt;span class="type"&gt;work&lt;/span&gt;: &lt;span class="value"&gt;&lt;a href="mailto:info@santarosa.edu"&gt;info@santarosa.edu&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;/p&gt;
+</code>
+         <p style="margin-left:50px;" class="vcard">
+<a class="fn org url" href="http://www.santarosa.edu/instruction/instructional_departments/computer-studies/" title="Santa Rosa Junior College"><span class="organization-name">SRJC</span>/<span class="organization-unit">Computer Studies</span></a><br>
+<span class="adr"><a class="extended-address" href="http://www.santarosa.edu/">Santa Rosa Junior College</a><br>
+<span class="street-address">1501 Mendocino Ave.</span>, <span class="locality">Santa Rosa</span>,<br>
+<span class="region">CA</span> <span class="postal-code">95401</span> <b class="country">USA</b><br>
+<span class="tel">Telephone: <span class="value">1-707-527-4011</span></span><br>
+<span class="email"><span class="type">work</span>: <span class="value"><a href="mailto:info@santarosa.edu">info@santarosa.edu</a></span></span></span>
+</p>
+       
+          <ul> 
+            <li>hCard — contact information for people and organisations</li>
+  <li>hCalendar — time-based information, such as events</li>
+  <li>adr</li>
+             
+            <li>geo</li>
+             
+            <li>hAtom</li>
+             
+            <li>hAudio</li>
+             
+          <li>hListing</li>
+    <li>hMedia</li>
+    
+    <li>hNews</li>
+    
+    <li>hProduct</li>
+    
+    <li>hRecipe</li>
+    
+    <li>hResume</li>
+    
+    <li>hReview</li>
+    
+  </ul>
+  
+ 
+       
+        </div>
+      <div id="#media">
+        <h2>Rich Media to All User Agents</h2> 
+        <h3>Video</h3>   
+        <code class="language-html"> 
+          &lt;video id="movie" width="320" height="240" preload controls&gt;
+          &lt;source src="pr6.webm" type='video/webm; codecs="vp8, vorbis"' /&gt;
+          &lt;source src="pr6.ogv" type='video/ogg; codecs="theora, vorbis"' /&gt;
+          &lt;source src="pr6.mp4" /&gt;
+          &lt;object width="320" height="240" type="application/x-shockwave-flash"
+          data="flowplayer-3.2.1.swf"&gt; 
+          &lt;param name="movie" value="flowplayer-3.2.1.swf" /&gt; 
+          &lt;param name="allowfullscreen" value="true" /&gt; 
+          &lt;param name="flashvars" value='config={"clip": {"url": "http://wearehugh.com/dih5/pr6.mp4", "autoPlay":false, "autoBuffering":true}}' /&gt; 
+          &lt;p&gt;Download video as &lt;a href="pr6.mp4"&gt;MP4&lt;/a&gt;, &lt;a href="pr6.webm"&gt;WebM&lt;/a&gt;, or &lt;a href="pr6.ogv"&gt;Ogg&lt;/a&gt;.&lt;/p&gt; 
+          &lt;/object&gt;
+  &lt;/video&gt;
+          </code>
+          <p>Video with encoded sources and Flash fallback for all user agents</p>
+        </p>
+          <code class="language-js"> 
+          var v = document.getElementById("movie");
+            v.onclick = function() {
+            if (v.paused) {
+            v.play();
+            } else {
+            v.pause();
+            }
+            };
+          </code><p>A simple Javascript player for user agents without controls.
+        </p>
+        <h3>Audio</h3>
+          <code class="language-html"> 
+        &lt;audio controls&gt;
+       &lt;source src="lotus-flower.mp3" type="audio/mpeg" /&gt;
+  &lt;source src="lotus-flower.ogg" type="audio/ogg" /&gt;
+This browser does not support the audio element.
+&lt;/audio&gt;
+       </code> 
+       <p>Simple audio tag with no player or fallback</p>
+        <audio controls>
+       <source src="lotus-flower.mp3" type="audio/mpeg" />
+  <source src="lotus-flower.ogg" type="audio/ogg" />
+This browser does not support the audio element.
+</audio>
+        <h3>Embed</h3>
+        
+   <code class="language-html">       
+&lt;embed src="helloworld.swf" type="video/quicktime" /&gt;
+ </code>   
+ <p>Empty element (self-closing tag) for embedding plug-in external applications using MIME types</p>    
+        <h3>Canvas</h3>
+      <code class="language-html">    &lt;canvas id="myCanvas" onClick="displayCanvas();"  width="300" height="200"&gt;&lt;p&gt;This  browser does not support the canvas tag. The current versions of Internet Explorer, Firefox, Opera, and Chrome support the canvas tag.&lt;/p&gt;&lt;/canvas&gt;
+   </code>
+   
+   
+   
+   <p>Renders and animates vector or bitmap graphics</p>
+  <code class="language-js">         function displayCanvas()
+	{
+      var canvas = document.getElementById("myCanvas");
+      if (canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+
+        ctx.fillStyle = "rgb(200,0,0)";
+        ctx.fillRect (0, 0, 150, 75);
+
+        ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+        ctx.fillRect (40, 30, 125, 75);
+
+        ctx.fillStyle = "rgb(0,0,150)";
+        ctx.strokeRect (20, 20, 50, 100); 
+      }
+    }
+    </code>
+    
+    <p>Javascript code to draw three rectangles</p>
+    <canvas onClick="displayCanvas();" id="myCanvas" width="300" height="200">Your browser does not support the canvas tag. At the time of writing, Firefox, Opera, and Chrome support this tag.</p> </canvas>
+
+<p>Click Above to See the Canvas</p>
+
+      </div>	
+      <div id="#tools">
+        <h2>Targeting  Markup to user agents</h2>
+      <dl> <dt><strong>Modernizr</strong></dt>
+        <dd><ul>
+        
+       <li>Maintain a fine level of control over older browsers with <em><a href="http://blogs.sitepoint.com/regressive-enhancement-with-modernizr-and-yepnope/">regressive enhancement</a></em></li> 
+ <li>Dynamically detects HTML5 & CSS3 features features available in the user agent</li><li>Open source, small footprint Javascript Library</li> <li> use markup to control  fallbacks for non-compliant browsers - no need for Javascript.</li> </ul></dd>
+<code  class="language-html"> 
+.no-audio #audio {
+   display: none; /* Don't show Audio */
+}
+ &lt;div id="audio"&gt;
+   &lt;audio&gt;
+      &lt;source src="mySong.ogg" /&gt;
+      &lt;source src="mySong.mp3" /&gt;
+   &lt;/audio&gt;
+&lt;/div&gt;
+
+</code>
+
+<p>Modernizr provides classes to determine user agent capabilities and to style or script fallbacks</p>
+ 
+        <dt><strong>Media Queries</strong> </dt>  <dd> <ul><li>Tailor display & layout attributes for specific user agent attributes</li><li>Dynamically detect attributes of user agents in HTML5 or style sheet</li><li>Style sheet presentations can be tailored to sets of  user agents  based on device attributes without changing the content</li><li> Attributes in media queries include 'width', 'height', 'aspect ratio'.</li> </ul></dd>   </dl>  
+        
+        <code  class="language-html">       
+     #container { width: 960px; }      
+       @media screen and (max-width:999px)
+           {
+	      #container { width: 800px; }
+            }
+       @media screen and (max-width:480px)
+           {
+	     #container { width: 400px; }
+            }
+        </code>
+        
+        
+        
+      </div>	
+     <div id="links">
+     <ul style="font-size:125%;">
+         <li>References for this presentation
+           <ul>
+             <li><a href="http://diveintohtml5.org/" title="Dive into HTML5">Dive into HTML5</a></li>
+             <li><a href="http://www.w3schools.com/html5/html5_new_elements.asp" title="W3Schools">W3Schools: New HTML5 Elements</a></li>
+            
+            <li><a href="http://html5doctor.com/microformats/" title="HTML5 Microformats">HTML5 Doctor: Microformats</a></li>
+            <li><a href="http://tv.adobe.com/watch/adc-presents/videoandhtml5part1understandinghtml5/" title="Adobe Dev Connection HTML5 Video">Adobe Developer Connection: HTML5 &amp; Video</a></li>
+            <li><a href="http://www.webmonkey.com/2010/05/embed-videos-in-your-web-pages-using-html5/" title="Embedding Video with HTML5">Webmonkey: Embedding Video with HTML5</a></li>
+            <li><a href="http://www.smashingmagazine.com/2011/03/29/designing-for-the-future-web/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed:+SmashingMagazine+%28Smashing+Magazine%29" title="Designing for the Future Web">Smashing Magazine: Designing for the Future Web</a></li>
+            <li><a href="http://www.modernizr.com/" title="MOdernizr">Modernizr</a></li>
+            <li><a href="http://blogs.sitepoint.com/regressive-enhancement-with-modernizr-and-yepnope/" title="Sitepoint: Regressive Enhancement">Sitepoint: Regressive Enhancement</a></li> <li><a href="http://www.w3.org/TR/css3-mediaqueries/" title="W3C Media Query Specification">W3C Media Query Specification</a></li>
+           </ul>
+         </li>
+         </ul>
+     
+     
+     </div>
+      </div>
+  </div>
+  <h5>North Bay Web Conference | April 12, 2011 | Jay Peretz</h5>
+</div>
+</body>
+</html>

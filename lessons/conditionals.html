@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html lang=en>
+    <head>
+        <meta charset=UTF-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SRJC Fall 2012 Javascript &amp; JQuery CS55.11</title>
+        <link href=../bootstrap/css/bootstrap.css rel=stylesheet>
+        <link href=../lib/prettify/prettify.css rel=stylesheet>
+        <link href=../bootstrap/css/fall2012.css rel=stylesheet>
+    </head>
+    <body>
+        
+        <div class=container>
+            <div class=callout>
+                <h1>Conditional and Iterative Statements</h1>
+                <p>More basic programming concepts.</p>
+            </div>
+            <div class=row>
+                <section class="span4">
+                    <h2>Introduction</h2>
+                    <blockquote cite=http://www.wikipedia.com/javascript/>
+                    When you put more than one statement into a program, the statements are executed, predictably enough, one at a time....Sometimes, you do not want all the statements in your program to always be executed in the same order.
+                    <br>
+<small>paraphrased from Marijn Haverbeke, <em>Eloquent Javascript: A Modern Introduction to Programming<</em>/a></small>
+                    </blockquote>
+                   <h3>Statements and Program Flow</h3>
+                     <p>In the previous lesson we learned that a STATEMENT is a 'line' of code that performs a task and is executed typically in sequence.  In the rotate page example we worked on in the 8/21/2012 class we used statements that defined and assigned variables (these are sometimes called expression statements.) Javascript and other programming languages also have special statements that allow us to apply logic to our programming.</p>
+                     <p>These special programming statements can not only change the condition of a variable, but also can change the normal, sequential flow of the program.</p>
+                     <p> <a href="../examples/rotate-page/index.html">In this Rotate Page example</a> we refine the logic of the page rotation function by getting it to stop after one revolution.  Note in the code that we do this with an IF statement - a statement that 'tests' the situation (has the page element fully rotated yet) and acts accordingly. This new feature allows us to use LOGIC on the page - to teach the rotate function to stop itself at a certain point by giving it a CONDITION (in the parentheses following the IF). </p>
+                     <p>We use a Javascript timer (setInterval()) and a recursive call to the rotate() function to interate, or repeat, the 1 degree rotation over time.</p>
+                     <h3>Javascript 'Logical' Statements</h3>
+                     <p>&nbsp;</p>
+                    <dl class=dl-horizontal>
+                        
+                      <dt>IF</dt>
+                        <dd>Conditional - tests for a specific condition using the logical operators and directs program flow to either of one or two code blocks. False conditions include incorrect comparative expressions as well as the values false, null, undefined, the string &quot;&quot;, the number 0 and the 'not a number' NaN.</dd>
+                        
+                        <code>
+                        <pre class="prettyprint linenums">
+if (degree != 361) 
+  {
+   rotate();
+  }
+
+var y = (degree != 361) ? rotate(); : null; 
+</pre>
+                        </code>
+                       <dt>Ternary</dt> <dd>A similar technique to IF statements. Based on the truth of the test expression, a variable takes a different value or code path.  It is good practice to have functions return values as we'll learn soon</dd>
+                       
+                <code>
+                        <pre class="prettyprint linenums">        
+var y = (degree != 361) ? rotate(); : null; 
+</pre>
+                        </code> 
+                         </dl>
+                    </section>
+                
+                <section class="span4">
+                 <dl class=dl-horizontal>
+                        <dt>SWITCH
+                        <dd>Performs a handy multi-path function based on evaluating an expression to match with a set of possible values defined by the case clause.</dd>
+                        <code>
+                        <pre class="prettyprint linenums">
+switch (day)
+ {
+  case "Sunday":
+   sleep();
+   break;
+  case "Monday";
+   work();
+   break;
+  case "Tuesday:
+   play();
+   break;
+   ...
+ }
+</pre>
+                    </code>
+                         <dt>WHILE</dt>
+                        <dd>A simple loop based on the 'truth' of the conditional expression.</dd>
+                        <code>
+                        <pre class="prettyprint linenums">
+while (i<5)
+ {
+ x = x + (i*.26);
+ i++; // an increment operator - add 1 to i
+ }
+</pre>
+                    </code>
+                   
+                         <dt>FOR</dt>
+                        <dd>A more complex looping statement with the increment function defined right with the conditional expression.  It also has a special version that increments through a set of objects.  </dd>
+                          <code>
+                        <pre class="prettyprint linenums">
+for (i=0; i<5; i++)
+ {
+  x=x + "And a ..." + i;
+ }
+ 
+ for (x in person)
+  { 
+   doc.div.innerHTML = x.name;
+  }
+</pre>
+                    </code>
+                         <dt>DO</dt>
+                        <dd>Similar to while, but always executes it 'truth' block at least once and tests the truth expression after each execution.</dd>
+                        <code>
+                        <pre class="prettyprint linenums">
+do 
+{ 
+ x++;
+ } 
+while (x < 10);
+</pre>
+                    </code>
+                       </dl>
+                </section>
+                <section class=span4>
+                    <section class=well>
+                        <h2>Take Aways</h2>
+                        <ul>
+                            <li>Programmers add logic to programs to control program flow using special CONDITIONAL and ITERATIVE statements</li>
+                            <li>There may be more than one way to program a specific situation. Some ways may be better than others and tradeoffs need to be evaluated.</li>
+                        </ul>
+                    </section>
+                         
+                    <section class="well exercises">
+                        <h2>Exercises</h2>
+                        <div class="alert alert-block alert-success">Exercises are optional 
+                            and ungraded. </div>
+                     
+                      
+                    </section>
+                    <section class=well>
+                        <h2>Resources</h2>
+                        <h3>Books</h3>
+                        <ul>
+                            <li>Javascript: A Beginner's Guide &mdash; Chapters 6</li>
+                        </ul>
+                        <h3>Documentation</h3>
+                        <ul>
+                        <li>
+                                <a href=http://www.w3schools.com/js/js_loop_for.asp>
+                                    w3schools: Javascript For Loops
+                                </a>
+                            </li>
+                            <li>
+                                <a href=http://www.w3schools.com/js/js_loop_while.asp>
+                                    w3schools: Javascript While Loop
+                                </a>
+                            </li>
+                            <li>
+                                <a href=http://www.w3schools.com/js/js_if_else.asp>
+                                    w3schools: Javascript If..Else
+                                </a>
+                            </li>
+                            
+                        </ul>
+                       
+                    </section>
+                </section>
+            </div>
+            <div class="row comments">
+        <div class="span12">
+        <h3>Comments</h3>
+        <p>Please use this discussion form appropriately to ask questions of the instructor or to share information that is of interest to the class.</p>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'javascriptcs5511'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        </div>
+        </div>
+        </div>
+        <script src=../bootstrap/js/jquery.js></script>
+        <script type="text/javascript"  src="../bootstrap/js/fall2012.js"></script>
+        <script src=../bootstrap/js/bootstrap.js></script>
+        <script src=../lib/prettify/prettify.js></script>
+        <script>
+            $(function() {
+                prettyPrint();
+                $('.carousel').carousel({
+                    interval: false
+                })
+            });
+        </script>
+         <script type="text/javascript" src="../bootstrap/js/bootstrap-dropdowns-set.js"></script>
+    </body>
+</html>
