@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Programming a HTML5 Grid with Javascript</title>
+<link href=../../bootstrap/css/bootstrap.css rel=stylesheet>
+<link href=../../lib/prettify/prettify.css rel=stylesheet>
+</head>
+<body>
+<div class="container">
+<div class="row">
+  <h2>Programming a HTML5 Grid with Javascript </h2>
+</div>
+<div class="row">
+<div class="span6">
+<ol>
+<li>Create a basic HTML5 webpage document
+  <code>
+                        <pre class="prettyprint linenums">
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;Programming a HTML5 Grid with Javascript&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</code>
+</li>
+<li>Download the <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap library</a>.     Link the bootstrap stylesheet in the head of your document and the Bootstrap JQuery and Javascript library in script tags before the ending of your document.  Create a new Javascript file named programming.js and link that to your page with a script tag below bootstrap.js.
+  This is where we will do our programming.<code>
+                        <pre class="prettyprint linenums">
+&lt;link href=bootstrap/css/bootstrap.css rel=stylesheet&gt;
+&lt;/head&gt;
+...
+&lt;script type="text/javascript" src="bootstrap/js/jquery.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="bootstrap/js/bootstrap.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="programming.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+</pre>
+</code>
+</li>
+<li>
+Twitter Bootstrap has a built-in HTML/CSS grid system which is very easy to use.    We are going to create a simple grid as a Javascript programming playground.  You can use  classes that are defined by Bootstrap such as 'row' and 'span(number)'. First create a div with id of grid and then rows with spans that add up to no more than 12. Feel free to make your own grid of regular or irregular numbers of columns.  Create at least a few rows to work with - you can copy and paste the HTML from here. </li>
+<code>
+<pre class="prettyprint linenums">
+&lt;div id="grid"&gt;
+&lt;div class="row"&gt;
+&lt;div class="span4"&gt;
+&lt;/div&gt;
+&lt;div class="span4"&gt;
+&lt;/div&gt;
+&lt;div class="span4"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+...
+&lt;/div&gt;
+</pre>
+</code>
+
+<li>
+Now we can start having some fun with Javascript!    First we will use a few functions that are build into web browsers for 'traversing' web documents.   We'll learn more about the Document Object Model in a few weeks, for now we are going to be using page elements simply to learn about basic Javascript programming statements.  
+</li>
+<code>
+<pre class="prettyprint linenums">
+var grid = document.getElementById("grid");
+var spans = grid.getElementsByClassName("span2");
+var rows = grid.getElementsByClassName("row");
+</pre>
+</code>
+
+<li>
+</li>
+<code>
+<pre class="prettyprint linenums">
+</pre>
+</code>
+
+<li>
+</li>
+<code>
+<pre class="prettyprint linenums">
+</pre>
+</code>
+
+<li>
+</li>
+<code>
+<pre class="prettyprint linenums">
+</pre>
+</code>
+
+
+
+</ol>
+</div>
+<div class="span6">
+<div id="grid">
+<div class="row">
+<div class="span2">
+</div>
+<div class="span2">
+</div>
+<div class="span2">
+</div>
+</div>
+<div class="row">
+<div class="span2">
+</div>
+<div class="span2">
+</div>
+<div class="span2">
+</div>
+</div>
+<div class="row">
+<div class="span2">
+</div>
+<div class="span2">
+</div>
+<div class="span2">
+</div>
+</div>
+<div class="row">
+<div class="span2">
+</div>
+<div class="span2">
+</div>
+<div class="span2">
+</div>
+</div>
+<div class="row">
+<div class="span2">
+</div>
+<div class="span2">
+</div>
+<div class="span2">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="../../bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="programming.js"></script>
+</body>
+</html>
