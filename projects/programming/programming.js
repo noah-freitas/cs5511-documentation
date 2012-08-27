@@ -9,22 +9,21 @@ for (x in spans)
     {
 		spans[x].innerHTML="<p>"+ x +"</p>";
 	}
-for (x in rows) {
-	if (x%2) {
-		rows[x].style.backgroundColor = "#DDD";
-	}
-};
-	for (x in spans) {
-	if (x%2 == 0)  {
-		spans[x].style.backgroundColor = "black";
-		
-	}
-	
-};
+var content = grid.getElementsByTagName("p");
 var x = 0;
 do {
 	
-	spans[x].style.padding = "10px auto;";
-	spans[x].style.color = "white";
+	content[x].style.width = "20px";
+	content[x].style.margin = "10px auto 10px auto";
+	content[x].style.textAlign = "right";
+	
+	
 	x++;
 } while (x < spans.length);
+	
+for (x in rows) {
+	if (x%2)  {
+		rows[x].style.backgroundColor = "#EEE";	
+	}	
+};	
+
