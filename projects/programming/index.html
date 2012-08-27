@@ -10,7 +10,11 @@
 <body>
 <div class="container">
 <div class="row">
-  <h2>Project 1: Programming a HTML5 Grid with Javascript </h2>
+<h2>Project 1: Programming a HTML5 Grid with Javascript </h2>
+</div>
+<div class="row">
+<div class="span6">
+  
 <div class="well">
 <h4>This Project is due September 6, 2012 at midnight.</h4>
 <p>&nbsp;</p>
@@ -37,114 +41,6 @@
 </ul>
 </div>
 </div>
-<div class="row">
-<div class="span6">
-
-<ol>
-<li>First, create a basic HTML5 webpage document
-  <code>
-                        <pre class="prettyprint linenums">
-&lt;!DOCTYPE HTML&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta charset="UTF-8"&gt;
-&lt;title&gt;Programming a HTML5 Grid with Javascript&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</pre>
-</code>
-</li>
-<li>Download the <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap library</a>.     Link the bootstrap stylesheet in the head of your document and the Bootstrap JQuery and Javascript library in script tags before the ending of your document.  Create a new Javascript file named programming.js and link that to your page with a script tag below bootstrap.js.
-  This is where we will do our programming.<code>
-                        <pre class="prettyprint linenums">
-&lt;link href=bootstrap/css/bootstrap.css rel=stylesheet&gt;
-&lt;/head&gt;
-...
-&lt;script type="text/javascript" src="bootstrap/js/jquery.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="bootstrap/js/bootstrap.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="programming.js"&gt;&lt;/script&gt;
-&lt;/body&gt;
-</pre>
-</code>
-</li>
-<li>
-Twitter Bootstrap has a built-in HTML/CSS grid system which is very easy to use.    We are going to create a simple grid as a Javascript programming playground.  You can use  classes that are defined by Bootstrap such as 'row' and 'span(number)'. First create a div with id of <strong>grid</strong> and then rows with spans that add up to no more than 12. For this project it's  OK to use the class &quot;span1&quot; for your blocks. Create at least a few rows to work with - you can copy and paste the HTML from here. </li>
-<code>
-<pre class="prettyprint linenums">
-&lt;div id="grid"&gt;
-&lt;div class="row"&gt;
-&lt;div class="span1"&gt;
-&lt;/div&gt;
-&lt;div class="span1"&gt;
-&lt;/div&gt;
-&lt;div class="span1"&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-...
-&lt;/div&gt;
-</pre>
-</code>
-
-<li>
-Now we can start having some fun with Javascript!    First we will use a few functions that are build into web browsers for 'traversing' web documents.   We'll learn more about the Document Object Model in a few weeks. For now, it's important for you just to know that these functions return <em>object references</em> to the page elements that meet the criteria we ask for. </li>
-<code>
-<pre class="prettyprint linenums">
-// access the grid element - returns a single object
-var grid = document.getElementById("grid");
-// access the grid rows and cells elements - each returns a set of object
-var spans = grid.getElementsByClassName("span2");
-var rows = grid.getElementsByClassName("row");
-</pre>
-</code>
-
-<li>First, let's add content to each of the grid cells.  Assigning a value to the  innerHTML property of a webpage element updates its content.  The value would typically be a string and can contain content and markup.    
-</li>
-<code>
-<pre class="prettyprint linenums">
-// the FOR .. IN statement gives us a built-in interation feature (x)
-for (x in spans)
-    {
-		spans[x].innerHTML="<p>"+ x +"</p>";
-	}
-</pre>
-</code>
-
-<li>Next we'll use a DO ... WHILE loop statement to change the properties of each of the paragraphs to align them properly.   We can create a new set using getElementsByTagName().   The WHILE loop statements have fewer features than FOR..IN - notice how you need to define and update the iterator manually.   Notice also how you need to use the LENGTH property of the set to determine how many members are in the set.    The FOR..IN statement does this for you automatically. 
-NOTE that this statement also requires you to take on alot of responsibility.  It is easy to create an INFINITE LOOP and freeze your browser session and possibly your operating system.  Don't forget to increment the counter!</li>
-<code>
-</code><code>
-<pre class="prettyprint linenums">
-var content = grid.getElementsByTagName("p");
-var x = 0;
-do {
-	content[x].style.width = "20px";
-	content[x].style.margin = "10px auto 10px auto";
-	content[x].style.textAlign = "right";
-	x++;
-} while (x < spans.length);
-</pre>
-</code>
-
-<li>We can get interesting features by adding an IF statement within our iteration loop.   In this example we are using a MODULUS operator to test for odd or even values, enabling us stripe the rows or columns of our grid.   Notice how the IF statement doesn't have an effect unless we iterate the objects 'through' it, unlike CSS, where all we need to do is declare a rule, and all members are effected. 
-</li>
-<code>
-<pre class="prettyprint linenums">
-for (x in rows) {
-	if (x%2)  {
-		rows[x].style.backgroundColor = "#EEE";	
-	}	
-};	
-</pre>
-</code>
-<li>OK, the rest is up to you.  Create your own grid and Javascript code to explore how this works.  Create at least three additional Javascript processes that expand on this concept.     List your work on the webpage, with a short paragraph of any issues you needed to resolve, how you resolved them, and how much time you spent on this project. 
-</li>
-
-
-</ol>
-</div>
-
 
 <div class="span6">
 <div id="grid">
@@ -248,6 +144,132 @@ for (x in rows) {
 </div>
 </div>
 </div>
+
+
+
+
+</div>
+<div class="row">
+<div class="span12">
+
+<ol>
+<li>First, create a basic HTML5 webpage document
+  <code>
+                        <pre class="prettyprint linenums">
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;Programming a HTML5 Grid with Javascript&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</code>
+</li>
+<li>Download the <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap library</a>.     Link the bootstrap stylesheet in the head of your document and the Bootstrap JQuery and Javascript library in script tags before the ending of your document.  Create a new Javascript file named programming.js and link that to your page with a script tag below bootstrap.js.
+  This is where we will do our programming.<code>
+                        <pre class="prettyprint linenums">
+&lt;link href=bootstrap/css/bootstrap.css rel=stylesheet&gt;
+&lt;/head&gt;
+...
+&lt;script type="text/javascript" src="bootstrap/js/jquery.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="bootstrap/js/bootstrap.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="programming.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+</pre>
+</code>
+</li>
+<li>
+Twitter Bootstrap has a built-in HTML/CSS grid system which is very easy to use.    We are going to create a simple grid as a Javascript programming playground.  You can use  classes that are defined by Bootstrap such as 'row' and 'span(number)'. First create a div with id of <strong>grid</strong> and then rows with spans that add up to no more than 12. For this project it's  OK to use the class &quot;span1&quot; for your blocks. Create at least a few rows to work with - you can copy and paste the HTML from here. </li>
+<code>
+<pre class="prettyprint linenums">
+&lt;div id="grid"&gt;
+&lt;div class="row"&gt;
+&lt;div class="span1"&gt;
+&lt;/div&gt;
+&lt;div class="span1"&gt;
+&lt;/div&gt;
+&lt;div class="span1"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+...
+&lt;/div&gt;
+</pre>
+</code>
+
+<li>
+Now we can start having some fun with Javascript!    First we will use a few functions that are build into web browsers for 'traversing' web documents.   We'll learn more about the Document Object Model in a few weeks. For now, it's important for you just to know that these functions return <em>object references</em> to the page elements that meet the criteria we ask for. </li>
+<code>
+<pre class="prettyprint linenums">
+// access the grid element - returns a single object
+var grid = document.getElementById("grid");
+// access the grid rows and cells elements - each returns a set of object
+var spans = grid.getElementsByClassName("span2");
+var rows = grid.getElementsByClassName("row");
+</pre>
+</code>
+
+<li>First, let's add content to each of the grid cells.  Assigning a value to the  innerHTML property of a webpage element updates its content.  The value would typically be a string and can contain content and markup.    
+</li>
+<code>
+<pre class="prettyprint linenums">
+// the FOR .. IN statement gives us a built-in interation feature (x)
+for (x in spans)
+    {
+		spans[x].innerHTML="&lt;p&gt;"+ x +"&lt;/p&gt;";
+	}
+</pre>
+</code>
+
+<li>Next we'll use a DO ... WHILE loop statement to change the properties of each of the paragraphs to align them properly.   We can create a new set using getElementsByTagName().   The WHILE loop statements have fewer features than FOR..IN - notice how you need to define and update the iterator manually.   Notice also how you need to use the LENGTH property of the set to determine how many members are in the set.    The FOR..IN statement does this for you automatically. 
+NOTE that this statement also requires you to take on alot of responsibility.  It is easy to create an INFINITE LOOP and freeze your browser session and possibly your operating system.  Don't forget to increment the counter!</li>
+<code>
+</code><code>
+<pre class="prettyprint linenums">
+var content = grid.getElementsByTagName("p");
+var x = 0;
+do {
+	content[x].style.width = "20px";
+	content[x].style.margin = "10px auto 10px auto";
+	content[x].style.textAlign = "right";
+	x++;
+} while (x < spans.length);
+</pre>
+</code>
+
+<li>We can get interesting features by adding an IF statement within our iteration loop.   In this example we are using a MODULUS operator to test for odd or even values, enabling us stripe the rows or columns of our grid.   Notice how the IF statement doesn't have an effect unless we iterate the objects 'through' it, unlike CSS, where all we need to do is declare a rule, and all members are effected. 
+</li>
+<code>
+<pre class="prettyprint linenums">
+for (x in rows) {
+	if (x%2)  {
+		rows[x].style.backgroundColor = "#EEE";	
+	}	
+};	
+</pre>
+</code>
+<li>There are many element manipulation techniques, we'll learn some more in a few weeks, in the meantime, you can see how easy it is to add a class to specific elements using the setAttribute( ) function.</li>
+<code>
+<pre class="prettyprint linenums">
+for (x in spans) {
+	if (x%2)  {
+		spans[x].firstChild.setAttribute("class","label label-inverse");	
+	}	
+};
+</pre>
+</code>	
+
+<li>OK, the rest is up to you.  Create your own grid and Javascript code to explore how this works.  Create at least three additional Javascript processes that expand on this concept.     List your work on the webpage, with a short paragraph of any issues you needed to resolve, how you resolved them, and how much time you spent on this project. 
+</li>
+
+
+</ol>
+</div>
+
+
+
 </div>
 <div class="row comments">
         <div class="span12">

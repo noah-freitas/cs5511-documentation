@@ -26,4 +26,9 @@ for (x in rows) {
 		rows[x].style.backgroundColor = "#EEE";	
 	}	
 };	
+for (x in spans) {
+	if (x%2)  {
+		spans[x].firstChild.setAttribute("class","label label-inverse");	
+	}	
+};	
 
