@@ -1,0 +1,255 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Programming a HTML5 Grid with Javascript</title>
+<link href=../../bootstrap/css/bootstrap.css rel=stylesheet>
+<link href=../../lib/prettify/prettify.css rel=stylesheet>
+ <link href=../../bootstrap/css/fall2012.css rel=stylesheet>
+</head>
+<body>
+<div class="container">
+<div class="row">
+  <h2>Project 1: Programming a HTML5 Grid with Javascript </h2>
+<div class="well">
+<h4>What you will learn in this project</h4>
+<ul>
+<li>Javascript programming techniques
+  <ul>
+    <li><a href="http://www.w3schools.com/js/js_loop_for_in.asp">the FOR..IN statement</a></li>
+    <li><a href="http://www.w3schools.com/js/js_if_else.asp">the IF statement</a></li>
+    <li><a href="http://www.w3schools.com/js/js_loop_while.asp">the DO..WHILE statement</a></li>
+    <li><a href="http://www.w3schools.com/js/js_switch.asp">the SWITCH statement</a></li>
+  </ul>
+</li>
+<li>A quick introduction to DOM navigation and manipulation
+  <ul>
+    <li><a href="http://www.w3schools.com/jsref/met_doc_getelementbyid.asp">getElementById( )</a></li>
+    <li>getElementsByClassName( )</li>
+    <li><a href="http://www.w3schools.com/jsref/met_document_getelementsbytagname.asp">getElementsByTagName( )</a></li>
+    <li><a href="http://www.w3schools.com/jsref/dom_obj_element.asp">setAttribute( )</a></li>
+  </ul>
+</li>
+<li>A quick overview of HTML5 grid layouts using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a></li>
+</ul>
+</div>
+</div>
+<div class="row">
+<div class="span6">
+
+<ol>
+<li>Create a basic HTML5 webpage document
+  <code>
+                        <pre class="prettyprint linenums">
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;Programming a HTML5 Grid with Javascript&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</code>
+</li>
+<li>Download the <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap library</a>.     Link the bootstrap stylesheet in the head of your document and the Bootstrap JQuery and Javascript library in script tags before the ending of your document.  Create a new Javascript file named programming.js and link that to your page with a script tag below bootstrap.js.
+  This is where we will do our programming.<code>
+                        <pre class="prettyprint linenums">
+&lt;link href=bootstrap/css/bootstrap.css rel=stylesheet&gt;
+&lt;/head&gt;
+...
+&lt;script type="text/javascript" src="bootstrap/js/jquery.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="bootstrap/js/bootstrap.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="programming.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+</pre>
+</code>
+</li>
+<li>
+Twitter Bootstrap has a built-in HTML/CSS grid system which is very easy to use.    We are going to create a simple grid as a Javascript programming playground.  You can use  classes that are defined by Bootstrap such as 'row' and 'span(number)'. First create a div with id of grid and then rows with spans that add up to no more than 12. Feel free to make your own grid of regular or irregular numbers of columns.  Create at least a few rows to work with - you can copy and paste the HTML from here. </li>
+<code>
+<pre class="prettyprint linenums">
+&lt;div id="grid"&gt;
+&lt;div class="row"&gt;
+&lt;div class="span4"&gt;
+&lt;/div&gt;
+&lt;div class="span4"&gt;
+&lt;/div&gt;
+&lt;div class="span4"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+...
+&lt;/div&gt;
+</pre>
+</code>
+
+<li>
+Now we can start having some fun with Javascript!    First we will use a few functions that are build into web browsers for 'traversing' web documents.   We'll learn more about the Document Object Model in a few weeks, for now we are going to be using page elements simply to learn about basic Javascript programming statements.  
+</li>
+<code>
+<pre class="prettyprint linenums">
+var grid = document.getElementById("grid");
+var spans = grid.getElementsByClassName("span2");
+var rows = grid.getElementsByClassName("row");
+</pre>
+</code>
+
+<li>
+</li>
+<code>
+<pre class="prettyprint linenums">
+</pre>
+</code>
+
+<li>
+</li>
+<code>
+<pre class="prettyprint linenums">
+</pre>
+</code>
+
+<li>
+</li>
+<code>
+<pre class="prettyprint linenums">
+</pre>
+</code>
+
+
+
+</ol>
+</div>
+
+
+<div class="span6">
+<div id="grid">
+<div class="row">
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+</div>
+<div class="row">
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+</div>
+<div class="row">
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+</div>
+<div class="row">
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+</div>
+<div class="row">
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+</div>
+<div class="row">
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+</div>
+<div class="row">
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+<div class="span1">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row comments">
+        <div class="span12">
+        <h3>Comments</h3>
+        <p>Please use this discussion form appropriately to ask questions of the instructor or to share information that is of interest to the class.</p>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'javascriptcs5511'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        </div>
+        </div>
+</div>
+<script type="text/javascript" src="../../bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
+  <script type="text/javascript"  src="../../bootstrap/js/fall2012.js"></script>
+<script type="text/javascript" src="programming.js"></script>
+</body>
+</html>
