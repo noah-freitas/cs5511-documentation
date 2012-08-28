@@ -216,27 +216,28 @@ var rows = grid.getElementsByClassName("row");
 </li>
 <code>
 <pre class="prettyprint linenums">
-// the FOR .. IN statement gives us a built-in interation feature (x)
-for (x in spans)
-    {
-		spans[x].innerHTML="&lt;p&gt;"+ x +"&lt;/p&gt;";
-	}
+// the FOR statement allows us to iterate over each element of an array or DOM collection.
+for (var ii = 0, len = spans.length; ii &lt; len; ii++) {
+    spans[ii].innerHTML = "<p>" + ii + "</p>";
+}
 </pre>
 </code>
 
-<li>Next we'll use a DO ... WHILE loop statement to change the properties of each of the paragraphs to align them properly.   We can create a new set using getElementsByTagName().   The WHILE loop statements have fewer features than FOR..IN - notice how you need to define and update the iterator manually.   Notice also how you need to use the LENGTH property of the set to determine how many members are in the set.    The FOR..IN statement does this for you automatically. 
+<li>Next we'll use a DO ... WHILE loop statement to change the properties of each of the paragraphs to align them properly.   We can create a new set using getElementsByTagName().   The WHILE loop statements have slightly diferrent syntax than the FOR loop. 
 NOTE that this statement also requires you to take on alot of responsibility.  It is easy to create an INFINITE LOOP and freeze your browser session and possibly your operating system.  Don't forget to increment the counter!</li>
 <code>
 </code><code>
 <pre class="prettyprint linenums">
-var content = grid.getElementsByTagName("p");
-var x = 0;
+var content = grid.getElementsByTagName("p"),
+    x = 0,
+    len = spans.length;
+    
 do {
 	content[x].style.width = "20px";
 	content[x].style.margin = "10px auto 10px auto";
 	content[x].style.textAlign = "right";
 	x++;
-} while (x < spans.length);
+} while (x &lt; len);
 </pre>
 </code>
 
