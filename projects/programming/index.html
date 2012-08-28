@@ -245,11 +245,11 @@ do {
 </li>
 <code>
 <pre class="prettyprint linenums">
-for (x in rows) {
-	if (x%2)  {
-		rows[x].style.backgroundColor = "#EEE";	
-	}	
-};	
+for (var x = 0, len = rows.length; x < len; x++) {
+    if (x % 2 === 0)  {
+        rows[x].style.backgroundColor = "#EEE"; 
+    }   
+}
 </pre>
 </code>
 <li>There are many element manipulation techniques, we'll learn some more in a few weeks, in the meantime, you can see how easy it is to add a class to specific elements using the setAttribute( ) function.</li>
