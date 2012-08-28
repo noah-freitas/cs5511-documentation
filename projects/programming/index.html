@@ -169,13 +169,13 @@
 </pre>
 </code>
 </li>
-<li>Download the <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap library</a>.     Link the bootstrap stylesheet in the head of your document and the Bootstrap JQuery and Javascript library in script tags before the ending of your document.  Create a new Javascript file named programming.js and link that to your page with a script tag below bootstrap.js.
+<li>Download the <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap library</a>.     Link the bootstrap stylesheet in the head of your document and jQuery (using Google's CDN) and the Bootstrap Javascript library in script tags before the ending of your document.  Create a new Javascript file named programming.js and link that to your page with a script tag below bootstrap.js.
   This is where we will do our programming.<code>
                         <pre class="prettyprint linenums">
 &lt;link href=bootstrap/css/bootstrap.css rel=stylesheet&gt;
 &lt;/head&gt;
 ...
-&lt;script src="bootstrap/js/jquery.js"&gt;&lt;/script&gt;
+&lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"&gt;&lt;/script&gt;
 &lt;script src="bootstrap/js/bootstrap.js"&gt;&lt;/script&gt;
 &lt;script src="programming.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
