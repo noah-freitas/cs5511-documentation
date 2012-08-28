@@ -230,7 +230,7 @@ NOTE that this statement also requires you to take on alot of responsibility.  I
 <pre class="prettyprint linenums">
 var content = grid.getElementsByTagName("p"),
     x = 0,
-    len = spans.length;
+    len = content.length;
     
 do {
 	content[x].style.width = "20px";
@@ -255,10 +255,10 @@ for (var x = 0, len = rows.length; x < len; x++) {
 <li>There are many element manipulation techniques, we'll learn some more in a few weeks, in the meantime, you can see how easy it is to add a class to specific elements using the setAttribute( ) function.</li>
 <code>
 <pre class="prettyprint linenums">
-for (x in spans) {
-	if (x%2)  {
-		spans[x].firstChild.setAttribute("class","label label-inverse");	
-	}	
+for (x = 0, len = spans.length; x < len; x++) {
+    if (x % 2)  {
+        spans[x].firstChild.setAttribute("class", "label label-inverse");   
+    }   
 };
 </pre>
 </code>	
