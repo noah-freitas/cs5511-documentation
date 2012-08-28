@@ -212,19 +212,19 @@ var rows = grid.getElementsByClassName("row");
 </pre>
 </code>
 
-<li>First, let's add content to each of the grid cells.  Assigning a value to the  innerHTML property of a webpage element updates its content.  The value would typically be a string and can contain content and markup.    
+<li>First, let's add content to each of the grid cells.  Assigning a value to the  innerHTML property of a webpage element updates its content.  The value would typically be a string and can contain content and markup. Using a FOR statement loop allows us to 'iterate' over each element in the set of elements contained in a variable.
 </li>
 <code>
 <pre class="prettyprint linenums">
 // the FOR statement allows us to iterate over each element of an array or DOM collection.
 for (var ii = 0, len = spans.length; ii &lt; len; ii++) {
-    spans[ii].innerHTML = "<p>" + ii + "</p>";
+    spans[ii].innerHTML = "&lt;p&gt;" + ii + "&lt;/p&gt;";
 }
 </pre>
 </code>
 
 <li>Next we'll use a DO ... WHILE loop statement to change the properties of each of the paragraphs to align them properly.   We can create a new set using getElementsByTagName().   The WHILE loop statements have slightly diferrent syntax than the FOR loop. 
-NOTE that this statement also requires you to take on alot of responsibility.  It is easy to create an INFINITE LOOP and freeze your browser session and possibly your operating system.  Don't forget to increment the counter!</li>
+NOTE that this statement also requires you to take on a bit more  responsibility.  It is easy to create an INFINITE LOOP and freeze your browser session and possibly your operating system if you forget to increment the counter!</li>
 <code>
 </code><code>
 <pre class="prettyprint linenums">
