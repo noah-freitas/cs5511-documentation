@@ -5,9 +5,9 @@ var grid = document.getElementById("grid");
 var spans = grid.getElementsByClassName("span1");
 var rows = grid.getElementsByClassName("row");
 // add a paragraph of text within each block of the grid
-for (x in spans)
+for (var ii = 0, len = spans.length; ii < len; ii++)
     {
-		spans[x].innerHTML="<p>"+ x +"</p>";
+		spans[ii].innerHTML = "<p>" + ii + "</p>";
 	}
 var content = grid.getElementsByTagName("p");
 var x = 0;
@@ -19,16 +19,17 @@ do {
 	
 	
 	x++;
-} while (x < spans.length);
+} while (x < content.length);
 	
-for (x in rows) {
-	if (x%2)  {
-		rows[x].style.backgroundColor = "#EEE";	
+for (var ii = 0, len = rows.length; ii < len; ii++) {
+	if (ii%2 == 0)  {
+		rows[ii].style.backgroundColor = "#EEE";	
 	}	
 };	
-for (x in spans) {
-	if (x%2)  {
-		spans[x].firstChild.setAttribute("class","label label-inverse");	
+for (var ii = 0, len = spans.length; ii < len; ii++) {
+	if (ii%2)  {
+		
+		spans[ii].firstChild.setAttribute("class","label label-inverse");	
 	}	
 };	
 
