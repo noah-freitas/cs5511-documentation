@@ -36,100 +36,20 @@
                      <p>Strings can be concatenated using the plus operator.  <a href="http://www.w3schools.com/js/js_obj_string.asp">The Javascript String object </a>has many useful methods and properties, such as .length. In addition, Javascript has built-in regular expression functions for very complex string management.</p>
                      <p> <a href="../examples/rotate-page/index.html">In this Rotate Page example</a> we refine the logic of the page rotation function by getting it to stop after one revolution.  Note in the code that we do this with an IF statement - a statement that 'tests' the situation (has the page element fully rotated yet) and acts accordingly. This new feature allows us to use LOGIC on the page - to teach the rotate function to stop itself at a certain point by giving it a CONDITION (in the parentheses following the IF). </p>
                      <p>We use a Javascript timer (setInterval()) and a recursive call to the rotate() function to interate, or repeat, the 1 degree rotation over time.</p>
-                     <h3>Javascript 'Logical' Statements</h3>
-                     <p>&nbsp;</p>
-                    <dl class=dl-horizontal>
-                        
-                      <dt>IF</dt>
-                        <dd>Conditional - tests for a specific condition using the logical operators and directs program flow to either of one or two code blocks. False conditions include incorrect comparative expressions as well as the values false, null, undefined, the string &quot;&quot;, the number 0 and the 'not a number' NaN.</dd>
-                        
-                        <code>
-                        <pre class="prettyprint linenums">
-if (degree != 361) 
-  {
-   rotate();
-  }
-
-var y = (degree != 361) ? rotate(); : null; 
-</pre>
-                        </code>
-                       <dt>Ternary</dt> <dd>A similar technique to IF statements. Based on the truth of the test expression, a variable takes a different value or code path.  It is good practice to have functions return values as we'll learn soon</dd>
-                       
-                <code>
-                        <pre class="prettyprint linenums">        
-var y = (degree != 361) ? rotate(); : null; 
-</pre>
-                        </code> 
-                         </dl>
-                    </section>
-                
-                <section class="span4">
-                 <dl class=dl-horizontal>
-                        <dt>SWITCH
-                        <dd>Performs a handy multi-path function based on evaluating an expression to match with a set of possible values defined by the case clause.</dd>
-                        <code>
-                        <pre class="prettyprint linenums">
-switch (day)
- {
-  case "Sunday":
-   sleep();
-   break;
-  case "Monday";
-   work();
-   break;
-  case "Tuesday:
-   play();
-   break;
-   ...
- }
-</pre>
-                    </code>
-                         <dt>WHILE</dt>
-                        <dd>A simple loop based on the 'truth' of the conditional expression.</dd>
-                        <code>
-                        <pre class="prettyprint linenums">
-while (i<5)
- {
- x = x + (i*.26);
- i++; // an increment operator - add 1 to i
- }
-</pre>
-                    </code>
-                   
-                         <dt>FOR</dt>
-                        <dd>A more complex looping statement with the increment function defined right with the conditional expression.  It also has a special version that increments through a set of objects.  </dd>
-                          <code>
-                        <pre class="prettyprint linenums">
-for (i=0; i<5; i++)
- {
-  x=x + "And a ..." + i;
- }
- 
- for (x in person)
-  { 
-   doc.div.innerHTML = x.name;
-  }
-</pre>
-                    </code>
-                         <dt>DO</dt>
-                        <dd>Similar to while, but always executes it 'truth' block at least once and tests the truth expression after each execution.</dd>
-                        <code>
-                        <pre class="prettyprint linenums">
-do 
-{ 
- x++;
- } 
-while (x < 10);
-</pre>
-                    </code>
-                       </dl>
+                   </section>
+                     <section class="span4">  <h3>Dates</h3>
+                    
                 </section>
                 <section class=span4>
                     <section class=well>
                         <h2>Take Aways</h2>
                         <ul>
-                            <li>Programmers add logic to programs to control program flow using special CONDITIONAL and ITERATIVE statements</li>
-                            <li>There may be more than one way to program a specific situation. Some ways may be better than others and tradeoffs need to be evaluated.</li>
+                            <li>Javascript has several techniques that enable us to work with special data types
+                              <ul>
+                                <li>primitive data types and operators</li>
+                                <li>built-in object methods and properties                            </li>
+                              </ul>
+                            </li>
                         </ul>
                     </section>
                          
