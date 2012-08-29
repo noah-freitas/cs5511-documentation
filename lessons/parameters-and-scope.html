@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html lang=en>
+    <head>
+        <meta charset=UTF-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SRJC Fall 2012 Javascript &amp; JQuery CS55.11</title>
+        <link href=../bootstrap/css/bootstrap.css rel=stylesheet>
+        <link href=../lib/prettify/prettify.css rel=stylesheet>
+        <link href=../bootstrap/css/fall2012.css rel=stylesheet>
+    </head>
+    <body>
+        <div class=container>
+            <div class=callout>
+                <h1>JavaScript Functions &mdash; Parameters and Scope</h1>
+                <p>Getting data to your functions.</p>
+            </div>
+            <div class=row>
+                <section class=span4>
+                    <h2>Introduction</h2>
+                    <blockquote>
+                        Scope in a programming language controls the visibility 
+                        and lifetimes of variables and parameters.
+                        <small>Douglas Crockford, <em>JavaScript: The Good Parts</em></small>
+                    </blockquote>
+                    <p>Without <a href=http://en.wikipedia.org/wiki/Scope_(computer_science) 
+                        target=_blank>scope</a> in a programming language, building
+                        an application of any complexity would be impossible.  This
+                        is because scope allows a program to be broken up into different
+                        parts that are hidden from one another.  If this sounds very
+                        similiar to our discussion of functions, it is because scope 
+                        and functions are very closely connected &mdash; especially
+                        in JavaScript!</p>
+                    <h2>Scope in JavaScript</h2>
+                    <p>JavaScript basically has one mechanism for creating a new
+                        scope: functions.  Each function has its own scope, which 
+                        contains its parameters and local variables.  In addition
+                        to its own scope, a function also has access to its containing
+                        scopes, all the way up to the global scope.</p>
+                    <p>The containing scope of a function is determined by the 
+                        context in which the function is defined not where it is 
+                        called.  In computer science terminology, this means that
+                        JavaScript is <a href=http://en.wikipedia.org/wiki/Scope_(computer_science)#Lexical_scoping target=_blank>lexically scoped</a>.  While many
+                        of the implications of this are beyond the scope of this
+                        class, it is important to have some familiarity with these
+                        concepts as they form the basis for many advanced JavaScript
+                        techniques including information hiding with closures.</p>
+                    <h2>Terminology</h2>
+                    <dl class=dl-horizontal>
+                        <dt>Scope</dt>
+                        <dd>A set of rules that determines where a variable is accessible
+                            from a particular part of your program.</dd>
+                        <dt>Parameter</dt>
+                        <dd>A named value passed to a function.</dd>
+                        <dt><code><a href=https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Functions_and_function_scope/arguments target=_blank>arguments</a></code></dt>
+                        <dd>A special array-like object available whenever a function
+                            is called in JavaScript.  It contains the parameters actually
+                            passed to the function when it was invoked.</dd>
+                    </dl>
+                </section>
+                <section class=span4>
+                    <h2>Usage and Syntax</h2>
+                    <section>
+                        <h3>At a Glance</h3>
+                        <code>
+                            <pre class="prettyprint linenums">
+var myFunction = function(parameter) {
+    var returnValue;
+    
+    // Compute return value.
+    
+    return returnValue;
+};</pre>
+                        </code>
+                    </section>
+                    <section>
+                        <h3>Syntax in Depth</h3>
+                        <p>
+                            JavaScript supports two syntaxes for creating functions:
+                        </p>
+                        <dl>
+                            <dt>Function Expressions</dt>
+                            <dd>
+                                <code class=prettyprint>var myFunction = function() {};</code>
+                                <p>Function expressions provide much greater flexibility
+                                and control over the architecture of your code.</p>
+                                <strong>Pros:</strong>
+                                <ul>
+                                    <li>Functions can be assigned anywhere a value 
+                                        can be (variable, object property, etc.).</li>
+                                    <li>The syntax highlights the fact that functions
+                                        are just objects in JavaScript.</li>
+                                </ul>
+                                <strong>Cons:</strong>
+                                <ul>
+                                    <li>Functions are not <a href=http://net.tutsplus.com/tutorials/javascript-ajax/quick-tip-javascript-hoisting-explained/>hoisted</a>.  They must be implemented before
+                                        they are used.</li>
+                                </ul>
+                            </dd>
+                            <dt>Function Declarations</dt>
+                            <dd>
+                                <code class=prettyprint>function myFunction() {}</code>
+                                <p>This syntax follows the form of function declaration
+                                in many other C-based languages.</p>
+                                <strong>Pros:</strong>
+                                <ul>
+                                    <li>Functions are hoisted (see above), so they
+                                        can be called before they are implemented.</li>
+                                </ul>
+                                <strong>Cons:</strong>
+                                <ul>
+                                    <li>Most functions created with this syntax
+                                        are added to the global namespace, which
+                                        is considered a poor design practice.
+                                        (Inner functions are an exception to this
+                                        rule.)</li>
+                                    <li>For C language programmers, this syntax
+                                        obscures the dynamic nature of JavaScript
+                                        functions.</li>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </section>
+                </section>
+                <section class=span4>
+                    <section class=well>
+                        <h2>Take Aways</h2>
+                        <ul>
+                            <li>Use functions whenever you are going to repeat code.</li>
+                            <li>Create your functions using the <em>Function Expression</em>
+                                syntax.</li>
+                        </ul>
+                    </section>
+                    <section class="well exercises">
+                        <h2>Exercises</h2>
+                        <div class="alert alert-block alert-success">Exercises are optional 
+                            and ungraded. Click the + button next to each exercise
+                            to load it in JSFiddle.</div>
+                        <div id=exerciseCarousel class="carousel slide">
+                            <div class=carousel-inner>
+                                <div class="active item">
+                                    <p>Create a helloWorld Function</p>
+                                    <iframe style="width: 100%; height: 170px" src="http://jsfiddle.net/nfreitas/vzT72/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+                                    <a class="btn btn-inverse pull-right" data-toggle=modal href=#ex1Answer>Show Answer</a>
+                                    <div class="modal hide" id=ex1Answer>
+                                        <iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/nfreitas/sqDHb/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+                                        <div class=modal-footer>
+                                            <a href=# class=btn data-dismiss=modal>Close</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=item>
+                                    <p>Change to a Function Expression</p>
+                                    <iframe style="width: 100%; height: 250px" src="http://jsfiddle.net/nfreitas/Nfkvn/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+                                    <a class="btn btn-inverse pull-right" data-toggle=modal href=#ex2Answer>Show Answer</a>
+                                    <div class="modal hide" id=ex2Answer>
+                                        <iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/nfreitas/PLHRU/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+                                        <div class=modal-footer>
+                                            <a href=# class=btn data-dismiss=modal>Close</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="carousel-control left" href=#exerciseCarousel data-slide=prev>&lsaquo;</a>
+                            <a class="carousel-control right" href=#exerciseCarousel data-slide=next>&rsaquo;</a>
+                        </div>
+                    </section>
+                    <section class=well>
+                        <h2>Resources</h2>
+                        <h3>Books</h3>
+                        <ul>
+                            <li>Javascript: A Beginner's Guide &mdash; Chapter 4</li>
+                            <li>Javascript, the Definitive Guide &mdash; Chapter 8</li>
+                            <li>Javascript, the Good Parts &mdash; Chapter 4</li>
+                        </ul>
+                        <h3>Documentation</h3>
+                        <ul>
+                            <li>
+                                <a href=https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Functions_and_function_scope>
+                                    Functions and function scope (Mozilla Developer Network)
+                                </a>
+                            </li>
+                            <li>
+                                <a href=http://www.w3schools.com/js/js_functions.asp>
+                                    JavaScript Functions (W3C Schools)
+                                 </a> 
+                                 &mdash; Only teaches Function Declaration syntax.
+                            </li>
+                        </ul>
+                        <h3>Tutorials</h3>
+                        <ul>
+                            <li>
+                                <a href=http://www.codecademy.com/courses/functions_in_javascript>
+                                    Functions in JavaScript (Code Academy)
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+            </div>
+        </div>
+        <script src=../bootstrap/js/jquery.js></script>
+        <script type="text/javascript"  src="../bootstrap/js/fall2012.js"></script>
+        <script src=../bootstrap/js/bootstrap.js></script>
+        <script src=../lib/prettify/prettify.js></script>
+        <script>
+            $(function() {
+                prettyPrint();
+                $('.carousel').carousel({
+                    interval: false
+                })
+            });
+        </script>
+         <script type="text/javascript" src="../bootstrap/js/bootstrap-dropdowns-set.js"></script>
+    </body>
+</html>
