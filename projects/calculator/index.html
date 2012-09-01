@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <meta charset=utf-8>
+        <title>Building a Calculator Widget</title>
+        <link href=../../bootstrap/css/bootstrap.css rel=stylesheet>
+        <link href=../../lib/prettify/prettify.css rel=stylesheet>
+        <link href=../../bootstrap/css/fall2012.css rel=stylesheet>
+        <link rel=stylesheet href=calc.css>
+    </head>
+    <body>
+        <div class=container>
+            <div class=row>
+                <h2>Project 3: Building a Calculator Widget</h2>
+            </div>
+            <div class=row>
+                <div class=span6>
+                    <div class=well>
+                        <h4>This Project is due SOMETIME at midnight.</h4>
+                        <h4>What you will learn in this project</h4>
+                        <ul>
+                            <li>Events and Event Handlers
+                                <ul>
+                                    <li>
+                                        <a href=https://developer.mozilla.org/en-US/docs/DOM/event#DOM_Event_interface>
+                                            DOM Event Interface
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href=https://developer.mozilla.org/en-US/docs/DOM/element.addEventListener>
+                                            element.addEventListener()
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Newer DOM Query Methods
+                                <ul>
+                                    <li>
+                                        <a href=https://developer.mozilla.org/en-US/docs/DOM/Document.querySelectorAll>
+                                            document.querySelectorAll()
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href=https://developer.mozilla.org/en-US/docs/DOM/Document.querySelector>
+                                            document.querySelector()
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Built-In JavaScript Methods and Concepts
+                                <ul>
+                                    <li>
+                                        <a href=https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/parseInt>
+                                            parseInt()
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href=https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Functions_and_function_scope/Strict_mode>
+                                            Strict Mode
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class=span6>
+                    <h3>Final Result</h3>
+                    <div id=calcWrap>
+                        <div id=display>0</div>
+                        <table class=table id=controls>
+                            <tr>
+                                <td><button class="btn number">1</button></td>
+                                <td><button class="btn number">2</button></td>
+                                <td><button class="btn number">3</button></td>
+                                <td><button class="btn operator">+</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="btn number">4</button></td>
+                                <td><button class="btn number">5</button></td>
+                                <td><button class="btn number">6</button></td>
+                                <td><button class="btn operator">-</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="btn number">7</button></td>
+                                <td><button class="btn number">8</button></td>
+                                <td><button class="btn number">9</button></td>
+                                <td><button class="btn operator">*</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="btn number">0</button></td>
+                                <td><button id=enter class="btn btn-primary">=</button></td>
+                                <td><button id=clear class="btn btn-warning">C</button></td>
+                                <td><button class="btn operator">/</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class=row>
+                <div class=span12>
+                    <ol>
+                        <li>         
+                            <p>First, create a basic HTML5 webpage document.  Paste
+                                the HTML below into the body of your document.  This 
+                                code will serve as the visual interface for the
+                                calculator we are about to build.</p>
+                            <code>
+<pre class="prettyprint linenums">
+&lt;div id=calcWrap>
+    &lt;div id=display>0&lt;/div>
+    &lt;table class=table id=controls>
+        &lt;tr>
+            &lt;td>&lt;button class="btn number">1&lt;/button>&lt;/td>
+            &lt;td>&lt;button class="btn number">2&lt;/button>&lt;/td>
+            &lt;td>&lt;button class="btn number">3&lt;/button>&lt;/td>
+            &lt;td>&lt;button class="btn operator">+&lt;/button>&lt;/td>
+        &lt;/tr>
+        &lt;tr>
+            &lt;td>&lt;button class="btn number">4&lt;/button>&lt;/td>
+            &lt;td>&lt;button class="btn number">5&lt;/button>&lt;/td>
+            &lt;td>&lt;button class="btn number">6&lt;/button>&lt;/td>
+            &lt;td>&lt;button class="btn operator">-&lt;/button>&lt;/td>
+        &lt;/tr>
+        &lt;tr>
+            &lt;td>&lt;button class="btn number">7&lt;/button>&lt;/td>
+            &lt;td>&lt;button class="btn number">8&lt;/button>&lt;/td>
+            &lt;td>&lt;button class="btn number">9&lt;/button>&lt;/td>
+            &lt;td>&lt;button class="btn operator">*&lt;/button>&lt;/td>
+        &lt;/tr>
+        &lt;tr>
+            &lt;td>&lt;button class="btn number">0&lt;/button>&lt;/td>
+            &lt;td>&lt;button id=enter class="btn btn-primary">=&lt;/button>&lt;/td>
+            &lt;td>&lt;button id=clear class="btn btn-warning">C&lt;/button>&lt;/td>
+            &lt;td>&lt;button class="btn operator">/&lt;/button>&lt;/td>
+        &lt;/tr>
+    &lt;/table>
+&lt;/div>
+</pre>
+                            </code>
+                        </li>
+                        <li>
+                            <p>Create and link to two external files: a CSS file (we
+                                named our file "calc.css") and a JavaScript file ("calc.js").
+                                For the styling of the calculator, you can start with the
+                                rules below.  Modify the appearance as you see fit.</p>
+                            <code>
+<pre class="prettyprint linenums">
+#calcWrap {
+    width: 400px;
+    margin: 0 auto;
+}
+#display {
+    width: 360px;
+    min-height: 80px;
+    background: rgba(50, 50, 50, .3);
+    border: 1px solid #CCC;
+    margin: 10px;
+    font-size: 50px;
+    text-align: right;
+    line-height: 100px;
+    padding-right: 20px;
+    font-family: monospace;
+}
+#controls td {
+    text-align: center;
+}
+#controls button {
+    width: 100%;
+}
+</pre>
+                            </code>
+                            <div class=well>
+                                <h2>Summary So Far</h2>
+                                <p>At this point your page should contain a calculator 
+                                that looks just like the one above but that doesn't do
+                                anything.  This is because we have only included two of 
+                                the three components necessary to produce our widget: HTML
+                                for the structure and CSS for the appearance.</p>                        
+                                <p>Now it's time to include some JavaScript to start
+                                adding behavior to our widget.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <p>Before we begin blindly adding behavior to our widget,
+                                we need to plan out how it's going to work.  For the 
+                                purposes of this exercise, we will build our calculator
+                                to behave like a standard battery-powered calculator, with
+                                a few exceptions.</p>
+                            <p>Our typical use case can be summarized as so:</p>
+                            <p><strong>The user wishes to be given the result of performing
+                                one of the four basic arthimetic operations (addition, 
+                                subtraction, multiplication, or division) on two numbers.
+                                </strong></p>
+                            <p>A typical user workflow would look like:</p>
+                            <ol>
+                                <li>User loads the calculator and is presented with a 
+                                    screen displaying "0"</li>
+                                <li>User enters one or more digits which will be the first
+                                    operand of the operation.</li>
+                                <li>User will enter an operator.</li>
+                                <li>User will enter one or more digits which will be the
+                                    second operand.</li>
+                                <li>User presses the enter key.</li>
+                                <li>Calculator displays the result of performing the
+                                    selected operation on the two numbers.</li>
+                            </ol>
+                            <p>In addition to this standard workflow, the widget will
+                                also support the following operations:</p>
+                            <ul>
+                                <li>At any time during the input, the user can press
+                                    the "C" (Clear) key to reset the calculator.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p>Just like we did on the previous projects, we 
+                                need to get a handle to the different DOM elements 
+                                to which we'll be adding behaviors.  All the elements
+                                that we are concerned about for this widget are
+                                <code>&lt;button></code> elements.  Using classes
+                                and ids in the HTML, the buttons have been 
+                                organized into four different groups:</p>
+                            <ul>
+                                <li>Number buttons</li>
+                                <li>Operator buttons</li>
+                                <li>The Enter button</li>
+                                <li>The Clear button</li>
+                            </ul>
+                            <p>Using the code below, we will retrieve the four
+                                different button groups as well as a reference 
+                                to the display <code>&lt;div></code> and store 
+                                them in variables.</p>
+                            <code>
+<pre class="prettyprint linenums">
+var display = document.getElementById('display'),
+    controls = document.getElementById('controls'),
+    numberBtns = controls.querySelectorAll('.number'),
+    operatorBtns = controls.querySelectorAll('.operator'),
+    enterBtn = controls.querySelector('#enter'),
+    clearBtn = controls.querySelector('#clear');
+</pre>
+                            </code>
+                        </li>
+                        <li>
+                            <p>There is a little more setup before we can start
+                                writing our event handlers to add behavior.  We'll
+                                setup a few more top-level variables.  The first
+                                four will serve as the model for our calculator
+                                widget, and the last two are only helper variables
+                                to assist in iterating over the DOM objects.</p>
+                            <code>
+<pre class="prettyprint linenums">
+var displayText = '0',
+    operand1 = '',
+    operand2 = '',
+    operator = '',
+    ii = 0,
+    len = 0;
+</pre>
+                            </code>
+                            <aside class=well>
+                                <h2>Data Types and the Calculator Widget</h2>
+                                <p>We have intialized our two operand variables
+                                    to empty strings.  It is often a good practice
+                                    to intialize your variables to some default or
+                                    base representation of their type (<code>''</code>
+                                    for strings, <code>0</code> for numbers, 
+                                    <code>false</code> for booleans, etc).  While
+                                    this is not at all required by JavaScript, it
+                                    can make your programs more readable.</p>
+                                <p>With that in mind, you might be asking why we
+                                    are going to store our operand values as strings,
+                                    since the more obvious choice would be numbers.
+                                    We will cover this further below, but the short
+                                    answer is that most of the time in our code, we 
+                                    want the <code>+</code> operator to concatenate
+                                    our operands rather than perform addition.</p>
+                            </aside>
+                        </li>
+                        <li>
+                            <p>Now we can finally start adding our event handlers
+                                and wiring them to our buttons.</p>
+                            <p>We have determined that all of the required functionality
+                                can be described in five event handler functions:</p>
+                            <ol>
+                                <li><code>updateDisplay()</code></li>
+                                <li><code>handleNumber()</code></li>
+                                <li><code>handleOperator()</code></li>
+                                <li><code>computeAnswer()</code></li>
+                                <li><code>reset()</code></li>
+                            </ol>
+                            <p>We'll start with the first and last (since they are
+                                the least complicated) and then handle the other
+                                three in order.</p>
+                        </li>
+                        <li>
+                            <p>We can now implement the <code>updateDisplay()</code>
+                                function using the code below.</p>
+                            <code>
+<pre class="prettyprint linenums">
+var updateDisplay = function () {
+    display.innerHTML = displayText;
+};
+</pre>
+                            </code>
+                            <p>As you can see implementing this function is rather
+                                trivial.  All it needs to do is take the contents
+                                of the top-level <code>displayText</code> variable
+                                and dump it into the display div.</p>
+                            <p>Since this is a helper function and will not be
+                                activated directly by the user, it does not need
+                                to be wired to any DOM element.</p>
+                        </li>
+                        <li>
+                            <p>Now we can implement our first true event handler
+                                &mdash; <code>reset()</code>:</p>
+                            <code>
+<pre class="prettyprint linenums">
+var reset = function () {
+    operand1 = '';
+    operand2 = '';
+    operator = '';
+
+    displayText = '0';
+    updateDisplay();
+};
+
+clearBtn.addEventListener('click', reset, false);
+</pre>
+                            </code>
+                            <p>The actual implmentation of this function is also
+                                rather trivial.  All it needs to do is reset the
+                                four model variables to their initial values and
+                                call <code>updateDisplay()</code> to update the
+                                representation.</p>
+                            <p>Since this is an actual event handler function that
+                                will be activated by user interaction, it needs to
+                                be wired to one of our DOM elements.  We wire this
+                                function to our clear button ("C") in line #10 above.
+                                Starting with the <code>clearBtn</code> variable 
+                                we intialized in step #4, we use the standard
+                                <code>addEventListener()</code> to wire the DOM
+                                element and function together.  The fist parameter
+                                is the event that we would like to react to (passed 
+                                as a string), the second parameter is the function
+                                that will server as our handler (passed as the variable
+                                whose value is our function), and the third parameter
+                                is a boolean indicating how the event should be
+                                reacted to (most of the time you will set this to
+                                <code>false</code>).</p>
+                        </li>
+                        <li>
+                            <p>We can now get into the meat of our application 
+                                logic and implement the <code>handleNumber()</code>
+                                function.</p>
+                            <code>
+<pre class="prettyprint linenums">
+var handleNumber = function (e) {
+    var num = e.target.textContent;
+
+    if (operator === '') {
+        operand1 += num;
+        displayText = operand1;
+    } else {
+        operand2 += num;
+        displayText = operand2;
+    }
+
+    updateDisplay();
+};
+
+for (ii = 0, len = numberBtns.length; ii < len; ii += 1) {
+    numberBtns[ii].addEventListener('click', handleNumber, false);
+}
+</pre>
+                            </code>
+                            <p>The first thing to notice about this function that
+                                is different from the previous is that it takes
+                                a parameter <code>e</code>.  This is the standard
+                                <code>event</code> object passed to all event
+                                handlers in standards-compliant JavaScript.  Because
+                                is is passed to all event handlers, it was also
+                                passed to our <code>reset()</code> function even
+                                though we did not specify it in the definition.</p>
+                            <p>Why do we suddenly care about the <code>event</code>
+                                object?  It is because we want this function to
+                                be the handler for all 10 of our number buttons.
+                                Because it is going to be called for all number
+                                button clicks, it needs a way to determine which
+                                specific button was clicked.  It can determine 
+                                this by accessing the <code>.target</code> property
+                                of the event object.  <code>.target</code> contains
+                                a reference to the actual DOM element that was 
+                                clicked.  From there, the function can get at the
+                                number string using the <code>.textContent</code>
+                                property of the DOM element.  All this is to say
+                                that if the 7 button is clicked the value of 
+                                <code>e.target.textContent</code> will be "7".</p>
+                            <p>Once we have the value of the button clicked, all
+                                we need to do is determine whether this new digit
+                                should be appended to the value of the first or
+                                second operand.  To determine this we check whether
+                                we have an operator or not yet.  If we do not have
+                                an operator, we append the digit to <code>operand1</code>
+                                otherwise we append it to <code>operand2</code>.
+                                Finally we set <code>displayText</code> equal to
+                                whichever operand we just updated and call
+                                <code>updateDisplay()</code>.</p>
+                             <div class=well>
+                                 <h2>Data Types and the Calculator Widget Continued</h2>
+                                 <p>Since we are storing our operands as strings, 
+                                     calling <code>operand1 += num;</code> does 
+                                     exactly what we want it to in this case: 
+                                     concatenation instead of addition.  While
+                                     this is often <em>not</em> the behavior that
+                                     you want when dealing with numbers, this is
+                                     the way that calculators work.  If the user
+                                     presses "1" and then presses "4" we want the
+                                     value of <code>operand1</code> to be <code>"14"</code>
+                                     not <code>5</code>.</p>
+                             </div>
+                        </li>
+                        <li>
+                            <p>Implement the <code>handleOperator()</code> function:</p>
+                            <code>
+<pre class="prettyprint linenums">
+var handleOperator = function (e) {
+    var op = e.target.textContent;
+    if (operator === '') {
+        operator = op;
+    }
+};
+
+for (ii = 0, len = operatorBtns.length; ii < len; ii += 1) {
+    operatorBtns[ii].addEventListener('click', handleOperator, false);
+}
+</pre>
+                            </code>
+                            <p>There is nothing new in the way this function is
+                                implemented.  The only thing to notice is that
+                                it will only "do" anything if we do not already
+                                have an operator.</p>
+                        </li>
+                        <li>
+                            <p>Finally we get to handle actual calculation with
+                                the <code>computeAnswer()</code> function:</p>
+                            <code>
+<pre class="prettyprint linenums">
+var computeAnswer = function () {
+    var result = 0;
+
+    if (operand1 !== '' && operator !== '' && operand2 !== '') {
+        operand1 = parseInt(operand1, 10);
+        operand2 = parseInt(operand2, 10);
+
+        switch (operator) {
+        case '+':
+            result = operand1 + operand2;
+            break;
+        case '-':
+            result = operand1 - operand2;
+            break;
+        case '*':
+            result = operand1 * operand2;
+            break;
+        case '/':
+            result = operand1 / operand2;
+            break;
+        }
+
+        if (result.toString().length > 10) {
+            displayText = result.toPrecision(10).toString();
+        } else {
+            displayText = result.toString();
+        }
+
+        updateDisplay();
+
+        operand1 = '';
+        operand2 = '';
+        operator = '';
+    }
+};
+
+enterBtn.addEventListener('click', computeAnswer, false);
+</pre>
+                            </code>
+                            <p>The actual logic of this function is not too complex.
+                                First we determine whether we have all the information
+                                to compute a result, perform the calculation using
+                                a <code>switch</code> statement, format the result
+                                if it might run over the screen display, call
+                                <code>updateDisplay()</code> and reset the two
+                                <code>operand</code> and <code>operator</code>
+                                variables so that the user can immediately begin
+                                another operation.</p>
+                            <div class=well>
+                                 <h2>Data Types and the Calculator Widget Completed</h2>
+                                 <p>When we actually perform the arithmetic operations
+                                     we need the <code>operand</code> variables
+                                     to be numbers.  To accomplish this, we turn
+                                     them into integers, using the built-in
+                                     <code>parseInt()</code> function.</p>
+                                 <p>Note the second parameter, which you should always
+                                     include.  Whenever you use the function you
+                                     should pass a <code>10</code> as the radix 
+                                     parameter; otherwise, in certain circumstances
+                                     it might try to interpet the number using a
+                                     base other than 10.  This can produce very
+                                     unexpected results.</p>
+                             </div>
+                        </li>
+                        <li>
+                            <p>All of our required functionality is now working.
+                                However, we called this a calculator 
+                                <strong>widget</strong>, so how do we "widgetize"
+                                our calculator?  From the perspective of JavaScript
+                                the most important thing that we can do is isolate
+                                our code from any other code that might run on the
+                                page.  How do we prevent our code from colliding
+                                with someone else's code?  By placing it in its
+                                own scope.</p>
+                            <p>To accomplish this, we will wrap all of the code 
+                                that we wrote in a "self-executing", annonymous
+                                function.  As an extra measure of code quality and 
+                                web citizenship, we will declare our JavaScript
+                                to be ES5 strict.
+                                </p>
+                            <code>
+<pre class="prettyprint linenums">
+(function () {
+    'use strict';
+    
+    // All of our previous code
+    
+}());
+</pre>
+                            </code>
+                        </li>
+                    </ol>
+                    <h2>Final JavaScript Code</h2>
+                    <p>Putting it all together and organizing and condensing some
+                        of our variable declarations we have:</p>
+                    <code>
+<pre class="prettyprint linenums">
+(function () {
+    'use strict';
+
+    var display = document.getElementById('display'),
+        controls = document.getElementById('controls'),
+        numberBtns = controls.querySelectorAll('.number'),
+        operatorBtns = controls.querySelectorAll('.operator'),
+        enterBtn = controls.querySelector('#enter'),
+        clearBtn = controls.querySelector('#clear'),
+        displayText = '0',
+        operand1 = '',
+        operand2 = '',
+        operator = '',
+        updateDisplay = function () {
+            display.innerHTML = displayText;
+        },
+        handleNumber = function (e) {
+            var num = e.target.textContent;
+
+            if (operator === '') {
+                operand1 += num;
+                displayText = operand1;
+            } else {
+                operand2 += num;
+                displayText = operand2;
+            }
+
+            updateDisplay();
+        },
+        handleOperator = function (e) {
+            var op = e.target.textContent;
+            if (operator === '') {
+                operator = op;
+            }
+        },
+        computeAnswer = function () {
+            var result = 0;
+
+            if (operand1 !== '' && operator !== '' && operand2 !== '') {
+                operand1 = parseInt(operand1, 10);
+                operand2 = parseInt(operand2, 10);
+
+                switch (operator) {
+                case '+':
+                    result = operand1 + operand2;
+                    break;
+                case '-':
+                    result = operand1 - operand2;
+                    break;
+                case '*':
+                    result = operand1 * operand2;
+                    break;
+                case '/':
+                    result = operand1 / operand2;
+                    break;
+                }
+
+                if (result.toString().length > 10) {
+                    displayText = result.toPrecision(10).toString();
+                } else {
+                    displayText = result.toString();
+                }
+
+                updateDisplay();
+
+                operand1 = '';
+                operand2 = '';
+                operator = '';
+            }
+        },
+        reset = function () {
+            operand1 = '';
+            operand2 = '';
+            operator = '';
+
+            displayText = '0';
+            updateDisplay();
+        },
+        ii = 0,
+        len = 0;
+
+    for (ii = 0, len = numberBtns.length; ii < len; ii += 1) {
+        numberBtns[ii].addEventListener('click', handleNumber, false);
+    }
+
+    for (ii = 0, len = operatorBtns.length; ii < len; ii += 1) {
+        operatorBtns[ii].addEventListener('click', handleOperator, false);
+    }
+
+    enterBtn.addEventListener('click', computeAnswer, false);
+    clearBtn.addEventListener('click', reset, false);
+}());
+</pre>
+                    </code>
+                </div>
+            </div>
+            <div class="row comments">
+                <div class=span12>
+                    <h3>Comments</h3>
+                    <p>Please use this discussion form appropriately to ask 
+                        questions of the instructor or to share information that 
+                        is of interest to the class.</p>
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_shortname = 'javascriptcs5511';
+                        (function() {
+                            var dsq = document.createElement('script'); 
+                            dsq.type = 'text/javascript'; 
+                            dsq.async = true;
+                            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || 
+                            document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>
+                        Please enable JavaScript to view the 
+                        <a href="http://disqus.com/?ref_noscript">comments 
+                        powered by Disqus.</a>
+                    </noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">
+                        comments powered by 
+                        <span class="logo-disqus">Disqus</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <script src=../../bootstrap/js/jquery.js></script>
+        <script src=../../bootstrap/js/bootstrap.js></script>
+        <script src=../../bootstrap/js/fall2012.js></script>
+        <script src=../../lib/prettify/prettify.js></script>
+        <script>
+            $(function() {
+                prettyPrint();
+            });
+        </script>
+        <script src=calc.js></script>
+    </body>
+</html>

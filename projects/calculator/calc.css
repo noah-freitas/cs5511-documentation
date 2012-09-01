@@ -1,0 +1,22 @@
+#calcWrap {
+    width: 400px;
+    margin: 0 auto;
+}
+#display {
+    width: 360px;
+    min-height: 80px;
+    background: rgba(50, 50, 50, .3);
+    border: 1px solid #CCC;
+    margin: 10px;
+    font-size: 50px;
+    text-align: right;
+    line-height: 100px;
+    padding-right: 20px;
+    font-family: monospace;
+}
+#controls td {
+    text-align: center;
+}
+#controls button {
+    width: 100%;
+}
