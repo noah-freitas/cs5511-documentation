@@ -21,7 +21,7 @@
                   <h3>Variables and Values</h3>
                      <p>Javascript has three essential primitive data types:</p>
                      <ul><li>numbers</li><li> strings</li>  <li>Booleans</li></ul> 
-                     <p>While these are primitives, Javascript also provides a class of methods and properties for each of these types, which is a somewhat unique feature within Javascript.</p>
+                     <p>While these are primitives (their abilities are built directly into Javascript) Javascript also provides a class of methods and properties for each of these types.</p>
                      <h3>Numbers</h3>
                   <p>Unlike most programming languages, Javascript does not distinguish between integers and decimals - a number is a number. Numbers inherently interact with the mathematical operators:</p><ul><li>plus</li>
                        <li>minus</li>
@@ -30,61 +30,57 @@
                        <li>modulus (remainder)</li>
                        <li>exponent</li>
                      </ul>
-                     <p>The number object has methods such as toFixed( ) and Javascript also includes a<a href="http://www.w3schools.com/js/js_obj_math.asp"> Math class</a> with many useful methods properties and constants.</p>
+                     <p>The number object has methods such as <a href="http://www.w3schools.com/jsref/jsref_tofixed.asp">toFixed( )</a>, which converts a number into a String, and Javascript also includes a<a href="http://www.w3schools.com/js/js_obj_math.asp"> Math class</a> with many useful methods properties and constants for using trigonometry, algebra, rounding and randomization to your programming toolkit.</p>
+              </section>
+              <section class="span4"> 
                      <h3>Strings</h3>
-                     <p>Javascript strings are zero or more characters wrapped in single or double quotes.  There is no character type - only strings with a length of one.  Use the backslash \ escape character before inserting special characters into strings such as quotes and backslashes. </p>
-                     <p>Strings can be concatenated using the plus operator.  <a href="http://www.w3schools.com/js/js_obj_string.asp">The Javascript String object </a>has many useful methods and properties, such as .length. In addition, Javascript has built-in regular expression functions for very complex string management.</p>
-                     <p> <a href="../examples/rotate-page/index.html">In this Rotate Page example</a> we refine the logic of the page rotation function by getting it to stop after one revolution.  Note in the code that we do this with an IF statement - a statement that 'tests' the situation (has the page element fully rotated yet) and acts accordingly. This new feature allows us to use LOGIC on the page - to teach the rotate function to stop itself at a certain point by giving it a CONDITION (in the parentheses following the IF). </p>
-                     <p>We use a Javascript timer (setInterval()) and a recursive call to the rotate() function to interate, or repeat, the 1 degree rotation over time.</p>
-                   </section>
-                     <section class="span4">  <h3>Dates</h3>
-                    
+                     <p>Javascript strings are defined as zero or more characters wrapped in single or double quotes.  There is no character type - they are strings with a length of one.  Use the backslash \ escape character before inserting special characters into strings such as quotes and backslashes. </p>
+                     <p>Strings can be concatenated using the plus operator.  <a href="http://www.w3schools.com/js/js_obj_string.asp">The Javascript String object </a>has many useful methods and properties, such as .length. In addition, Javascript has a <a href="http://www.w3schools.com/jsref/jsref_obj_regexp.asp">Regular Expression object</a> for more complex string operations.</p>
+
+                   
+                      <h3>Dates</h3>
+                      <p>In Javascript, values to represent date and time use the <a href="http://www.w3schools.com/jsref/jsref_obj_date.asp">Date object</a>. The Date() object has many methods for managing variables that hold date and time information.   </p>
+                      <p>In this script we create a dynamic Day Of The Week display in just  few simple lines of Javascript, we use the Date() object and a "static" objectthat we define.  </p>
+                       <p class="label label-info" id="day"></p>
+                   <code>
+                        <pre class="prettyprint linenums">
+var thePresent = new Date();
+var display = document.getElementById("day");
+var days = {0:"Sunday",1:"Monday",2:"Tuesday",3:"Wednesday",4:"Thursday",5:"Friday",6:"Saturday"};
+var day = days[thePresent.getDay()];
+display.innerHTML = "Today is " + day;
+</pre>
+                        </code>  
+                        <script>
+					
+var thePresent = new Date();
+var display = document.getElementById("day");
+var days = {0:"Sunday",1:"Monday",2:"Tuesday",3:"Wednesday",4:"Thursday",5:"Friday",6:"Saturday"};
+var day = days[thePresent.getDay()];
+display.innerHTML = "Today is " + day;
+
+						</script>  
+                   
                 </section>
                 <section class=span4>
                     <section class=well>
                         <h2>Take Aways</h2>
                         <ul>
-                            <li>Javascript has several techniques that enable us to work with special data types
-                              <ul>
-                                <li>primitive data types and operators</li>
-                                <li>built-in object methods and properties                            </li>
-                              </ul>
-                            </li>
+                            <li>Programming typically involves managing information of different types of data</li>
+                            <li>Data types often have their own inherent capabilities that need to be expressed programmatically</li>
+                            <li>Data types and classes simplify the process of working with different types of information.</li>
                         </ul>
                     </section>
                          
-                    <section class="well exercises">
-                        <h2>Exercises</h2>
-                        <div class="alert alert-block alert-success">Exercises are optional 
-                            and ungraded. </div>
-                     
-                      
-                    </section>
+                    
                     <section class=well>
                         <h2>Resources</h2>
                         <h3>Books</h3>
                         <ul>
-                            <li>Javascript: A Beginner's Guide &mdash; Chapters 6</li>
+                            <li><strong>Javascript: A Beginner's Guide</strong> &mdash; Chapters 12 &amp; 13</li>
+                            <li><strong>Javascript &amp; JQuery The Missing Manual</strong> &mdash; pages 41-45</li>
                         </ul>
-                        <h3>Documentation</h3>
-                        <ul>
-                        <li>
-                                <a href=http://www.w3schools.com/js/js_loop_for.asp>
-                                    w3schools: Javascript For Loops
-                                </a>
-                            </li>
-                            <li>
-                                <a href=http://www.w3schools.com/js/js_loop_while.asp>
-                                    w3schools: Javascript While Loop
-                                </a>
-                            </li>
-                            <li>
-                                <a href=http://www.w3schools.com/js/js_if_else.asp>
-                                    w3schools: Javascript If..Else
-                                </a>
-                            </li>
-                            
-                        </ul>
+                        
                        
                     </section>
                 </section>
