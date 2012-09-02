@@ -59,6 +59,11 @@
                                             Strict Mode
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href=http://www.w3schools.com/jsref/jsref_obj_math.asp>
+                                            Math Object
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -637,6 +642,49 @@ enterBtn.addEventListener('click', computeAnswer, false);
 }());
 </pre>
                     </code>
+                    <h2>Assignment</h2>
+                    <p>Begin with the code we developed in this lesson.</p>
+                    <ul>
+                        <li>
+                            Add an exponent operator to the calculator, where 
+                            <code>operand1</code> will serve as the base and 
+                            <code>operand2</code> as the exponent.
+                        </li>
+                        <li>
+                            Add a minus sign key to the calculator, which will
+                            allow you to create a negative number if it is pressed
+                            as the first "digit" for an operand.
+                        </li>
+                    </ul>
+                    <p><span class="label label-info">Extra Credit</span> Change
+                        the logic of the calculator to behave slightly more like
+                        a traditional calculator.  This change should not break
+                        any existing functionality, but should modify the typical
+                        user workflow in the following way (in <strong>bold</strong>):
+                        </p>
+                    <ol>
+                        <li>User loads the calculator and is presented with a 
+                            screen displaying "0"</li>
+                        <li>User enters one or more digits which will be the first
+                            operand of the operation.</li>
+                        <li>User will enter an operator.</li>
+                        <li>User will enter one or more digits which will be the
+                            second operand.</li>
+                        <li>User presses the enter key <strong>or one of the 
+                            operators</strong></li>
+                        <li>Calculator displays the result of performing the
+                            selected operation on the two numbers.</li>
+                        <li><strong>If one of the operator keys was pressed for 
+                            #5 above, user enters one or more digits which will 
+                            be the new second operand.  The first operand is the
+                            result from #6.</strong></li>
+                    </ol>
+                    <p><span class="label label-info">Extra Extra Credit</span> 
+                        Allow the calculator to take keyboard input for all available
+                        keys.  This means that if the calculator has focus, entering
+                        a "1" on the keyboard would be equivalent to clicking the 
+                        1 button.  Both the normal keyboard numerals and number
+                        pad keys should work.</p>
                 </div>
             </div>
             <div class="row comments">
