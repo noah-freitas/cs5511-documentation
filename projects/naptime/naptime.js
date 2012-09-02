@@ -3,9 +3,11 @@
 	var seconds = document.getElementById('seconds');
 	var dashboard = document.getElementById('dashboard');
 	var wakeup = document.getElementById('wakeup');
+	wakeup.style.display = "none";
     var start = document.getElementById('start');
     var audioElement = document.getElementById('sleepmusic');
 	var onOff = document.getElementById("toggle");
+	onOff.style.display = "none";
 	start.addEventListener('click',function () { takeNap() });
 	onOff.addEventListener('click',function () { pausePlay() });
 	audioElement.addEventListener('ended', function () { playMusic()  });

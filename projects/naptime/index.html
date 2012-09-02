@@ -52,7 +52,7 @@ input#toggle , #wakeup {
 <div class="span12">
 
 
-<p>1. First, create a basic HTML5 webpage document</p>
+<p>1. This webpage is designed to play restful music while you take a short, meditative nap at your desk. The page has a textfield to set the timer to up to 60 seconds. The music can be paused (in case the boss walks by) and resumed (with the same button, a toggle.) First, let's create this basic HTML5 webpage document.</p>
   <code>
                         <pre class="prettyprint linenums">
 &lt;!DOCTYPE HTML&gt;
@@ -67,15 +67,9 @@ input#toggle , #wakeup {
 </pre>
 </code>
 
-<p>2. Add this markup structure and style rules to the page. Notice the<a href="http://www.w3schools.com/html5/html5_ref_av_dom.asp"> HTML5 audio element</a>. The element may not be implemented to work in the same way for all browsers.   I've tested this application on Google Chrome on Mac OSX and Safari on iPad.</p>
-<code><pre class="prettyprint linenums">
-&lt;style type="text/css"&gt;
-input#toggle , #wakeup {
-    display:none;
-}
-&lt;/style&gt;
-...
-&lt;p id="wakeup"&gt;WAKE UP&lt;/p&gt;
+<p>2. Add this markup structure to the body of the  page. A paragraph, a form containing a textfield and two buttons, and an <a href="http://www.w3schools.com/html5/html5_ref_av_dom.asp"> HTML5 audio element</a>. This simple structure provides all the interface elements we'll need for our nap timer.  You can use your own music, or you can <a href="stellar.mp3">link to my short clip</a>, courtesy of <a href="http://www.realmusic.com/artists/thierry-david/">Thierry David and Real Music</a>.</p>
+<code>
+<pre class="prettyprint linenums">&lt;p id="wakeup"&gt;WAKE UP&lt;/p&gt;
 &lt;form name="napTime" onsubmit="0" id="dashboard"&gt;
   &lt;input type="text" id="seconds" name="seconds" size="5"  value="60" /&gt; 
   &lt;input type="button" value="Start Nap" id="start" /&gt;
@@ -86,52 +80,77 @@ input#toggle , #wakeup {
 </code>
 
 <p>
-3. Create the timer. </p>
+3. First we'll create the timer.   We'll use a Date object, although we're are really only using the seconds member of the object as a counter.     An integer may have been as useful in this case, but we get to work with the Date object a bit.  Create a date object as a variable named timer.  Next we'll access the DOM elements of the textfield and the start button and the other elements we need to manipulate.   We'll then add an EVENT LISTENER to the start button.   The click event will cause the takeNap( ) function to be invoked.   The function sets the seconds member of the timer Date object to the value in the textfield (60 by default.)   It then starts a Javascript timer (setInterval, another type of event) that fires every second and invokes the alarm function.  Notice how pressing the Start button makes itself disappear.  The alarm( ) function, which runs every second, decrements the timer by a second, updates the textfield with the new value and should that value be 0, the form is hidden and the wakeup paragraph is displayed.  At this point we have a simple timer.</p>
 <code>
 <pre class="prettyprint linenums">
-
+var timer = new Date();
+var seconds = document.getElementById('seconds');
+var dashboard = document.getElementById('dashboard');
+var wakeup = document.getElementById('wakeup');
+wakeup.style.display = "none";
+var start = document.getElementById('start');
+start.addEventListener('click',function () { takeNap() });
+function takeNap() {
+ timer.setSeconds(seconds.value);
+ setInterval(function() {alarm()},1000);
+ start.style.display = "none";
+}
+function alarm() {
+ timer.setSeconds(timer.getSeconds()-1);
+ seconds.value = timer.getSeconds();
+  if (timer.getSeconds() == 0) {
+   wakeup.style.display = "block";
+   dashboard.style.display = "none";			
+  }
+}
 </pre>
 </code>
 
 <p>
-4. Add the alarm. </p>
+4. Next we'll add the audio component, first by getting access to the HTML audio element and to the second button, the pause/resume button.   We add a CLICK event listener that will cause a function pausePlay( ).  We also add an event listener to the Audio element on it's ENDED event, which creates a musical loop.   We need two functions, a simple playMusic( ) and a pausePlay( ) function that is essentially a toggle switch - change the state of the audio player and button based on the current value of the button text.  Notice the simple method and event protocols of the new Audio Javascript API.   I've tested this on Chrome and Safari on iPad and it seems to work in playing basic MP3s.  </p>
 <code>
 <pre class="prettyprint linenums">
-
+var audioElement = document.getElementById('sleepmusic');
+var onOff = document.getElementById("toggle");
+onOff.style.display = "none";
+onOff.addEventListener('click',function () { pausePlay() });
+audioElement.addEventListener('ended', function () { playMusic()  });
+function playMusic() {
+ audioElement.play();
+}
+function pausePlay() {
+ if (onOff.getAttribute("value") == "Pause Music") {
+  audioElement.pause();
+  onOff.setAttribute("value","Resume Music");
+ } else 
+ {		
+   audioElement.play();
+   onOff.setAttribute("value","Pause Music");
+  }
+}
 </pre>
 </code>
 
-<p>5. Put your right foot in.
+<p>5. Now we need to hook the audio player into the timer.   We simply need to add a line in the takeNap( ) function to start the music, and another line in the  IF statement of the  alarm( ) function to pause the music when the timer is expired.
 </p>
 <code>
 <pre class="prettyprint linenums">
-
+function takeNap() {
+  ...
+  playMusic();
+}
+function alarm() {
+ if (timer.getSeconds() == 0) {
+  ...
+  audioElement.pause();			
+ }
+}
 </pre>
 </code>
 
-<p>6. Do the hokey pokey.</p>
-<code>
-</code><code>
-<pre class="prettyprint linenums">
 
-</pre>
-</code>
 
-<p>7. Shake it all about. 
-</p>
-<code>
-<pre class="prettyprint linenums">
-
-</pre>
-</code>
-<li>8. The next thing.</li>
-<code>
-<pre class="prettyprint linenums">
-
-</pre>
-</code>	
-
-<p>9. OK, once again, the rest is up to you.  Create your  own features to improve the nap timer or add a visual animation to entrance you to sleep.   Project is due Thursday, September 20.
+<p>6. OK, once again, the rest is up to you.  First, work through the steps to get the basic functionality working.   Then, feel free to create your  own features to improve the nap timer.   Add a soothing visual element or a wakeup sound or whatever comes to mind.   On the page, write a brief section on your experiences with this project.   How much time did you spend on it.   What problems did you encounter?   What did you learn?   What did you add to the project?     Project is due Thursday, September 20.
 </p>
 
 
