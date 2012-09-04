@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html lang=en>
+    <head>
+        <meta charset=UTF-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SRJC Fall 2012 Javascript &amp; JQuery CS55.11</title>
+        <link href=../bootstrap/css/bootstrap.css rel=stylesheet>
+        <link href=../lib/prettify/prettify.css rel=stylesheet>
+        <link href=../bootstrap/css/fall2012.css rel=stylesheet>
+    </head>
+    <body>
+        
+        <div class=container>
+            <div class=callout>
+                <h1>Events</h1>
+                <p>User-driven programming</p>
+            </div>
+            <div class=row>
+                <section class="span4">
+                   <blockquote cite=http://www.wikipedia.com/javascript/>To add actual useful functionality to a web page, we need to do more than inspecting and modifying the document &mdash; we must be able to detect the user&quot;s actions and respond to them.   This is done by handling events.
+                   
+                  <small>Marijn Haverbeke, <em>Eloquent Javascript: A Modern Introduction to Programming<</em>/a></small>
+                   
+                   </blockquote>
+                   
+                  <h3>What is a Javascript event?</h3>
+                     <p>In programming, an event is like 'potential energy' &mdash; like a spring &mdash; a set of statements that will execute only under a specific condition.    Unlike an IF statement, which is a conditional branch within the code, an Event can be invoked automatically by conditions outside of the code &mdash; such as a user interacting with a browser or page element.</p>
+                  <p>Events are an important part of what makes Javascript so popular, they enable user-interactive programming. Events are simple to implement and we have already seen some examples of events in our projects.  For traditional computer programmers using procedure or object-oriented approaches, event-driven programming may be a slightly new concept.</p>
+                     <h3>Event Listeners</h3>
+                     <p>In general, I find it useful to think about events as both event listeners and event handlers.  The 'listener' is the code that 'sets' the event and the 'handler' is the code that runs when the event 'fires.'</p> 
+                     <p>In Javascript, it is very simple to instantiate event listeners by assignment to the DOM.  In the past, different browsers provided a different interface to their event model, but now all current browsers work with the <a href="http://www.w3.org/TR/DOM-Level-3-Events/">W3C DOM specification</a>. In the most basic case, you can pass a short Javascript statement into the HTML attribute. </p>
+                     <code>
+                        <pre class="prettyprint linenums">
+&lt;a href="#" onclick="alert('Clicked')"&gt;
+                     </pre>
+                     </code>
+                 
+                  <p>You can also have Javascript assign the event handler to the DOM element property.    In this case we are using a Javascript anonymous function.</p>
+                   <code>
+                        <pre class="prettyprint linenums">
+var listener = document.getElementById("listener");
+listener.onclick = function() {..};
+                     </pre>
+                     </code>
+                      <p>In this case we create a named function and assign the function name to the event listener.</p>
+                       <code>
+                        <pre class="prettyprint linenums">
+var listener = document.getElementById("listener");
+listener.onclick = clickMe;
+function clickMe() {...};
+                     </pre>
+                     </code>
+                        </section>
+              <section class="span4"> 
+                 <h3>Event Handlers</h3>
+                 
+                 
+                 <p>An event handler is essentially the code that runs in the event of the event.  Typically this would be implemented as a Javascript function, i.e. in the  functions we defined above.</p>
+                 <p>The DOM event model provides access to the event&quot;s TARGET.   The target is the element which triggered the event. </p>
+      <code>
+<pre class="prettyprint linenums">var t = document.getElementById("t");
+var pa = document.getElementById("pa");
+t.onclick = h;
+function h(event) {
+    pa.innerHTML = event.target.innerHTML;
+}
+      </pre>
+                        </code>        
+               <h3>Event Propagation</h3>
+                    <p></p>
+                    
+                    <p></p>
+                    
+                    
+                     <h3>User Events</h3>
+                     <p></p>
+                     <p></p>
+
+                   
+                      <h3>Timers</h3>
+                      <p>  </p>
+                      <p></p>
+                      
+                   
+                </section>
+                <section class=span4>
+                    <section class=well>
+                        <h2>Take Aways</h2>
+                        <ul>
+                            <li>Events are what make web pages interactive</li>
+                            <li>Javascript events are built into the DOM model and simple to implement</li>
+                        </ul>
+                    </section>
+                         
+                    
+                    <section class=well>
+                        <h2>Resources</h2>
+                        <h3>Books</h3>
+                        <ul>
+                            <li><strong>Javascript: A Beginner's Guide</strong> &mdash; Chapter 7</li>
+                            <li><strong>Eloquent Javascript</strong> &mdash; Chapter 11</li>
+                            
+                        </ul>
+                         <h3>Online</h3>
+                      <ul>
+                            <li><a href="http://www.w3schools.com/js/js_events.asp">W3Schools Javascript Events</a></li>
+                            <li><a href="http://www.quirksmode.org/js/introevents.html">Quirksmode Intro to Events</a></li>
+                            
+                      </ul>
+                    </section>
+                </section>
+            </div>
+            <div class="row comments">
+        <div class="span12">
+        <h3>Comments</h3>
+        <p>Please use this discussion form appropriately to ask questions of the instructor or to share information that is of interest to the class.</p>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'javascriptcs5511'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        </div>
+        </div>
+        </div>
+        <script src=../bootstrap/js/jquery.js></script>
+		<script src=../bootstrap/js/bootstrap.js></script>
+        <script type="text/javascript"  src="../bootstrap/js/fall2012.js"></script>
+        
+        <script src=../lib/prettify/prettify.js></script>
+        <script>
+            $(function() {
+                prettyPrint();
+                $('.carousel').carousel({
+                    interval: false
+                })
+            });
+        </script>
+         <script type="text/javascript" src="../bootstrap/js/bootstrap-dropdowns-set.js"></script>
+    </body>
+</html>
