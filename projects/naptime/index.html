@@ -15,7 +15,7 @@ input#toggle , #wakeup {
 <body>
 <div class="container">
 <div class="row">
-<h2>Project 2: Programming a Timer  with HTML5 Audio Player</h2>
+<h2>Project 2: Programming a Timer with HTML5 Audio Player</h2>
 </div>
 <div class="row">
 <div class="span6">
@@ -41,7 +41,7 @@ input#toggle , #wakeup {
   <input type="button" value="Start Nap" id="start" />
   <input type="button" value="Pause Music" id="toggle" />
 </form>
-<audio id="sleepmusic" src="stellar.mp3" preload="auto"></audio>
+<audio id="audiotag1" src="stellar.mp3" preload="auto"></audio>
 </div>
 
 
@@ -59,7 +59,16 @@ input#toggle , #wakeup {
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta charset="UTF-8"&gt;
-&lt;title&gt;Programming a HTML5 Grid with Javascript&lt;/title&gt;
+&lt;title&gt;Nap Time&lt;/title&gt;
+&lt;style&gt;
+    input, p {
+        font-size: 250%;
+        text-align: right;
+    }
+    input#toggle, #wakeup {
+        display: none;
+    }
+&lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;/body&gt;
@@ -89,19 +98,20 @@ var dashboard = document.getElementById('dashboard');
 var wakeup = document.getElementById('wakeup');
 wakeup.style.display = "none";
 var start = document.getElementById('start');
-start.addEventListener('click',function () { takeNap() });
+start.addEventListener('click', takeNap);
 function takeNap() {
- timer.setSeconds(seconds.value);
- setInterval(function() {alarm()},1000);
- start.style.display = "none";
+    timer.setSeconds(seconds.value);
+    setInterval(alarm, 1000);
+    start.style.display = "none";
+    onOff.style.display = "inline";
 }
 function alarm() {
- timer.setSeconds(timer.getSeconds()-1);
- seconds.value = timer.getSeconds();
-  if (timer.getSeconds() == 0) {
-   wakeup.style.display = "block";
-   dashboard.style.display = "none";			
-  }
+    timer.setSeconds(timer.getSeconds() - 1);
+    seconds.value = timer.getSeconds();
+    if (timer.getSeconds() === 0) {
+        wakeup.style.display = "block";
+        dashboard.style.display = "none";			
+    }
 }
 </pre>
 </code>
@@ -110,23 +120,22 @@ function alarm() {
 4. Next we'll add the audio component, first by getting access to the HTML audio element and to the second button, the pause/resume button.   We add a CLICK event listener that will cause a function pausePlay( ).  We also add an event listener to the Audio element on it's ENDED event, which creates a musical loop.   We need two functions, a simple playMusic( ) and a pausePlay( ) function that is essentially a toggle switch - change the state of the audio player and button based on the current value of the button text.  Notice the simple method and event protocols of the new Audio Javascript API.   I've tested this on Chrome and Safari on iPad and it seems to work in playing basic MP3s.  </p>
 <code>
 <pre class="prettyprint linenums">
-var audioElement = document.getElementById('sleepmusic');
+var audioElement = document.getElementById('audiotag1');
 var onOff = document.getElementById("toggle");
 onOff.style.display = "none";
-onOff.addEventListener('click',function () { pausePlay() });
-audioElement.addEventListener('ended', function () { playMusic()  });
+onOff.addEventListener('click', pausePlay);
+audioElement.addEventListener('ended', playMusic);
 function playMusic() {
- audioElement.play();
+    audioElement.play();
 }
 function pausePlay() {
- if (onOff.getAttribute("value") == "Pause Music") {
-  audioElement.pause();
-  onOff.setAttribute("value","Resume Music");
- } else 
- {		
-   audioElement.play();
-   onOff.setAttribute("value","Pause Music");
-  }
+    if (onOff.getAttribute("value") === "Pause Music") {
+        audioElement.pause();
+        onOff.setAttribute("value", "Resume Music");
+    } else {		
+        audioElement.play();
+        onOff.setAttribute("value", "Pause Music");
+    }
 }
 </pre>
 </code>
@@ -136,14 +145,14 @@ function pausePlay() {
 <code>
 <pre class="prettyprint linenums">
 function takeNap() {
-  ...
-  playMusic();
+    ...
+    playMusic();
 }
 function alarm() {
- if (timer.getSeconds() == 0) {
-  ...
-  audioElement.pause();			
- }
+    if (timer.getSeconds() === 0) {
+        ...
+        audioElement.pause();			   
+    }
 }
 </pre>
 </code>

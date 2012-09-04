@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang=en>
+    <head>
+        <meta charset="UTF-8">
+        <title>Nap Time</title>
+        <style>
+            input, p {
+                font-size: 250%;
+                text-align: right;
+            }
+            input#toggle, #wakeup {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <p id="wakeup">WAKE UP</p>
+        <form name="napTime" onsubmit="0" id="dashboard">
+            <input type="text" id="seconds" name="seconds" size="5" value="60"> 
+            <input type="button" value="Start Nap" id="start">
+            <input type="button" value="Pause Music" id="toggle">
+        </form>
+        <audio id="audiotag1" src="stellar.mp3" preload="auto"></audio>
+    </body>
+    <script src=timer.js></script>
+</html>
