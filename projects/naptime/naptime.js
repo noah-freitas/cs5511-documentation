@@ -3,7 +3,7 @@ var seconds = document.getElementById('seconds');
 var dashboard = document.getElementById('dashboard');
 var wakeup = document.getElementById('wakeup');
 var start = document.getElementById('start');
-var audioElement = document.getElementById('audiotag1');
+var audioElement = document.getElementById('sleepmusic');
 var onOff = document.getElementById("toggle");
 start.addEventListener('click', takeNap);
 onOff.addEventListener('click', pausePlay);

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang=en>
+    <head>
+        <meta charset=UTF-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Working with Javascript Event Targets</title>
+        <link href=../bootstrap/css/bootstrap.css rel=stylesheet>
+        
+        <link href=../bootstrap/css/fall2012.css rel=stylesheet>
+    </head>
+    <body>
+        
+        <div class=container>
+           <div class="row">
+           <div class="span12">
+           <div class="clickable" style="padding:20px;background-color:#9CF;">
+           <button type="button" class="btn btn-large btn-primary clickable" >One</button>&nbsp;&nbsp;<button type="button" class="btn btn-large btn-primary clickable" >Two</button>
+          &nbsp;&nbsp; <button type="button" class="btn btn-large btn-primary clickable">Three</button>
+           </div>
+           </div>
+           
+           </div>
+        </div>
+        <script src=../bootstrap/js/jquery.js></script>
+		<script src=../bootstrap/js/bootstrap.js></script>
+        <script type="text/javascript"  src="../bootstrap/js/fall2012.js"></script>
+        
+       
+        <script>
+           var clickables = document.getElementsByClassName("clickable");
+		   for (i=0;i<clickables.length;i++) {
+		     clickables[i].onclick = c;
+			 
+		   }
+		   function c() {
+			   console.log(i);
+		   event.target.innerHTML = event.target.innerHTML +  event.target.innerHTML;
+		   }
+        </script>
+         <script type="text/javascript" src="../bootstrap/js/bootstrap-dropdowns-set.js"></script>
+    </body>
+</html>
