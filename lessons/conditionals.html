@@ -37,19 +37,18 @@
                         
                         <code>
                         <pre class="prettyprint linenums">
-if (degree != 361) 
-  {
-   rotate();
-  }
+if (degree !== 361) {
+    rotate();
+}
 
-var y = (degree != 361) ? rotate() : null; 
+var y = (degree !== 361) ? rotate() : null; 
 </pre>
                         </code>
                        <dt>Ternary</dt> <dd>A similar technique to IF statements. Based on the truth of the test expression, a variable takes a different value or code path.  It is good practice to have functions return values as we'll learn soon</dd>
                        
                 <code>
                         <pre class="prettyprint linenums">        
-var y = (degree != 361) ? rotate() : null; 
+var y = (degree !== 361) ? rotate() : null; 
 </pre>
                         </code> 
                          </dl>
@@ -61,30 +60,27 @@ var y = (degree != 361) ? rotate() : null;
                         <dd>Performs a handy multi-path function based on evaluating an expression to match with a set of possible values defined by the case clause.</dd>
                         <code>
                         <pre class="prettyprint linenums">
-switch (day)
- {
-  case "Sunday":
-   sleep();
-   break;
-  case "Monday":
-   work();
-   break;
-  case "Tuesday":
-   play();
-   break;
-   ...
- }
+switch (day) {
+    case "Sunday":
+        sleep();
+        break;
+    case "Monday":
+        work();
+        break;
+    case "Tuesday":
+        play();
+        break;
+}
 </pre>
                     </code>
                          <dt>WHILE</dt>
                         <dd>A simple loop based on the 'truth' of the conditional expression.</dd>
                         <code>
                         <pre class="prettyprint linenums">
-while (i<5)
- {
- x = x + (i*.26);
- i++; // an increment operator - add 1 to i
- }
+while (i < 5) {
+    x = x + (i*.26);
+    i++; // an increment operator - add 1 to i
+}
 </pre>
                     </code>
                    
@@ -92,25 +88,24 @@ while (i<5)
                         <dd>A more complex looping statement with the increment function defined right with the conditional expression.  It also has a special version that increments through a set of objects.  </dd>
                           <code>
                         <pre class="prettyprint linenums">
-for (i=0; i<5; i++)
- {
-  x=x + "And a ..." + i;
- }
+for (var i = 0; i < 5; i++) {
+    x = x + "And a ..." + i;
+}
  
- for (x in person)
-  { 
-   doc.div.innerHTML = x.name;
-  }
+for (x in person) {
+    if (person.hasOwnProperty(x)) {
+        console.log(person[x]);
+    }
+}
 </pre>
                     </code>
                          <dt>DO</dt>
                         <dd>Similar to while, but always executes it 'truth' block at least once and tests the truth expression after each execution.</dd>
                         <code>
                         <pre class="prettyprint linenums">
-do 
-{ 
- x++;
- } 
+do { 
+    x++;
+} 
 while (x < 10);
 </pre>
                     </code>
