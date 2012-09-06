@@ -41,8 +41,9 @@
 var listener = document.getElementById("listener");
 listener.onclick = function() {..};
                      </pre>
-                     </code>
-                      <p>In this case we create a named function and assign the function name to the event listener.</p>
+                     </code>  </section>
+              <section class="span4"> 
+                      <p>In the following case we create a named function and assign the function name to the event listener.</p>
                        <code>
                         <pre class="prettyprint linenums">
 var listener = document.getElementById("listener");
@@ -50,8 +51,7 @@ listener.onclick = clickMe;
 function clickMe() {...};
                      </pre>
                      </code>
-                        </section>
-              <section class="span4"> 
+                      
                  <h3>Event Handlers</h3>
                  
                  
@@ -67,22 +67,17 @@ function h(event) {
       </pre>
                         </code>        
                <h3>Event Propagation</h3>
-                    <p></p>
-                    
-                    <p></p>
+               <p>Javascript events have the ability to propagate, each event is targeted by the elements on which there is an event listener and also fires on each of the target's ancestors in the DOM tree.  This is often refered to as Event Bubbling. Each event will bubble up through the ancestor tree of the element on which the event listener was register. It will create separate event objects for each ancestor, each event object will record the registered DOM object as the <a href="http://www.w3schools.com/jsref/event_target.asp">TARGET</a> and the parent as the CurrentTarget.  <a href="../examples/event-target.html">Here's a simple example.</a></p>
                     
                     
-                     <h3>User Events</h3>
-                     <p></p>
-                     <p></p>
+                     <h3>Event Types</h3>
+                     <p>Events can be set on standard browser user interactions such as mouse actions, form element navigation and browser actions such as loading an element to the page.   In addition, the<a href="http://www.w3schools.com/jsref/met_win_setinterval.asp"> setInterval and setTimeout </a>functions, which are included in the DOM Window object, operate in a similar way to events in that they can be set to fire an event handler-like function.</p>
+                     
 
                    
-                      <h3>Timers</h3>
-                      <p>  </p>
-                      <p></p>
-                      
+                     
                    
-                </section>
+              </section>
                 <section class=span4>
                     <section class=well>
                         <h2>Take Aways</h2>
