@@ -1,0 +1,304 @@
+<!DOCTYPE HTML>
+<html lang=en>
+    <head>
+        <meta charset=UTF-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SRJC Fall 2012 Javascript &amp; JQuery CS55.11</title>
+        <link href=../bootstrap/css/bootstrap.css rel=stylesheet>
+        <link href=../lib/prettify/prettify.css rel=stylesheet>
+        <link href=../bootstrap/css/fall2012.css rel=stylesheet>
+    </head>
+    <body>
+        <div class=container>
+            <div class=callout>
+                <h1>JavaScript Objects</h1>
+                <p>Structuring Your Data</p>
+            </div>
+            <div class=row>
+                <section class=span4>
+                    <h2>Introduction</h2>
+                    <blockquote>In JavaScript, arrays are objects, functions are 
+                        objects, regular expressions are objects, and, of course, 
+                        objects are objects.
+                        <small>Douglas Crockford, <em>JavaScript: The Good Parts</em></small>
+                    </blockquote>
+                    <p>JavaScript has only a handful of value types to represent
+                        data.  We previously looked at the <em>primitive types</em>: 
+                        numbers, strings, and booleans (true or false), which along
+                        with <code>null</code> and <code>undefined</code> represent
+                        all JavaScript value types with the exception of objects.
+                        This is an important point that bears repeating in another
+                        form: if something is not a primitive or null or undefined 
+                        then it is an object.</p>
+                    <h2>What are Objects?</h2>
+                    <p>In JavaScript, an object is a collection of properties, where
+                        each property is represented as a name-value pair.  The name
+                        component of the property is a string, and the value can
+                        be any JavaScript value (including another object.)</p>
+                    <h2>Types of Objects</h2>
+                    <p>There are three basic types of JavaScript objects:</p>
+                    <dl>
+                        <dt>User-Defined Objects</dt>
+                        <dd>These are the objects that we are most concerned with
+                            as they are the type of objects that we will make
+                            in our code.</dd>
+                        <dt>Native (or Built-in) Objects</dt>
+                        <dd>These are objects provided by core JavaScript, examples
+                            of which are <code>Function</code>, <code>Array</code>, 
+                            <code>Date</code> and <code>Math</code>.</dd>
+                        <dt>Host Objects</dt>
+                        <dd>These are objects provided by the execution environment.
+                            In a web browser, examples of these objects would be
+                            <code>window</code> and <code>document</code>.</dd>
+                    </dl>
+                    <h2>What About Classes and Inheritance?</h2>
+                    <p>If you are familiar with a programming language like C++
+                        or Java, you might be wondering how we got this far talking
+                        about objects without mentioning classes.  The simple 
+                        answer is that JavaScript does not have classes.  The full 
+                        answer is understandably more complicated, and most of it
+                        is beyond the scope of this class.</p>
+                    <p>So how do you create an object template that can be reused
+                        for multiple objects?  One way to accomplish this is to
+                        use Constructor Functions and Prototypes, which we will
+                        look at in another lesson.</p>
+                    <h2>Terminology</h2>
+                    <dl class=dl-horizontal>
+                        <dt>Object</dt>
+                        <dd>A collection of named properties.  A fundamental
+                            value type in JavaScript.</dd>
+                        <dt>Object Properties</dt>
+                        <dd>A name-value pair, where the name is a string and the
+                            value is any JavaScript value.</dd>
+                        <dt><code>.prototype</code></dt>
+                        <dd>A property present in all objects whose value is
+                            another prototype or <code>null</code>.</dd>
+                        <dt>Prototypal Inheritance</dt>
+                        <dd>The fundamental object inheritance and composition 
+                            mechanism in JavaScript.  It takes the place of 
+                            Classes in other languages.</dd>
+                    </dl>
+                </section>
+                <section class=span4>
+                    <h2>Using Objects</h2>
+                    <h3>Creating Objects with Object Literals</h3>
+                    <p>JavaScript provides a very simple way to create your
+                        own objects: Object Literals.  To define an object, using
+                        literal notation, simply wrap a collection of name-value
+                        pairs in curly braces (<code>{};</code>), separating the
+                        name-value pairs with commas (<code>,</code>) and the 
+                        names and values with colons (<code>:</code>).  Putting
+                        this together, we get a very simple syntax for creating
+                        objects:</p>
+                    <code>
+                        <pre class="prettyprint linenums">
+var myObject = {
+    property1: "value 1",
+    property2: "value 2"
+};
+</pre>
+                    </code>
+                    <p>As you can see, most of the time, property names are declared
+                        unquoted (just like when you declare a variable).  They can
+                        also be declared with quotes, and in some circumstances
+                        the quotes are required.  Examples of this are if you want
+                        to use a reserved word as a property name* (notice the 
+                        <code>null</code> property below) or a name with a
+                        hyphen.</p>
+                    <p>* <small>This is no longer true in more recent versions of
+                        JavaScript (ECMAScript 5+)</small></p>
+                    <p>This first simple example only stored string values, but
+                        we know from the previous paragraphs that any JavaScript
+                        value can be stored in an object.  Let's build an example
+                        object with all possible value types (we'll throw in a 
+                        function too, even though its value type is also object):</p>
+                    <code>
+                        <pre class="prettyprint linenums">
+var allValues = {
+    str: "value 1",
+    num: 45,
+    bool: true,
+    'null': null,
+    undef: undefined,
+    object: {
+        innerStr: 'This is an inner object'
+    },
+    func: function() {
+        alert('This is a function');
+    }
+};
+</pre>
+                    </code>
+                    <h3>Accessing Object Properties</h3>
+                    <p>There are two ways of accessing an object's properties:</p>
+                    <dl>
+                        <dt>Dot Notation</dt>
+                        <dd>To access a property using dot notation, you write
+                            the name of the object, followed by a period (<code>.</code>),
+                            followed by the name of the property unquoted.  Dot notation
+                            is simple to use but does have the following limitations:
+                            <ul>
+                                <li>If a property name has to be quoted (reserved
+                                    word, hyphens, etc) you cannot use dot notation.</li>
+                                <li>The property name following the <code>.</code>
+                                    cannot be a variable.  It must be typed as it
+                                    literally appears in the object.</li>
+                            </ul>
+                        </dd>
+                        <dt>Subscript Notation</dt>
+                        <dd>To access a property using subscript notation, you
+                            write the name of the object, an opening bracket 
+                            <code>[</code>, the name of the property in quotes,
+                            and a closing bracket <code>]</code>.</dd>
+                    </dl>
+                    <p>As a general rule of thumb, use Dot Notation whenever possible,
+                        as it is generally more readable.  See examples of accessing
+                        the <code>allValues</code> properties using both methods
+                        below.</p>
+                    <code>
+                        <pre class="prettyprint linenums">
+// Dot Notation
+allValues.str;
+
+// Subscript Notation
+allValues['null'];
+
+// Inner Object
+allValues.object.innerStr;
+
+// Subscript Notation with a Variable Property Name
+var prop = "num";
+allValues[prop];
+
+// Read a Property.
+var isTrue = allValues.bool;
+
+// Set a Property.
+allValues.str = "I like this string better.";
+</pre>
+                    </code>
+                    <h3>Calling Object Functions (Methods)</h3>
+                    <p>We know we can store functions in objects, and we know
+                        how to access an object's properties, but how do we call
+                        a function that is inside an object?  By following the
+                        property lookup with a pair of parentheses enclosing any
+                        parameters.</p>
+                    <code>
+                        <pre class="prettyprint linenums">
+// Dot Notation
+allValues.func();
+
+// Subscript Notation
+var prop = 'func';
+allValues[prop]();
+</pre>
+                    </code>
+                    <p>In the Constructor Functions lesson, we'll explore functions
+                        in objects in more detail.</p>
+                </section>
+                <section class=span4>
+                    <section class=well>
+                        <h2>Take Aways</h2>
+                        <ul>
+                            <li>Objects are a structured value type in JavaScript.</li>
+                            <li>Anything that is not a primitive (or null or 
+                                undefined) is an Object.</li>
+                            <li>Create custom objects using the Object Literal
+                                notation</li>
+                            <li>Access object properties using either Dot or
+                                Subscript Notation</li>
+                            <li>Call object functions by following the property
+                                lookup with a pair of parentheses.</li>
+                        </ul>
+                    </section>
+                    <section class="well exercises">
+                        <h2>Exercises</h2>
+                        <div class="alert alert-block alert-success">Exercises are optional 
+                            and ungraded.</div>
+                        <iframe style="width: 100%; height: 450px" src="http://jsfiddle.net/nfreitas/TmWdu/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+                        
+                        <a class="btn btn-inverse pull-right" data-toggle=modal href=#ex1Answer>Show Answer</a>
+                        
+                        <div class="modal hide" id=ex1Answer>
+                            <iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/nfreitas/mx6zA/5/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+                            <div class=modal-footer>
+                                <a href=# class=btn data-dismiss=modal>Close</a>
+                            </div>
+                        </div>   
+                    </section>
+                    <section class=well>
+                        <h2>Resources</h2>
+                        <h3>Documentation</h3>
+                        <ul>
+                            <li>
+                                <a href=https://developer.mozilla.org/en-US/docs/JavaScript/Introduction_to_Object-Oriented_JavaScript target=_blank>
+                                    Introduction to Object-Oriented JavaScript (Mozilla Developer Network)
+                                </a>
+                            </li>
+                            <li>
+                                <a href=https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Values,_variables,_and_literals#Object_literals target=_blank>
+                                    Object Literals (Mozilla Developer Network)
+                                </a>
+                            </li>
+                            <li>
+                                <a href=https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Working_with_Objects target=_blank>
+                                    Working With Objects (Mozilla Developer Network)
+                                </a>
+                            </li>
+                        </ul>
+                        <h3>Videos</h3>
+                        <ul>
+                            <li>
+                                <a href=http://youtu.be/rEKdoAD_hvY target=_blank>
+                                    JavaScript Object Basics
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+            </div>
+            <div class="row comments">
+                <div class=span12>
+                    <h3>Comments</h3>
+                    <p>Please use this discussion form appropriately to ask 
+                        questions of the instructor or to share information that 
+                        is of interest to the class.</p>
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_shortname = 'javascriptcs5511';
+                        (function() {
+                            var dsq = document.createElement('script'); 
+                            dsq.type = 'text/javascript'; 
+                            dsq.async = true;
+                            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || 
+                            document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>
+                        Please enable JavaScript to view the 
+                        <a href="http://disqus.com/?ref_noscript">comments 
+                        powered by Disqus.</a>
+                    </noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">
+                        comments powered by 
+                        <span class="logo-disqus">Disqus</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <script src=../bootstrap/js/jquery.js></script>
+        <script type="text/javascript"  src="../bootstrap/js/fall2012.js"></script>
+        <script src=../bootstrap/js/bootstrap.js></script>
+        <script src=../lib/prettify/prettify.js></script>
+        <script>
+            $(function() {
+                prettyPrint();
+                $('.carousel').carousel({
+                    interval: false
+                })
+            });
+        </script>
+         <script type="text/javascript" src="../bootstrap/js/bootstrap-dropdowns-set.js"></script>
+    </body>
+</html>
