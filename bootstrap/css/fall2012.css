@@ -52,3 +52,9 @@ div.span5 table tbody  tr.current-week  td {
 .navbar .brand {
 	color:white;
 }
+.students {
+	font-size:100%;
+	margin:10px;
+	letter-spacing:3px;
+}
+
