@@ -1,0 +1,301 @@
+<!DOCTYPE HTML>
+<html lang=en>
+    <head>
+        <meta charset=UTF-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SRJC Fall 2012 Javascript &amp; JQuery CS55.11</title>
+        <link href=../bootstrap/css/bootstrap.css rel=stylesheet>
+        <link href=../lib/prettify/prettify.css rel=stylesheet>
+        <link href=../bootstrap/css/fall2012.css rel=stylesheet>
+    </head>
+    <body>
+        <div class=container>
+            <div class=callout>
+                <h1>JavaScript Objects &mdash; Constructor Functions</h1>
+                <p>Creating re-usable object templates.</p>
+            </div>
+            <div class=row>
+                <section class=span4>
+                    <h2>Introduction</h2>
+                    <blockquote>Creating objects in JavaScript is easy&ndash;you 
+                        either use the object literal or you use constructor 
+                        functions.
+                        <small>Stoyan Stefanov, <em>JavaScript Patterns</em></small>
+                    </blockquote>
+                    <p>We have already learned how to create our own JavaScript 
+                        objects using Object Literals; however, what if we want
+                        to create a template from which we can create many different
+                        objects?  It would be tedious to re-write the same properties
+                        and default values in a bunch of different object literals.
+                        Luckily, JavaScript provides a convenient way to create 
+                        just such a template: Constructor Functions.</p>
+                    <p>Constructor Functions allow us to create our own object
+                        types (think <code>Date</code> or <code>Math</code>), with
+                        a set of predefined data properties and methods.</p>
+                    <h2>Are These Classes?</h2>
+                    <p>While it can be convenient to think of Constructor Functions
+                        as classes (especially since their syntax is very similar
+                        to instantiating objects from classes in Java), ignoring
+                        the differences can lead to conceptual errors and will
+                        generally make your a poorer JavaScript coder.</p>
+                    <p>So how are they different?</p>
+                    <ul>
+                        <li>Objects in JavaScript are dynamic, meaning that
+                            properties can be added and deleted after creation,
+                            even if they are not a part of the Constructor Function.</li>
+                        <li>Constructor Functions are just functions; there is no
+                            special syntax for defining them.</li>
+                        <li>There is no syntactic way to define different levels
+                            of property access; <code>private</code> and <code>protected</code>
+                            are reserved words in JavaScript, but they don't actually
+                            do anything.</li>
+                    </ul>
+                    <h2><em>this</em> and Objects</h2>
+                    <p>A closely related concept to Constructor Functions is the
+                        <code>this</code> keyword in JavaScript.  <code>this</code>
+                        is how objects refer to themselves.  That may be a little 
+                        confusing and not sound very useful, but let's look at
+                        an example.</p>
+                    <p>Suppose we want to define a very simple <code>person</code>
+                        object with <code>firstName</code> and <code>lastName</code>
+                        properties and a <code>print</code> function that prints
+                        the two name variables to the console.  Using an object
+                        literal we can start with:</p>
+                    <code>
+                        <pre class="prettyprint linenums">
+var person = {
+    firstName: "Mary",
+    lastName: "Doe",
+    print: function() {
+        console.log(firstName + 
+            ' ' + lastName);
+    }
+};
+</pre>
+                    </code>
+                    <p>That looks like it should work, but if we run it and call
+                        <code>person.print()</code> we'll get a <code>ReferenceError</code>
+                        saying that <code>firstName</code> is not defined.  That's
+                        because it is looking for a normal variable named <code>firstName</code>.
+                        To tell JavaScript that we mean the firstName property
+                        of the object that contains the <code>print</code> function,
+                        we have to use <code>this</code>.  Thus, the correct print
+                        function is:</p>
+                    <code>
+                        <pre class="prettyprint linenums">
+var person = {
+    // ...
+    print: function() {
+        console.log(this.firstName + 
+            ' ' + this.lastName);
+    }
+};
+</pre>
+                    </code>
+                    <h2><em>new</em> and Constructors</h2>
+                    <p>We have already learned that Constructor Functions are just
+                        functions and that JavaScript does not provide any additional
+                        syntax for defining them; however, it does provide one
+                        keyword for working with them: the <code>new</code> 
+                        operator.</p>
+                    <p>Whenever you create an object using a Constructor Function,
+                        you will precede the function invocation with the <code>new</code>
+                        operator:</p>
+                    <code>
+                        <pre class="prettyprint linenums">
+var myObject = new ConstructorFunction();
+</pre>
+                    </code>
+                    <p>When you invoke a Constructor Function with <code>new</code>
+                        it does three different things:</p>
+                    <ul>
+                        <li>It creates a new empty object.</li>
+                        <li>Within the body of the Constructor Function it binds
+                            <code>this</code> to the new empty object.</li>
+                        <li>After executing the body of your Constructor, it ensures
+                            that the object is returned even if you don't return
+                            it explicitly.</li>
+                    </ul>
+                    <p>What happens if you invoke your Constructor Function without
+                        <code>new</code>, you might ask.  The simple answer is 
+                        <strong>very bad things</strong> and you don't want this
+                        to ever happen.  Calling a Constructor without <code>new</code> 
+                        in versions of JavaScript before ECMAScript 5, causes 
+                        <code>this</code> to be bound to the global object.  If 
+                        your Constructor creates any properties and adds them to
+                        <code>this</code>, they will be added to the <code>window</code>
+                        object and not the object you are creating.</p>
+                    <p>Because of this danger, it is common practice to <strong>begin all
+                        of your Constructor Functions with a capital letter</strong>, so 
+                        that you have some chance of catching errors that result
+                        from a missing <code>new</code> when debugging.</p>
+                    <h2>Terminology</h2>
+                    <dl class=dl-horizontal>
+                        <dt>Constructor Function</dt>
+                        <dd>A function used to create objects.</dd>
+                        <dt><code>new</code> Operator</dt>
+                        <dd>Should precede any invocation of a Constructor 
+                            Function.</dd>
+                        <dt><code>this</code></dt>
+                        <dd>A special, automatically generated value that allows
+                            an object to refer to itself.</dd>
+                        <dt><code>.prototype</code></dt>
+                        <dd>The prototype property of a Constructor function
+                            is used to defined methods and properties shared
+                            by all objects created by the function.</dd>
+                    </dl>
+                </section>
+                <section class=span4>
+                    <h2>Syntax</h2>
+                    <h3>Basic Constructor Functions</h3>
+                    <p>Given what we now know, let's turn our previous person
+                        object literal into a Constructor Function.</p>
+                    <code>
+                        <pre class="prettyprint linenums">
+var Person = function () {
+    this.firstName = 'John';
+    this.lastName = 'Doe';
+    this.print = function () {
+        console.log(this.firstName 
+            + ' ' + this.lastName);
+    };
+};
+
+var john = new Person();
+john.print(); // prints 'John Doe'
+
+var mary = new Person();
+mary.print(); // prints 'John Doe'
+</pre>
+                    </code>
+                    <p>Obviously we should add some parameters to the function
+                        so that we can specify first and last names when we create
+                        a new object.</p>
+                    <code>
+                        <pre class="prettyprint linenums">
+var Person = function (fName, lName) {
+    this.firstName = fName;
+    this.lastName = lName;
+    this.print = function () {
+        console.log(this.firstName 
+            + ' ' + this.lastName);
+    };
+};
+
+var john = new Person('John', 'Doe');
+john.print(); // prints 'John Doe'
+
+var mary = new Person('Mary', 'Doe');
+mary.print(); // prints 'Mary Doe'
+</pre>
+                    </code>
+                    <h3>Working with the Prototype Property</h3>
+                    <p>Currently both our <code>john</code> and <code>mary</code>
+                        <code>Person</code> objects have their own <code>print</code> 
+                        functions, but this is not really necessary since they do
+                        exactly the same thing: print out the first and last name
+                        properties of the object.  JavaScript allows us to define
+                        the <code>print</code> function in such a way that all 
+                        the objects created from <code>Person</code> will a single
+                        function.  This can significantly reduce memory
+                        usage in large applications.</p>
+                    <p>To do this, we need to move <code>print</code> out of the
+                        constructor body and place it on <code>Person</code>'s
+                        prototype:</p>
+                    <code>
+                        <pre class="prettyprint linenums">
+var Person = function (fName, lName) {
+    this.firstName = fName;
+    this.lastName = lName;
+};
+
+Person.prototype.print = function () {
+    console.log(this.firstName + 
+        ' ' + this.lastName);
+};
+
+var john = new Person('John', 'Doe');
+john.print(); // prints 'John Doe'
+
+var mary = new Person('Mary', 'Doe');
+mary.print(); // prints 'Mary Doe'
+</pre>
+                    </code>
+                    <p>While functions are the most common type of data to place
+                        on an object's prototype, an object's prototype is itself
+                        just an object, so you can place any valid property on
+                        the prototype.  This can be handy for data that will
+                        always be the same for an object type.</p>
+                </section>
+                <section class=span4>
+                    <section class=well>
+                        <h2>Take Aways</h2>
+                        <ul>
+                            <li>Constructor Functions allow you to create objects
+                                based on a predefined template.</li>
+                            <li>Always capitalize the name of your Constructor
+                                Functions.</li>
+                            <li>Always use <code>new</code> when calling a 
+                                Constructor Function.</li>
+                            <li>Place shared methods and properties on a Constructor
+                                Function's <code>.prototype</code> property.</li>
+                        </ul>
+                    </section>
+                    <section class=well>
+                        <h2>Resources</h2>
+                        <h3>Documentation</h3>
+                        <ul>
+                            <li>
+                                <a href=https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Working_with_Objects#Using_a_constructor_function target=_blank>
+                                    Using Constructor Functions (Mozilla Developer Network)
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+            </div>
+            <div class="row comments">
+                <div class=span12>
+                    <h3>Comments</h3>
+                    <p>Please use this discussion form appropriately to ask 
+                        questions of the instructor or to share information that 
+                        is of interest to the class.</p>
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_shortname = 'javascriptcs5511';
+                        (function() {
+                            var dsq = document.createElement('script'); 
+                            dsq.type = 'text/javascript'; 
+                            dsq.async = true;
+                            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || 
+                            document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>
+                        Please enable JavaScript to view the 
+                        <a href="http://disqus.com/?ref_noscript">comments 
+                        powered by Disqus.</a>
+                    </noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">
+                        comments powered by 
+                        <span class="logo-disqus">Disqus</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <script src=../bootstrap/js/jquery.js></script>
+        <script type="text/javascript"  src="../bootstrap/js/fall2012.js"></script>
+        <script src=../bootstrap/js/bootstrap.js></script>
+        <script src=../lib/prettify/prettify.js></script>
+        <script>
+            $(function() {
+                prettyPrint();
+                $('.carousel').carousel({
+                    interval: false
+                })
+            });
+        </script>
+         <script type="text/javascript" src="../bootstrap/js/bootstrap-dropdowns-set.js"></script>
+    </body>
+</html>
