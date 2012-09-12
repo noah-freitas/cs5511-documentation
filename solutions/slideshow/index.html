@@ -3,92 +3,49 @@
     <head>
         <meta charset=UTF-8>
         <title>SlideShow</title>
+        <link rel=stylesheet href=slideshow.css>
+        <style>
+            #slideshow {
+                width: 400px;
+                margin: 0 auto;
+                height: 275px;
+            }
+        </style>
     </head>
     <body>
         <div id=slideshow></div>
+        <h2>Assignment Ideas</h2>
+        <ul>
+            <li>Add Basic Controls (play/pause button)</li>
+            <li>Add configuration object as second parameter to SlideShow 
+                constructor, which will allow the user to configure the slide
+                change delay.</li>
+            <li>EXTRA CREDIT: Add some more advanced controls: forward/backward 
+                buttons, clickable thumbnails, etc.</li>
+            <li>EXTRA CREDIT: Implement some form of pre-caching for the images.</li>
+        </ul>
+        <script src=slideshow.js></script>
         <script>
             'use strict';
-            
-            var SlideShow = function (domId) {
-                this.container = document.getElementById(domId);
-                this.pictures = [];
-                this.currentPicture = 0;
-                this.timer = null;
-                
-                if (this.container === null) {
-                    throw {
-                        name: 'BadID',
-                        message: 'An element with the ID of "' + domId 
-                            + '" does not exist'
-                    };
-                }
-            };
-            
-            SlideShow.prototype.addPicture = function(pic) {
-                this.pictures.push(pic);
-            };
-            
-            SlideShow.prototype.addPictures = function(pics) {
-                this.pictures = this.pictures.concat(pics);
-            };
-            
-            SlideShow.prototype.play = function() {
-                var that = this;
-                
-                this.render();
-                this.timer = window.setInterval(function() {
-                    that.cycle();
-                }, 5000);
-            };
-            
-            SlideShow.prototype.pause = function() {
-                window.clearInterval(this.timer);
-                this.timer = null;
-            };
-            
-            SlideShow.prototype.cycle = function() {
-                if (this.currentPicture + 1 === this.pictures.length) {
-                    this.currentPicture = 0;
-                } else {
-                    this.currentPicture += 1;
-                }
-                
-                this.render();
-            };
-            
-            SlideShow.prototype.render = function() {
-                var html = '',
-                    currentPic = this.pictures[this.currentPicture];
-                
-                html = '<div id=pictureFrame>';
-                html += '<img src=' + currentPic.src + ' alt="' + currentPic.caption + '">';
-                html += '</div>';
-                html += '<div id=pictureCaption>' + currentPic.caption + '</div>';
-                
-                this.container.innerHTML = html;
-            };
-            
+
             var mySlideShow = new SlideShow('slideshow');
-            
+
             mySlideShow.addPicture({
-                src: 'http://angularjs.org/img/AngularJS-large.png',
-                caption: 'Angular JS'
+                src: 'images/brendan-eich.jpg',
+                caption: 'Brendan Eich &mdash; The Creator of JavaScript'
             });
-            
+
             mySlideShow.addPictures([{
-                src: 'http://cdn.shopify.com/s/files/1/0154/2777/products/Screen_Shot_2012-06-05_at_1.32.08_PM_1024x1024.png',
-                caption: 'Ember.js'
+                src: 'images/john-resig.jpg',
+                caption: 'John Resig &mdash; The Creator of jQuery'
             }, {
-                src: 'http://knockoutjs.com/img/ko-logo.png',
-                caption: 'Knockout'
+                src: 'images/douglas-crockford.jpg',
+                caption: 'Douglas Crockford &mdash; The JavaScript Guy'
             }, {
-                src: 'http://backbonejs.org/docs/images/backbone.png',
-                caption: 'Backbone'
-            }, {
-                src: 'http://batmanjs.org/images/logo.png',
-                caption: 'Batman'
+                src: 'images/larry-ellison',
+                caption: 'Larry Ellison &mdash; The Owner of JavaScript'
             }]);
-            
+
             mySlideShow.play();
         </script>
     </body>
