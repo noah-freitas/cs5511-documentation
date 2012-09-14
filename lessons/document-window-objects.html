@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html lang=en>
+    <head>
+        <meta charset=UTF-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SRJC Fall 2012 Javascript &amp; JQuery CS55.11</title>
+        <link href=../bootstrap/css/bootstrap.css rel=stylesheet>
+        <link href=../lib/prettify/prettify.css rel=stylesheet>
+        <link href=../bootstrap/css/fall2012.css rel=stylesheet>
+    </head>
+    <body>
+        
+        <div class=container>
+            <div class=callout>
+                <h1>The Document and Window Objects</h1>
+                <p>Resources of the the web browser environment</p>
+            </div>
+            <div class=row>
+                <section class=span4>
+                    <h2>What is the DOM?</h2>
+                    
+                    <p>We've already learned that virtually everything in Javascript is an Object, and that an Object in Javascript is  a collection of properties..</p>
+                    <p>When Javascript is included on a webpage loaded into a web browser, two special Objects are created at the global level - the <strong>document</strong>( )Object is constructed to represent the web page document and its contents, and the <strong>window( )</strong> Object is constructed to represent the web browser environment.</p>
+                    <h3>The Document Object</h3>
+                    <p>The Document Object is constructed by the browser when the page loads and can be accessed by refering to it as document. . There are many properties (and methods) of the document object itself, as well as some of the child objects of document. In fact we've  already seen some of these, to access, manipulate and create elements dynamically in the web document, as well as information related to the document, such as the source domain, cookies, character set and web protocol used to serve the document.</p>
+<code><pre class="prettyprint linenums">var jsClass = new Array();
+jsClass[0] = "Steve";
+jsClass[1] = "Shannon";
+jsClass[2] = "Alex";</pre></code>
+                 
+                   
+                    <h3>The Window Object</h3>
+                    <p>The web browser constructs a Window( ) Object for each document that is loaded in a new window (or tab), in fact the Window Object contains a reference to the Document Object in it's window.document property.  We've already used methods of the Window( ) property in our projects, such as alert( ), setInternal( ) and setTimeout( ).  
+                   
+                      <code>
+                    </code>In addition, the WIndow Object contains properties with information such as the screen height and width, pixel depth, history, and current URL.</p>
+                    <code>
+                    <pre class="prettyprint linenums">jsClass = ["Steve","Shannon","Alex"];</pre></code>
+                    <h3>Javascript Array Properties and Methods</h3>
+                    <p>The Array has several properties, such as length, and methods such as pop(), push(), slice() and splice()  that are easy to use and make programming a with arrays a snap.  </p>  
+                     </section>
+                <section class=span4>
+                    <iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/jayperetz/yj2xk/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+               
+                <h3>Multidimensional Arrays</h3>
+                <p>Javascript does not have multidimensional arrays, in other words an array cannot have more than one index, as in a matrix.   However an array can have an array as a member.   It isn't possible to declare an array as x[0][0], it is possible to create such a construct programmatically with a FOR loop.</p>
+                
+                 <h3>Associative Arrays</h3>
+                <p>Javascript does not have associative arrays in the strictest sense, the standard array syntax does not support strings as indices.   You can use syntax that appears to create an associative array, but you are really creating an object.  Here's an <a href="http://blog.xkoder.com/2008/07/10/javascript-associative-arrays-demystified/">interesting article that explains how associative arrays in Javascript are really objects</a>.  Another perspective, from Quirksmode, is that <a href="http://www.quirksmode.org/js/associative.html">Objects in Javascript are associative arrays</a>. </p>
+                
+                     <h2>Terminology</h2>
+                    <dl class=dl-horizontal>
+                        <dt>Array</dt>
+                        <dd>A variable with a set of values</dd>
+                        <dt>Index</dt>
+                        <dd>The position of a particular value within an array</dd>
+                          <dt>Length</dt>
+                        <dd>A property containing the CURRENT number of members of an array.  </dd>
+                        <dt>Multi-dimensional Array</dt>
+                        <dd>An Array contained or containing an Array</dd>
+                         <dt>Associative Array</dt>
+                        <dd>An Array with named indices.  Note the different syntax of curly braces and colons. </dd>
+                         <dt>Splice</dt>
+                        <dd>A method to remove members of an array</dd>
+                        <dt>Slice</dt>
+                        <dd>A method to copy an array or some of its members</dd>
+                         <dt>Push</dt>
+                        <dd>A method to add a member to the last index of an array</dd>
+                         <dt>Pop</dt>
+                        <dd>A method to remove the last member of an array</dd>
+                    </dl>
+                </section>
+                <section class=span4>
+                    <section class=well>
+                        <h2>Take Aways</h2>
+                        <ul>
+                            <li>Web browsers construct Javascript objects automatically for the windows and documents that viewers load</li>
+                            <li>Javascript is particularly useful in 'programming the DOM'</li>
+                            <li></li>
+                        </ul>
+                    </section>
+                    
+                    <section class=well>
+                        <h2>Resources</h2>
+                        <h3>Books</h3>
+                        <ul>
+                            <li>Javascript: A Beginner's Guide &mdash; Chapters 9 &amp; 10</li>
+                            <li>Eloquent Javascript, A Modern Introduction to Programming &mdash; Chapter 10</li>
+                        </ul>
+                        <h3>Documentation</h3>
+                        <ul>
+                           
+                            <li>
+                                <a href=http://www.w3schools.com/jsref/dom_obj_document.asp>
+                                    JavaScript DOM (W3C Schools)
+                                 </a> 
+                                
+                            </li>
+                        </ul>
+                        <h3>Advanced Tutorials</h3>
+                        <ul>
+                            <li>
+                                <a href=http://www.codecademy.com/courses/working-with-indexed-associate-and-multi-dimensional-arrays>
+                                    More Fun with Arrays (Code Academy)
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+            </div>
+            <div class="row comments">
+                <div class=span12>
+                    <h3>Comments</h3>
+                    <p>Please use this discussion form appropriately to ask 
+                        questions of the instructor or to share information that 
+                        is of interest to the class.</p>
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_shortname = 'javascriptcs5511';
+                        (function() {
+                            var dsq = document.createElement('script'); 
+                            dsq.type = 'text/javascript'; 
+                            dsq.async = true;
+                            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || 
+                            document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>
+                        Please enable JavaScript to view the 
+                        <a href="http://disqus.com/?ref_noscript">comments 
+                        powered by Disqus.</a>
+                    </noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">
+                        comments powered by 
+                        <span class="logo-disqus">Disqus</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <script src=../bootstrap/js/jquery.js></script>
+        <script type="text/javascript"  src="../bootstrap/js/fall2012.js"></script>
+        <script src=../bootstrap/js/bootstrap.js></script>
+        <script src=../lib/prettify/prettify.js></script>
+        <script>
+            $(function() {
+                prettyPrint();
+                $('.carousel').carousel({
+                    interval: false
+                })
+            });
+        </script>
+         <script type="text/javascript" src="../bootstrap/js/bootstrap-dropdowns-set.js"></script>
+    </body>
+</html>
