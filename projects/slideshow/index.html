@@ -1,34 +1,165 @@
-<!DOCTYPE html>
-<html lang=en>
-    <head>
-        <meta charset=UTF-8>
-        <title>SlideShow</title>
-        <link rel=stylesheet href=slideshow.css>
-        <style>
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Slideshow</title>
+<link href=../../bootstrap/css/bootstrap.css rel=stylesheet>
+<link href=../../lib/prettify/prettify.css rel=stylesheet>
+ <link href=../../bootstrap/css/fall2012.css rel=stylesheet>
+  <link rel=stylesheet href=slideshow.css>
+<style>
             #slideshow {
                 width: 400px;
                 margin: 0 auto;
                 height: 275px;
             }
         </style>
-    </head>
-    <body>
-        <div id=slideshow></div>
-        <h2>Assignment Ideas</h2>
+</head>
+<body>
+<div class="container">
+<div class="row">
+<h2>Project 3: A Plug &amp; Play Javascript Slideshow </h2>
+</div>
+<div class="row">
+<div class="span6">
+  
+<div class="well">
+  <h4>This Project is due October 5, 2012 at midnight.</h4>
+  <p>In this project we are going to build a very simple yet functional Slideshow and learn about Javascript Object Oriented programming as we go. </p>
+  <p>A primary design goal is to implement the slideshow functionality modularly, so that the code that the user (webpage designer) uses is distinct and separate from the Javascript code that the programmer wrote to implement the slideshow.  </p>
+  <p>As in previous projects, we will explore a new HTML5 feature, in this case we will utilize CSS3 animations to create a fadein effect of our slideshow.</p>
+  <p>&nbsp;</p>
+<p>&nbsp;</p>
+<h4>What you will learn in this project</h4>
+<ul>
+  <li>Writing modular Javascript programs</li>
+  <li>Writing legible Javascript code</li>
+  <li>Object Oriented Programming in Javascript</li>
+</ul>
+</div>
+</div>
+
+<div class="span6">
+<h3><a href="#" title="Pause / Resume Slideshow" onclick="(mySlideShow.isPlaying())?mySlideShow.pause():mySlideShow.play();">A Simple Javascript Slideshow</a></h3>
+<div id="slideshow"></div>
+</div>
+
+
+
+
+</div>
+<div class="row">
+<div class="span12">
+
+
+<p>1. The first step of course is to start with an HTML5 document.  In the body of the document, we'll create an element with an ID of slideshow, this element is our container, it will contain the elements that the  slideshow Javascript will render. </p>
+  <code>
+<pre class="prettyprint linenums">
+&lt;!DOCTYPE html&gt;
+&lt;html lang=en&gt;
+    &lt;head&gt;
+        &lt;meta charset=UTF-8&gt;
+        &lt;title&gt;SlideShow&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id=slideshow&gt;&lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</code>
+
+<p>2. The design of this slideshow uses a Fade In animation feature implemented using<a href="http://www.w3schools.com/css3/css3_animations.asp"> CSS3 @keyframe rules bound to a selector using the animation attribute</a> . </p>
+<code>
+<pre class="prettyprint linenums">#pictureFrame {<br>    position: relative;<br>    padding: 0;<br>    -ms-animation: fadeIn 1s;<br>    -moz-animation: fadeIn 1s; <br>    -webkit-animation: fadeIn 1s; <br>    -o-animation: fadeIn 1s; <br>    animation: fadeIn 1s;<br>    width: 100%;<br>    margin: 0;<br>}<br>#pictureFrame img {<br>    margin: 0 auto;<br>    padding: 0;<br>    display: block;<br>}<br>#pictureFrame #pictureCaption {<br>    position: absolute;<br>    bottom: 0;<br>    left: 0;<br>    color: #fff;<br>    background: rgba(0, 0, 0, .5);<br>    padding: 15px 0;<br>    width: 100%;<br>    text-align: center;<br>}<br>@keyframes fadeIn {<br>    from {<br>        opacity: 0;<br>    }<br>    to {<br>        opacity: 1;<br>    }<br>}
+@-webkit-keyframes fadeIn {<br>    from {<br>        opacity: 0;<br>    }<br>    to {<br>        opacity: 1;<br>    }<br>}<br>@-moz-keyframes fadeIn {<br>    from {<br>        opacity: 0;<br>    }<br>    to {<br>        opacity: 1;<br>    }<br>}<br>@-o-keyframes fadeIn {<br>    from {<br>        opacity: 0;<br>    }<br>    to {<br>        opacity: 1;<br>    }<br>}<br>@-ms-keyframes fadeIn {<br>    from {<br>        opacity: 0;<br>    }<br>    to {<br>        opacity: 1;<br>    }<br>}</pre>
+</code>
+
+<p>
+3. .......</p>
+<code>
+<pre class="prettyprint linenums">
+.......
+</pre>
+</code>
+
+<p>
+4. .....  </p>
+<code>
+<pre class="prettyprint linenums">
+.....
+.....
+.....
+</pre>
+</code>
+
+<p>5. .....
+</p>
+<code>
+<pre class="prettyprint linenums">
+......
+......
+......
+......
+</pre>
+</code>
+
+
+
+<p>6. ........
+</p>
+
+ <h2>Assignment Ideas</h2>
         <ul>
-            <li>Add Basic Controls (play/pause button)</li>
-            <li>Add configuration object as second parameter to SlideShow 
-                constructor, which will allow the user to configure the slide
+            <li>Add  controls (play/pause button)</li>
+            <li>Add  parameters or pass an object to the SlideShow 
+                constructor, to allow the user to configure the slide
                 change delay.</li>
             <li>EXTRA CREDIT: Add some more advanced controls: forward/backward 
                 buttons, clickable thumbnails, etc.</li>
             <li>EXTRA CREDIT: Implement some form of pre-caching for the images.</li>
         </ul>
-        <script src=slideshow.js></script>
+
+</div>
+
+
+
+</div>
+<div class="row comments">
+        <div class="span12">
+        <h3>Comments</h3>
+        <p>Please use this discussion form appropriately to ask questions of the instructor or to share information that is of interest to the class.</p>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'javascriptcs5511'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        </div>
+        </div>
+</div>
+<script type="text/javascript" src="../../bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
+  <script type="text/javascript"  src="../../bootstrap/js/fall2012.js"></script>
+   <script src=../../lib/prettify/prettify.js></script>
+   <script>
+            $(function() {
+                prettyPrint();
+            });
+        </script>
+<script src=slideshow.js></script>
         <script>
             'use strict';
 
-            var mySlideShow = new SlideShow('slideshow1');
+            var mySlideShow = new SlideShow('slideshow');
 
             mySlideShow.addPicture({
                 src: 'images/brendan-eich.jpg',
@@ -48,5 +179,5 @@
 
             mySlideShow.play();
         </script>
-    </body>
+</body>
 </html>

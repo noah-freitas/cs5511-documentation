@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <meta charset=UTF-8>
+        <title>SlideShow</title>
+        <link rel=stylesheet href=slideshow.css>
+        <style>
+            #slideshow {
+                width: 400px;
+                margin: 0 auto;
+                height: 275px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id=slideshow></div>
+        <h2>Assignment Ideas</h2>
+        <ul>
+            <li>Add Basic Controls (play/pause button)</li>
+            <li>Add configuration object as second parameter to SlideShow 
+                constructor, which will allow the user to configure the slide
+                change delay.</li>
+            <li>EXTRA CREDIT: Add some more advanced controls: forward/backward 
+                buttons, clickable thumbnails, etc.</li>
+            <li>EXTRA CREDIT: Implement some form of pre-caching for the images.</li>
+        </ul>
+        <script src=slideshow.js></script>
+        <script>
+            'use strict';
+
+            var mySlideShow = new SlideShow('slideshow');
+
+            mySlideShow.addPicture({
+                src: 'images/brendan-eich.jpg',
+                caption: 'Brendan Eich &mdash; The Creator of JavaScript'
+            });
+
+            mySlideShow.addPictures([{
+                src: 'images/john-resig.jpg',
+                caption: 'John Resig &mdash; The Creator of jQuery'
+            }, {
+                src: 'images/douglas-crockford.jpg',
+                caption: 'Douglas Crockford &mdash; The JavaScript Guy'
+            }, {
+                src: 'images/larry-ellison.jpg',
+                caption: 'Larry Ellison &mdash; The Owner of JavaScript'
+            }]);
+
+            mySlideShow.play();
+        </script>
+    </body>
+</html>
