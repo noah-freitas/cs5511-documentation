@@ -106,8 +106,9 @@
 <div class="row">
 <div class="span4">
 <p>
-3. Now we will start creating the Javascript code for the slideshow.  In this project we are going to write the slideshow as a modular object so that it creates it's own namespace under Window, constructs itself and holds all of its information and methods internally. </p>
-<p>To do this we will use this code pattern.   It isn't critical that you know exactly what this code means, but in case you are interested: we define and invoke an anonymous function, passing it a reference to Window (the global scope.)   Internally we then assign it's constructor function (we'll create the function in the next step) to a new property of Window with the name SlideShow.</p>
+3. Now we will start creating the Javascript code for the slideshow.  First we'll create a new file named slideshow.js. </p>
+<p>In this project we are going to write the slideshow as a modular object so that it creates it's own namespace under Window, constructs itself and holds all of its information and methods internally. This will ensure that our slideshow program and its members do not conflict with other variables on the page.  In fact, our SlideShow( ) object can be instantiated multiple times on a page without conflicting with itself.</p>
+<p>We will use this code pattern to create our SlideShow object. .   It isn't critical that you know exactly what this code means, but in case you are interested, here is what we are doing. First, we define and invoke an anonymous function, passing it a reference to Window (the global scope.)   Internal to the function, we then assign it's constructor function (we'll create the function in the next step) to a new property of Window with the name SlideShow. This will ensure that any call to SlideShow( ) on the page will invoke our object constructor function.  </p>
 </div>
 <div class="span8">
 <code>
@@ -125,8 +126,10 @@
 <div class="row">
 <div class="span4">
 <p>
-4. All of our code for the slideshow will now be properties of this function we've created.   The first property we'll create is the CONSTRUCTOR &mdash; a function named with a Capital by convention, that runs automatically when invoked with the NEW keyword.  In our slideshow example, we are going to pass one argument - a string containing the id attribute value of the element to contain the slideshow.</p>
-<p>We declare several variables within this constructor function.   Note how these variables are declared as properties of an object called 'this'.</p>
+4. All of our code for the slideshow will now be properties of this function we've created.   The first property we'll create is the CONSTRUCTOR &mdash; a function named with a Capital by convention, that runs automatically when invoked with the NEW keyword.  In our slideshow example, we are going to pass one argument to the constructor - a string containing the id attribute value of the element to contain the slideshow.</p>
+<p>We next declare a few variables within this constructor function.   Note how these variables are declared as properties of an object called 'this'.</p>
+<p>In Javascript, 'this' is a very important special keyword. When a function is called as a method, such as object.method( ), 'this' is a variable name that can be used within the method to refer to the object of which the method is a member.</p>
+<p><a href="http://javascriptweblog.wordpress.com/2010/08/30/understanding-javascripts-this/">There is a bit more to THIS</a> than just that explanation, but that will suffice for this project.</p>
 </div>
 <div class="span8">
 <code>
@@ -145,18 +148,21 @@
 <div class="row">
 <div class="span4">
 <p>
-5. .......</p>
+5.Javascript has the ability to create and manage exceptions, which gives programmers a  tool to anticipate potential situations and deal with them more gracefully than running into a Javascript error.</p>
+<p>In this project, we'll place a conditional statement to check that the ID actually references an existing element.  If not,<a href="http://www.w3schools.com/js/js_throw.asp"> the Javascript throw statement </a>will create an exception object which contains two properties: name and message. </p>
 </div>
 <div class="span8">
 <code>
 <pre class="prettyprint linenums">
+...
         if (this.container === null) {
             throw {
                 name: 'BadID',
                 message: 'An element with the ID of "' + domId
                     + '" does not exist'
             };
-        }</pre>
+        }
+...</pre>
 </code>
 </div>
 </div>
@@ -166,7 +172,79 @@
 <div class="row">
 <div class="span4">
 <p>
-6. .......</p>
+7. Our SlideShow( ) object now exists, but does nothing. It will  be implemented as a series of methods that are defined within our wrapper function.</p>
+<p>The first method we'll create is the RENDER method, which creates the page elements that encompass the slideshow.  We'll define this function as a property of the prototype property of SlideShow. In this way, multiple slideshows (instances of the SlideShow object created with the NEW constructor method invocation) will share the functional code and save memory resources. </p>
+<p>The logic of the renderer is pretty straightforward, it builds a string which will be passed the innerHTML property of the element that was passed in as the argument to the constructor method of SlideShow( ). </p>
+<p>Notice how we refer to our object properties within this method of the object's prototype, using the THIS keyword. We refer to a few elements of THIS, including references to the picture and a picture counter. The property this.pictures, which we declared as an array in our constructor, appears to refer to an object with two properties: src and caption.  </p>
+</div>
+<div class="span8">
+<code>
+<pre class="prettyprint linenums">
+SlideShow.prototype.render = function () {
+        var html = '',
+            currentPic = this.pictures[this.currentPicture];
+
+        html = '&lt;div id=pictureFrame&gt;';
+        html += '&lt;img src=' + currentPic.src + ' alt="' + currentPic.caption + '"&gt;';
+        if (currentPic.caption !== undefined) {
+            html += '&lt;div id=pictureCaption&gt;' + currentPic.caption + '&lt;/div&gt;';
+        }
+        html += '&lt;/div&gt;';
+
+        this.container.innerHTML = html;
+    };</pre>
+</code>
+</div>
+</div>
+
+<div class="row">
+<div class="span4">
+<p>
+8. Now we will enable the SlideShow component to accept a list of pictures to display, we'll add a method called addPictures( ) to make this happen.</p>
+</div>
+<div class="span4">
+<code>
+<pre class="prettyprint linenums">
+        &lt;script&gt;            
+            mySlideShow.addPicture({
+                src: 'images/brendan-eich.jpg',
+                caption: 'Brendan Eich &mdash; The Creator of JavaScript'
+            });
+
+            mySlideShow.addPictures([{
+                src: 'images/john-resig.jpg',
+                caption: 'John Resig &mdash; The Creator of jQuery'
+            }, {
+                src: 'images/douglas-crockford.jpg',
+                caption: 'Douglas Crockford &mdash; The JavaScript Guy'
+            }, {
+                src: 'images/larry-ellison.jpg',
+                caption: 'Larry Ellison &mdash; The Owner of JavaScript'
+            }]);
+        &lt;/script&gt;
+</pre>
+</code>
+</div>
+<div class="span4">
+<code>
+<pre class="prettyprint linenums">
+    SlideShow.prototype.addPictures = function (pics) {
+        this.pictures = this.pictures.concat(pics);
+    };
+    SlideShow.prototype.addPicture = function (pic) {
+        this.pictures.push(pic);
+    };
+
+    </pre>
+</code>
+</div>
+</div>
+
+
+<div class="row">
+<div class="span4">
+<p>
+9. .......</p>
 </div>
 <div class="span8">
 <code>
@@ -176,6 +254,21 @@
 </code>
 </div>
 </div>
+
+<div class="row">
+<div class="span4">
+<p>
+10. .......</p>
+</div>
+<div class="span8">
+<code>
+<pre class="prettyprint linenums">
+.......
+</pre>
+</code>
+</div>
+</div>
+
 
  <h2>Assignment Ideas</h2>
         <ul>
