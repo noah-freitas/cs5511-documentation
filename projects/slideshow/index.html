@@ -200,13 +200,16 @@ SlideShow.prototype.render = function () {
 <div class="row">
 <div class="span4">
 <p>
-8. Now we will enable the SlideShow component to accept a list of pictures to display, we'll add a method called addPictures( ) to make this happen.</p>
+8. Now we will enable the SlideShow component to accept a list of pictures to display. To do this we'll add two methods (code to far right) called addPicture( ) and addPictures( ).In both functions, we update this.pictures array with one or an array of members, based on the argument sent to it.</p>
+<p>Next we'll edit the HTML document on which we want the slideshow to render. We add this script tag to the bottom of the body element.</p>
+<p>First we create a new instance of our SlideShow( ) object, calling it's constructor by using the new keyword.  The argument is the ID of the container element we created in step 1.</p>
+<p> Next we define the specific data for the object and set of objects by passing object literals containing the src and caption properties to these two methods we created in the prototype of SlideShow.</p>
 </div>
-<div class="span4">
-<code>
-<pre class="prettyprint linenums">
-        &lt;script&gt;            
-            mySlideShow.addPicture({
+<div class="span4"><code>
+  <pre class="prettyprint linenums">&lt;script&gt; 
+  'use strict';           
+var mySlideShow = new SlideShow('slideshow');            
+mySlideShow.addPicture({
                 src: 'images/brendan-eich.jpg',
                 caption: 'Brendan Eich &mdash; The Creator of JavaScript'
             });
@@ -221,7 +224,7 @@ SlideShow.prototype.render = function () {
                 src: 'images/larry-ellison.jpg',
                 caption: 'Larry Ellison &mdash; The Owner of JavaScript'
             }]);
-        &lt;/script&gt;
+&lt;/script&gt;
 </pre>
 </code>
 </div>
@@ -244,13 +247,42 @@ SlideShow.prototype.render = function () {
 <div class="row">
 <div class="span4">
 <p>
-9. .......</p>
+9. In this step we create the methods which operate the slideshow, using a timer to move from picture to picture. Each function is declared as a prototype property of SlideShow and uses this.x notation as an internal self-reference to itself - the current instance of the SlideShow object referred to from within a method of its prototype.</p>
+<p>In the play method we invoke the window.setInterval timer to cycle our slideshow. In Javascript when you define one function inside another THIS automatically gets set to the global scope. This can be confusing because you expect THIS to have the same value as it does in the outer function.</p>
+<p>So you use a common convention to get around the problem, assigning the reference to our SlideShow to a variable named THAT, which can then be accessed within the scope of the anonymous function passed to window.setInterval( ).</p>
+<p>The use of the name THAT is a common convention to aid developers to understand the variable's purpose.</p>
+<p>The remaining functions should be somewhat straightforward.  We use the timer property to reflect whether our slideshow is on pause or play and we invoke our render( )method from within the cycle( ) method, which advances the counter (this.currentPicture) through the length of the object literal that we declared on the webpage.  </p>
+<p>Our slideshow is complete.</p>
 </div>
 <div class="span8">
 <code>
 <pre class="prettyprint linenums">
-.......
-</pre>
+SlideShow.prototype.play = function () {
+        var that = this;
+        this.render();
+        this.timer = window.setInterval(function () {
+            that.cycle();
+        }, 5000);
+    };
+    
+    SlideShow.prototype.pause = function () {
+        window.clearInterval(this.timer);
+        this.timer = null;
+    };
+    
+    SlideShow.prototype.isPlaying = function () {
+        return this.timer !== null;
+    };
+
+    SlideShow.prototype.cycle = function () {
+        if (this.currentPicture + 1 === this.pictures.length) {
+            this.currentPicture = 0;
+        } else {
+            this.currentPicture += 1;
+        }
+
+        this.render();
+    };</pre>
 </code>
 </div>
 </div>
@@ -258,12 +290,14 @@ SlideShow.prototype.render = function () {
 <div class="row">
 <div class="span4">
 <p>
-10. .......</p>
+10. The final step in using our slideshow module is to have the webpage invoke the play method of it's slideshow.  We can add this invocation statement to the script we created in step 8 and our slideshow should start to play when the page is loaded.</p>
 </div>
 <div class="span8">
 <code>
 <pre class="prettyprint linenums">
-.......
+........
+  mySlideShow.play();
+  &lt;/script&gt;
 </pre>
 </code>
 </div>
