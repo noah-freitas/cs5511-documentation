@@ -36,6 +36,7 @@
   <li>Writing legible Javascript code</li>
   <li>Object Oriented Programming in Javascript</li>
 </ul>
+
 </div>
 </div>
 
@@ -49,10 +50,14 @@
 
 </div>
 <div class="row">
-<div class="span12">
+<div class="span4">
 
 
 <p>1. The first step of course is to start with an HTML5 document.  In the body of the document, we'll create an element with an ID of slideshow, this element is our container, it will contain the elements that the  slideshow Javascript will render. </p>
+
+
+</div>
+<div class="span8">
   <code>
 <pre class="prettyprint linenums">
 &lt;!DOCTYPE html&gt;
@@ -67,16 +72,30 @@
 &lt;/html&gt;
 </pre>
 </code>
+</div>
 
-<p>2. The design of this slideshow uses a Fade In animation feature implemented using<a href="http://www.w3schools.com/css3/css3_animations.asp"> CSS3 @keyframe rules bound to a selector using the animation attribute</a> . </p>
+</div>
+
 <div class="row">
-<div class="span6">
+<div class="span4">
+<p>2. The design of this slideshow uses a Fade In animation feature implemented using<a href="http://www.w3schools.com/css3/css3_animations.asp"> CSS3 @keyframe rules bound to a selector using the animation attribute</a> . These CSS rules are 'internal' to the slideshow &mdash; they should be placed in a file called slideshow.css &mdash; they apply to child nodes that are added (rendered) into the element that we designate as the slideshow container. </p>
+<div class="well">
+<h4>Coding Standards and Validation</h4>
+<p>Beginning with this project, your grade will be based on part on whether your code validates with the JSLint validator.   You can <a href="../../tools/validators.html">learn more about JSLint and coding standards here</a>.</p>
+<p>Coding standards enable cleaner and more legible code, both for yourself and for others that may need to understand the code that you have written (such as your instructors.)    If you  code in  HTML and CSS, you are probably familiar with the code validation tools available at www.wc3.org.    If you work with a computer programming language such as Java or C++ your compiler probably enforces many coding conventions.</p>
+<p>In Javascript, without a compiler and with our code so visible and continuously changing, it is even more important that we take the steps to ensure our code is legible and that our syntax and naming styles are consistent and free from bug-creating patterns.</p>
+
+
+
+</div>
+</div>
+<div class="span4">
 <code>
 <pre class="prettyprint linenums">#pictureFrame {<br>    position: relative;<br>    padding: 0;<br>    -ms-animation: fadeIn 1s;<br>    -moz-animation: fadeIn 1s; <br>    -webkit-animation: fadeIn 1s; <br>    -o-animation: fadeIn 1s; <br>    animation: fadeIn 1s;<br>    width: 100%;<br>    margin: 0;<br>}<br>#pictureFrame img {<br>    margin: 0 auto;<br>    padding: 0;<br>    display: block;<br>}<br>#pictureFrame #pictureCaption {<br>    position: absolute;<br>    bottom: 0;<br>    left: 0;<br>    color: #fff;<br>    background: rgba(0, 0, 0, .5);<br>    padding: 15px 0;<br>    width: 100%;<br>    text-align: center;<br>}<br>
 </pre>
 </code>
 </div>
-<div class="span6">
+<div class="span4">
 <code>
 <pre class="prettyprint linenums">@keyframes fadeIn {<br>    from {<br>        opacity: 0;<br>    }<br>    to {<br>        opacity: 1;<br>    }<br>}
 @-webkit-keyframes fadeIn {<br>    from {<br>        opacity: 0;<br>    }<br>    to {<br>        opacity: 1;<br>    }<br>}<br>@-moz-keyframes fadeIn {<br>    from {<br>        opacity: 0;<br>    }<br>    to {<br>        opacity: 1;<br>    }<br>}<br>@-o-keyframes fadeIn {<br>    from {<br>        opacity: 0;<br>    }<br>    to {<br>        opacity: 1;<br>    }<br>}<br>@-ms-keyframes fadeIn {<br>    from {<br>        opacity: 0;<br>    }<br>    to {<br>        opacity: 1;<br>    }<br>}</pre>
@@ -84,39 +103,79 @@
 </div>
 
 </div>
+<div class="row">
+<div class="span4">
 <p>
-3. .......</p>
+3. Now we will start creating the Javascript code for the slideshow.  In this project we are going to write the slideshow as a modular object so that it creates it's own namespace under Window, constructs itself and holds all of its information and methods internally. </p>
+<p>To do this we will use this code pattern.   It isn't critical that you know exactly what this code means, but in case you are interested: we define and invoke an anonymous function, passing it a reference to Window (the global scope.)   Internally we then assign it's constructor function (we'll create the function in the next step) to a new property of Window with the name SlideShow.</p>
+</div>
+<div class="span8">
+<code>
+<pre class="prettyprint linenums">
+(function (global) {
+    'use strict';
+    // SlideShow global namespace
+     ...
+        global.SlideShow = SlideShow;
+}(window || this));
+</pre>
+</code>
+</div>
+</div>
+<div class="row">
+<div class="span4">
+<p>
+4. All of our code for the slideshow will now be properties of this function we've created.   The first property we'll create is the CONSTRUCTOR &mdash; a function named with a Capital by convention, that runs automatically when invoked with the NEW keyword.  In our slideshow example, we are going to pass one argument - a string containing the id attribute value of the element to contain the slideshow.</p>
+<p>We declare several variables within this constructor function.   Note how these variables are declared as properties of an object called 'this'.</p>
+</div>
+<div class="span8">
+<code>
+<pre class="prettyprint linenums">
+ var SlideShow = function (domId) {
+        this.container = document.getElementById(domId);
+        this.pictures = [];
+        this.currentPicture = 0;
+        this.timer = null;
+    };
+</pre>
+</code>
+</div>
+</div>
+
+<div class="row">
+<div class="span4">
+<p>
+5. .......</p>
+</div>
+<div class="span8">
+<code>
+<pre class="prettyprint linenums">
+        if (this.container === null) {
+            throw {
+                name: 'BadID',
+                message: 'An element with the ID of "' + domId
+                    + '" does not exist'
+            };
+        }</pre>
+</code>
+</div>
+</div>
+
+
+
+<div class="row">
+<div class="span4">
+<p>
+6. .......</p>
+</div>
+<div class="span8">
 <code>
 <pre class="prettyprint linenums">
 .......
 </pre>
 </code>
-
-<p>
-4. .....  </p>
-<code>
-<pre class="prettyprint linenums">
-.....
-.....
-.....
-</pre>
-</code>
-
-<p>5. .....
-</p>
-<code>
-<pre class="prettyprint linenums">
-......
-......
-......
-......
-</pre>
-</code>
-
-
-
-<p>6. ........
-</p>
+</div>
+</div>
 
  <h2>Assignment Ideas</h2>
         <ul>
