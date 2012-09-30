@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html lang=en>
+    <head>
+        <meta charset=UTF-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SRJC Fall 2012 Javascript &amp; JQuery CS55.11</title>
+        <link href=../bootstrap/css/bootstrap.css rel=stylesheet>
+        <link href=../lib/prettify/prettify.css rel=stylesheet>
+        <link href=../bootstrap/css/fall2012.css rel=stylesheet>
+    </head>
+    <body>
+        <div class=container>
+            <div class=callout>
+                <h1>JSON</h1>
+                <p>Using JavaScript to transmit your data.</p>
+            </div>
+            <div class=row>
+                <section class=span4>
+                    <h2>Introduction</h2>
+                    <blockquote>JSON (JavaScript Object Notation) is a lightweight
+                        data-interchange format.
+                        <small><a href=http://json.org target=_blank>json.org</a></small>
+                    </blockquote>
+                    <p>Due to its simplicity, human-readability, and support in
+                        many programming languages, JSON has has become the
+                        <em>de facto</em> standard for transmitting data on the
+                        web.  In so doing, it has supplanted competing technologies,
+                        such as XML.</p>
+                    <h2>Very Brief History</h2>
+                    <p>Douglas Crockford first "discovered" JSON in 2001, and
+                        formally specified it in a <a href=http://tools.ietf.org/html/rfc4627 target=_blank>RFC</a>
+                        in 2006.  YAHOO! (Crockford's employer at the time) begun
+                        using JSON for some of its web service APIs begining in
+                        2005, and Google followed in 2006.</p>
+                    <h2>JSON vs. JavaScript</h2>
+                    <p>JSON is a subset of JavaScript (specifically ECMAScript 3).
+                        So the immediate question for those who know JavaScript
+                        is "How much has been removed from the subset?"</p>
+                    <p>The answer to that question encompasses two categories of
+                        the language: its value types and syntax.</p>
+                    <dl>
+                        <dt>Value Types</dt>
+                        <dd>A few JavaScript value types and built in values are
+                            not present in JSON:
+                            <ul>
+                                <li><code>undefined</code></li>
+                                <li><code>Function</code></li>
+                                <li>Number Formats and Values:
+                                    <ul>
+                                        <li><code>NaN</code> (<code>null</code> in JSON)</li>
+                                        <li><code>Infinity</code> (<code>null</code> in JSON)</li>
+                                        <li>Hexidecimal Format</li>
+                                        <li>Octal Format</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </dd>
+                        <dt>Syntax</dt>
+                        <dd>JSON has a more limited syntax than JavaScript:
+                            <dl>
+                                <dt>Strings</dt>
+                                <dd>All string values must be enclosed
+                                    in double quotes.  Single quotes are not
+                                    allowed.</dd>
+                                <dt>Objects</dt>
+                                <dd>Only the object literal syntax is supported.
+                                    This should make sense since JSON does not
+                                    have functions.</dd>
+                                <dd>Object keys must be enclosed in double quotes.
+                                    </dd>
+                                <dt>Arrays</dt>
+                                <dd>Just like Objects, only the Array Literal
+                                    syntax is supported.</dd>
+                            </dl>
+                        </dd>
+                    </dl>
+                    <h2>The <code>window.JSON</code> Object</h2>
+                    <p>All modern browsers (IE 8+) have a built-in object for
+                        creating and working with JSON in JavaScript.  This built-in object
+                        replaces older methods of parsing and creating JSON, including
+                        third party libraries and using the <code>eval</code>
+                        function.</p>
+                    <p>The JSON object has two methods: <code>stringify</code>
+                        and <code>parse</code>.  As should be obvious from
+                        their names, <code>stringify</code> takes a JavaScript
+                        object and turns it into a JSON string, and <code>parse</code>
+                        takes a JSON string and returns a JavaScript object.</p>
+                </section>
+                <section class=span4>
+                    <h2>JSON Example</h2>
+                    <code>
+                        <pre class="prettyprint linenums">
+var person = {
+    name: 'John Doe',
+    age: 43,
+    profession: {
+        industry: 'IT',
+        yearsOfExperience: 17,
+        position: 'Manager'
+    },
+    sayHello: function () {
+        return 'Hello, my name is John Doe';
+    },
+    children: ['John Jr.', 'Mary']
+};
+
+var personJson = JSON.stringify(person);
+
+// personJson now contains a JSON string with the following stucture:
+/*
+{
+    "name": "John Doe",
+    "age": 43,
+    "profession": {
+        "industry": "IT",
+        "yearsOfExperience": 17,
+        "position": "Manager"
+    },
+    "children": [
+        "John Jr.",
+        "Mary"
+    ]
+}
+*/
+
+var clone = JSON.parse(personJson);
+// clone now has copies of all the same properties that person does, except
+// for the sayHello method.
+</pre>
+                    </code>
+                    <p>Notice a few things about the result of stringifying
+                        <code>person</code>:</p>
+                    <ul>
+                        <li>The function <code>sayHello</code> was ignored.</li>
+                        <li>All the object keys have been quoted.</li>
+                        <li>The string values, which we declared using single quotes
+                            are now wrapped in double quotes.</li>
+                        <li>The number values have been preserved as numbers.</li>
+                    </ul>
+                </section>
+                <section class=span4>
+                    <section class=well>
+                        <h2>Take Aways</h2>
+                        <ul>
+                            <li>JSON is a subset of JavaScript used for data
+                                interchange across the web.</li>
+                            <li>The most significant difference between JSON
+                                and JavaScript is that JSON does not have 
+                                functions.</li>
+                            <li>Modern web browsers have a built-in object for
+                                moving data between JSON strings and JavaScript
+                                objects.</li>
+                        </ul>
+                    </section>
+                    <section class=well>
+                        <h2>Resources</h2>
+                        <h3>Documentation</h3>
+                        <ul>
+                            <li>
+                                <a href=http://json.org target=_blank>
+                                    json.org
+                                </a>
+                            </li>
+                            <li>
+                                <a href=https://developer.mozilla.org/en-US/docs/JSON target=_blank>
+                                    JSON (Mozilla Developer Network)
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+            </div>
+            <div class="row comments">
+                <div class=span12>
+                    <h3>Comments</h3>
+                    <p>Please use this discussion form appropriately to ask 
+                        questions of the instructor or to share information that 
+                        is of interest to the class.</p>
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_shortname = 'javascriptcs5511';
+                        (function() {
+                            var dsq = document.createElement('script'); 
+                            dsq.type = 'text/javascript'; 
+                            dsq.async = true;
+                            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || 
+                            document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>
+                        Please enable JavaScript to view the 
+                        <a href="http://disqus.com/?ref_noscript">comments 
+                        powered by Disqus.</a>
+                    </noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">
+                        comments powered by 
+                        <span class="logo-disqus">Disqus</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <script src=../bootstrap/js/jquery.js></script>
+        <script type="text/javascript"  src="../bootstrap/js/fall2012.js"></script>
+        <script src=../bootstrap/js/bootstrap.js></script>
+        <script src=../lib/prettify/prettify.js></script>
+        <script>
+            $(function() {
+                prettyPrint();
+                $('.carousel').carousel({
+                    interval: false
+                })
+            });
+        </script>
+         <script type="text/javascript" src="../bootstrap/js/bootstrap-dropdowns-set.js"></script>
+    </body>
+</html>
