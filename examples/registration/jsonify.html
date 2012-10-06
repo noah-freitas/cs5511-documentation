@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSonify Utility</title>
+</head>
+
+<body>
+<script type="text/javascript" src="../../bootstrap/js/jquery.js">
+</script>
+<script type="text/javascript" src="classes.js">
+</script>
+<script type="text/javascript">
+ $(function () { 
+   
+	 var jsonObj = JSON.stringify(classes);
+     $(document.body).prepend(jsonObj);
+	 
+
+ });
+</script>
+</body>
+</html>

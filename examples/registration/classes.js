@@ -1,25 +1,35 @@
 // JavaScript Document
 var classes = {
-	class: {
+	course : [{
 	code:"CS55.11",
 	title:"Javascript & JQuery",
-	description:"Introduction to programming with Javascript.",
-	sections: {
-		section: {
+	description:"Introduction to programming with Javascript.",	
+		section: [{
 			sectionNumber : 1371,
-			day : ["Tuesday"]
+			day : 2,
+			instructor : "Peretz"
+		},
+		 {
+			sectionNumber : 1690,
+			day : 2,
+			instructor : "Peretz"
 		}
-	}
+	     ]
 	},
-	class: {
+	{
 	code:"CS10",
 	title:"Introduction to Computer Science",
 	description:"Introduction to programming with C++.",
-	sections: {
-		section: {
-			sectionNumber : xxxx,
-			day : ["Monday"]
-		}
-	}
-	}	
+	
+		section: [{
+			sectionNumber : 0489,
+			day : 1,
+			instructor : "Sarkar"
+		},
+		 {
+			sectionNumber : 4477,
+			day : 4,
+			instructor : "Lyle"
+		} ]
+	}	]
 	};

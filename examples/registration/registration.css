@@ -1,0 +1,14 @@
+@charset "UTF-8";
+/* CSS Document */
+
+input, select
+{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+	-ms-box-sizing:border-box;
+	width:500px;
+	padding:20px;
+	margin:50px;
+}
+
