@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html lang=en>
+    <head>
+        <meta charset=UTF-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SRJC Fall 2012 Javascript &amp; JQuery CS55.11</title>
+        <link href=../bootstrap/css/bootstrap.css rel=stylesheet>
+        <link href=../lib/prettify/prettify.css rel=stylesheet>
+        <link href=../bootstrap/css/fall2012.css rel=stylesheet>
+    </head>
+    <body>
+        <div class=container>
+            <div class=callout>
+                <h1>JQuery</h1>
+                <p>A Javascript library for web designers.</p>
+            </div>
+            <div class=row>
+                <section class=span4>
+                    <h2>Introduction</h2>
+                    <blockquote>jQuery is a fast and concise JavaScript Library that simplifies HTML document traversing, event handling, animating, and Ajax interactions for rapid web development. jQuery is designed to change the way that you write JavaScript.
+                        <small><a href=http://jquery.org target=_blank>jquery.org</a></small>
+                    </blockquote>
+                    <p>JQuery includes the CORE library as well as JQuery UI and JQuery UI Mobile and other projects designed to make Javascript more accessible for developers.</p>
+                    <h2>Very Brief History</h2>
+                    <p>JQuery was originally designed to help developers overcome inconsistencies in the DOM implementation among different browsers. It became popular as an alternative to the basic Javascript syntax and DOM model.</p>
+                    <h2>JQuery vs. JavaScript</h2>
+                    <p>JQuery is not part of the core Javascript capabilities of web browsers and therefore the library needs to be loaded as a script using a script tag.   Many developers choose to use a CDN hosted minified version of JQuery to improve pageload times through caching.</p>
+                    <p>JQuery is essentially implemented as a Javascript function.  The jquery( ) function takes as it's argument a string representing a 'selector' - almost identical to a CSS selector.  The jquery( ) function has hundreds of useful methods for managing, manipulating and animating DOM objects and other elements.</p>
+                    <p>JQuery and core Javascripts statements can co-exist within the same module or function, jquery( ) is nothing more than a Javascript function that extends the core capabilities of Javascript.</p>
+                    <p>JQuery's methods typically act on the selector without the need to iterate through a collection (array).The syntax of JQuery is more expressive, similar to CSS.</p>
+                    <p>JQuery function calls are typically made using the $ alias for simsimplicity.</p>
+                    
+                   
+              </section>
+                <section class=span4>
+                    <h2>JQuery  Basics</h2>
+                    <code>
+                        <pre class="prettyprint linenums">
+//load the jquery library from google
+&lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"&gt;&lt;/script&gt;
+</pre>
+                    </code>
+<p>Accessing the collection of paragraphs in the document with a class of alarm and changing the text color to red.  notice how the elements are selected, iterated and updated in one simple function call.</p>
+<p>The function call includes several elements: </p>
+<ul>
+  <li>the JQuery function call - using the $ alias</li>
+  <li>the selector passed as an argument</li>
+  <li>the method (or action)</li>
+  <li>one or more potential arguments passed to the jquery method.</li>
+</ul>
+   <code>
+                        <pre class="prettyprint linenums">
+$("p.alarm").css("color","red");
+</pre>
+                  </code>
+<p>&nbsp;</p>
+
+
+              </section>
+                <section class=span4>
+                    <section class=well>
+                        <h2>Take Aways</h2>
+                        <ul>
+                            <li>JQuery is an ubiquitous library that simplifies Javascript programming and makes it more accessible to web designers</li>
+                            <li>JQuery is implemented as a Javascript function and so can co-exist with Javascript statements in a program, sharing variables and namespaces.</li>
+                            <li>JQuery includes a CORE library and also value added libraries for user interface and mobile development.</li>
+                        </ul>
+                    </section>
+                    <section class=well>
+                        <h2>Resources</h2>
+                        <h3>Documentation</h3>
+                        <ul>
+                            <li>
+                            <a href=http://jquery.org target=_blank>jquery.org</a></li>
+                        </ul>
+                    </section>
+                </section>
+            </div>
+            <div class="row comments">
+                <div class=span12>
+                    <h3>Comments</h3>
+                    <p>Please use this discussion form appropriately to ask 
+                        questions of the instructor or to share information that 
+                        is of interest to the class.</p>
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_shortname = 'javascriptcs5511';
+                        (function() {
+                            var dsq = document.createElement('script'); 
+                            dsq.type = 'text/javascript'; 
+                            dsq.async = true;
+                            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || 
+                            document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>
+                        Please enable JavaScript to view the 
+                        <a href="http://disqus.com/?ref_noscript">comments 
+                        powered by Disqus.</a>
+                    </noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">
+                        comments powered by 
+                        <span class="logo-disqus">Disqus</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <script src=../bootstrap/js/jquery.js></script>
+        <script type="text/javascript"  src="../bootstrap/js/fall2012.js"></script>
+        <script src=../bootstrap/js/bootstrap.js></script>
+        <script src=../lib/prettify/prettify.js></script>
+        <script>
+            $(function() {
+                prettyPrint();
+                $('.carousel').carousel({
+                    interval: false
+                })
+            });
+        </script>
+         <script type="text/javascript" src="../bootstrap/js/bootstrap-dropdowns-set.js"></script>
+    </body>
+</html>
