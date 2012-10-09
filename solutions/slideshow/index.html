@@ -16,11 +16,11 @@
         <div id=slideshow></div>
         <h2>Assignment Ideas</h2>
         <ul>
-            <li>Add Basic Controls (play/pause button)</li>
+            <li>Add Basic Controls (<a href="#" onClick="mySlideShow.pause();mySlideShow.play();">play</a>/<a href="#" onClick="mySlideShow.pause();">pause</a> button)</li>
             <li>Add configuration object as second parameter to SlideShow 
                 constructor, which will allow the user to configure the slide
                 change delay.</li>
-            <li>EXTRA CREDIT: Add some more advanced controls: forward/backward 
+            <li>EXTRA CREDIT: Add some more advanced controls: <a href="#" onClick="mySlideShow.cycle();">Forward</a>/<a href="#" onClick="mySlideShow.recycle();">Backward</a> 
                 buttons, clickable thumbnails, etc.</li>
             <li>EXTRA CREDIT: Implement some form of pre-caching for the images.</li>
         </ul>
@@ -28,7 +28,7 @@
         <script>
             'use strict';
 
-            var mySlideShow = new SlideShow('slideshow');
+            var mySlideShow = new SlideShow('slideshow',5);
 
             mySlideShow.addPicture({
                 src: 'images/brendan-eich.jpg',
@@ -45,7 +45,7 @@
                 src: 'images/larry-ellison.jpg',
                 caption: 'Larry Ellison &mdash; The Owner of JavaScript'
             }]);
-
+            mySlideShow.cache();
             mySlideShow.play();
         </script>
     </body>
