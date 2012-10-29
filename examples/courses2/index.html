@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Courses</title>
+<link href="bootstrap.css" rel="stylesheet" type="text/css">
+<link href="courses.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="container">
+<form class="form-horizontal" action="#" id="studentForm" method="">
+    <legend>Schedule your classes for Santa Rosa Junior College</legend>
+    <div class="control-group">
+    <label class="control-label" for="inputName">Name</label>
+    <div class="controls">
+      <input type="text" id="inputName" placeholder="Student Name" required autofocus pattern="^(\w+)\s+(?:(\w+)\s+){0,1}(\w+){0,1}$">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="inputEmail">Email</label>
+    <div class="controls">
+      <input type="email" id="inputEmail" placeholder="Email" required>
+    </div>
+  </div> 
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary" id="getStudent" form="studentForm">Get Started</button>
+    </div>
+  </div>
+</form>
+<form class="form-horizontal" action="#" id="scheduleForm" method="">
+<h2 class="lead" id="studentNameDisplay"></h2>
+ <legend>Create your schedule</legend>
+ <div id="scheduleDisplay"></div>
+ <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary" id="makeSchedule" form="scheduleForm">Submit Schedule</button>
+    </div>
+  </div>
+</form>
+
+<div id="outputSchedule"></div>
+</div>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="courses.js"></script>
+</body>
+</html>

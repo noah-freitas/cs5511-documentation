@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <meta charset=utf-8>
+        <title>Enhancing Web Forms with HTML5, JQuery and JSON</title>
+        <link href=../../bootstrap/css/bootstrap.css rel=stylesheet>
+        <link href=../../lib/prettify/prettify.css rel=stylesheet>
+        <link href=../../bootstrap/css/fall2012.css rel=stylesheet>
+       
+    </head>
+    <body>
+        <div class=container>
+            <div class=row>
+                <h2>Project 5: Enhancing Web Forms with HTML5, JSON, and JQuery</h2>
+            </div>
+            <div class=row>
+                <div class=span12>
+                    <div class=well>
+                        <h4>This project is due on November 5 at midnight.</h4>
+                        <p><a href="../../examples/courses-start/courses-start.zip">Download the starter files</a></p>
+                      <h4>What you will learn in this project</h4>
+       <p>This project is designed as a simple introduction to current webform processing best practices.    It's focus is on client-side behaviors, which is only part of the equation for any webform development.    We'll learn some simple validation, navigation and interaction techiques as well as how to use a JSON data source for dynamic schemas.  </p>  <p>The webform will read a JSON datasource containing a schedule of SRJC classes.    The first form element will enable a student to identify themselves.   They are then presented with a select of courses (and their respective sections)  to choose from.   The student and schedule information will be contained in a Javascript object that will be packed and displayed as a JSON string.</p>            
+                        <ol style="-webkit-columns:100px 2;">
+                            <li>Review of Webforms basics with HTML5
+                              <ol>
+                                <li><a href="http://www.w3schools.com/html/html5_form_elements.asp">HTML5 Forms</a></li>
+                                <li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-input-element.html">The HTML5 INPUT element</a></li>
+                                <li><a href="http://www.w3schools.com/html/html5_form_input_types.asp">HTML5 INPUT types</a></li>
+                                <li><a href="http://www.w3schools.com/tags/tag_input.asp">HTML5 INPUT attributes</a> pattern, required types</li>
+                                <li><a href="http://www.w3schools.com/tags/tag_select.asp">HTML SELECT element</a></li>
+                                <li><a href="http://www.w3schools.com/tags/tag_button.asp">HTML BUTTON element</a></li>
+                                <li><a href="http://twitter.github.com/bootstrap/base-css.html#forms">Bootstrap webform layouts</a></li>
+                             </ol>
+                            </li>
+                            <li>Populating webform selections with structured JSON data
+                             <ol>
+                                <li><a href="http://api.jquery.com/jQuery.getJSON/">jquery.getJSON( )</a></li>
+                                <li><a href="http://w3schools.com/tags/tag_datalist.asp">datalist element</a> Chrome &amp; FireFox only</li>
+                             </ol>
+                            </li>
+                            <li>Using JQuery to Select form elements, access values and set attributes
+                              <ol>
+                                <li><a href="http://api.jquery.com/category/selectors/form-selectors/">JQuery form element selectors</a></li>
+                                <li><a href="http://api.jquery.com/val/">form element values</a></li>
+                                <li><a href="http://api.jquery.com/attr/">form element attributes
+                                </a></li>
+                             </ol>
+                            </li>
+                            <li>Form events with JQuery
+                                <ol>
+                                    <li><a href="http://api.jquery.com/blur/">Input Blur</a></li>
+                                    <li><a href="http://api.jquery.com/submit/">Form Submit</a></li>
+                                    <li><a href="http://api.jquery.com/change/">Select change</a></li>
+                                    <li><a href="http://api.jquery.com/click/">click</a> - for check boxes / radio groups<a href=https://developer.mozilla.org/en-US/docs/DOM/Document.querySelector></a>
+                                    </li>
+                               </ol>
+                            </li>
+                            <li>Creating smarter webforms
+                              <ol>
+                                    <li>Focusing input
+                                       <ol>
+                                        <li><a href="http://api.jquery.com/focus/">focus( ) </a><a href="http://api.jquery.com/hide/">hide( )</a> <a href="http://api.jquery.com/show/">show( ) </a><a href="http://api.jquery.com/toggle/">toggle( )</a> <a href="http://api.jquery.com/animate/">animate( )</a></li>
+                                      </ol>
+                                    </li>
+                              </ol>
+                            </li>
+                            <li><a href="http://www.html5rocks.com/en/tutorials/forms/constraintvalidation/">Using HTML5 DOM constraint validation with Javascript</a></li>
+                            <li><a href="http://net.tutsplus.com/tutorials/html-css-techniques/build-a-neat-html5-powered-contact-form/">This tutorial offers a much more comprehensive project</a>, including the server-side PHP programming for processing email. There are also many more Javascript programming techniques than are covered in our class tutorial.  Worth a look for the advanced students.  </li>
+                        </ol>
+                    </div>
+                </div>
+                
+            </div>
+             <div class="row">
+               <div class="span12">
+               <h2>Tutorial started in lecture of October 16 2012</h2>
+               </div>
+               </div>
+            
+            <div class=row>
+                <div class=span12>
+                    <ol>
+                        <li>         
+                            <p>Start by downloading and un-archiving <a href="../../examples/courses/courses-start.zip">the starter files</a>, which include the jquery and bootstrap libraries a starting HTML5 page and a JSON data file.  The page includes a .container element within which we will build all of our content.</p>
+                            <ol>
+                            <li>Create a FORM element that contains two input elements and a button element.  Add ID attributes to each of these elements.The element types should be TEXT, EMAIL and SUBMIT, respectively.</li>
+                            <li>Add a LEGEND element to the top of the form and add a LABEL element FOR each INPUT</li>
+                            <li>Add placeholders to the input elements. Placeholder text provides a nice user interface feature with little effort.  At this point we have a solid form structure, with minimal styling and no behavior. </li>
+                            <li>For styling our form we are going to use classes provided by Twitter Bootstrap. Apply .form-horizontal class to the form element and wrap each of the three form elements with two divs - .control-group and .controls. Add the classes .btn .btn-primary to the button.</li>
+                            <li>Now we are ready to add behaviors to our form.  Typical webform behaviors include enhanced navigation, validation and data management. We'll explore some features of HTML5 to add validation behaviors to our form elements without programming. First add the REQUIRED attribute to the two input elements. Next add a regex pattern to the Name input text element to test for a two or more word pattern.The email field is validated based on the required attribute and the email type.</li>
+                            <li>We can now add the form attribute to our submit button to tie those together.  Our HTML page should look like this:</li>
+                            </ol>
+                            
+                            
+                            
+                            <code>
+<pre class="prettyprint linenums">
+&lt;form class="form-horizontal" action="#" id="studentForm" method=""&gt;
+    &lt;legend&gt;Schedule your classes at Santa Rosa Junior College&lt;/legend&gt;
+    &lt;div class="control-group"&gt;
+    &lt;label class="control-label" for="inputName"&gt;Name&lt;/label&gt;
+    &lt;div class="controls"&gt;
+      &lt;input type="text" id="inputName" placeholder="Student Name" required pattern="^(\w+)\s+(?:(\w+)\s+){0,1}(\w+){0,1}$"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="control-group"&gt;
+    &lt;label class="control-label" for="inputEmail"&gt;Email&lt;/label&gt;
+    &lt;div class="controls"&gt;
+      &lt;input type="email" id="inputEmail" placeholder="Email" required&gt;
+    &lt;/div&gt;
+  &lt;/div&gt; 
+  &lt;div class="control-group"&gt;
+    &lt;div class="controls"&gt;
+      &lt;button type="submit" class="btn btn-primary" id="getStudent" form="studentForm"&gt;Get Started&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+</pre>
+                            </code>
+                        </li>
+                        <li>
+                          <p>We need to create behaviors that retrieve the course schedule information and  accept the student information form submission information. First we'll define our main data structures - our schedule, which will represent the student and her course selections.Note how we use a var keyword to instantiate the shcedule object, but do not use the keyword to add a property to the object. The courses is an array to store the  SRJC schedule information in the sample JSON file.</p>
+                          <p>Next we'll set up two event handlers - a jquery.getJSON( ) event that retrieves the SRJC class schedule (a subset) in JSON format. </p>
+                        </li>
+                        <li>
+                          <p>We'll also set up an event handler on the student information submission form. </p>
+                          <p>As you can see events are a bit simpler to code in JQuery - many basic events are implemented as JQuery methods, which take a function as an argument and which are wired to elements defined in the JQuery selector.  The getJSON( ) method needs no selector.</p>
+                          <p>When the page loads, getJSON will open a local file and parse the information into a Javascript object. The returned data object can be passed as an argument to the event handler and then assigned to the array we defined previously.</p>
+                        </li>
+                        <li>The form submission event is wired to the form element.  On submission, it assigns the input values for both fields to the schedule object - creating new properties dynamically.  It then calls a function that we will define in the next step, and finally calls return false to override any default form submission behavior defined in HTML or other services.</li>
+                        <li>                          <code>
+                        <pre class="prettyprint linenums">var schedule = new Object();<br>schedule.courses = [];<br>var courses = [];
+$.getJSON('classes.json',function(data) {           <br>	      courses = data;<br>	 });<br>$('#studentForm').submit(function() {<br>  schedule.studentName = $('#inputName').val();<br>  schedule.studentEmail = $('#inputEmail').val();<br>  displaySchedule();<br>  return false;<br>});</pre>
+                        </code>
+                          
+                        </li>
+                        <li>
+                            <p>We define the displaySchedule function next.  First we hide the student input form and  display the students name on the page as static information. </p>
+                       
+                          <p>We will now write the code to pull structured information from the JSON object and display it as a set of select lists for the student to choose from the list of sections for each of a set of courses. To do so, we create nested iterations by  doing a loop within a loop The outer for loop goes through each course in the JSON object, and the inner loop goes through each section for each of those courses.  Each select option displays the instructor  but returns the section number as its value attribute.   We add this structure to the page.  The HTML is created as a string  and then added to the DOM using using the jquery.append() method.    </p><p>The select lists become interactive when we add  event to them - in this case we add a jquery.change( ) method to all the select lists in our schedule form.   When a select list is changed, push the value (the section number) into the array we created as a property of the schedule object.   Then hide the select list - you cannot select more than one section of a course.</p>
+                          
+                          <code>
+  <pre class="prettyprint linenums">
+var displaySchedule = function() {
+	$('#studentForm').hide();
+	$('#studentNameDisplay').html(schedule.studentName);
+    html = "";
+	for (ii = 0; ii < courses.course.length; ii += 1)	 {
+		 html += "&lt;h3&gt;"+ courses.course[ii].title +"&lt;/h3&gt;"
+		 html += "&lt;select size=3&gt;";
+		 for (iii = 0; iii < courses.course[ii].section.length; iii += 1) {
+			html += "&lt;option value="+  courses.course[ii].section[iii].sectionNumber +">"+ courses.course[ii].section[iii].instructor +"&lt;/option&gt;";
+		 }
+		 html += "&lt;/select&gt;";
+	}
+	$(&quot;#scheduleDisplay&quot;).append(html);<br>	$(&quot;#scheduleDisplay select&quot;).change(function(e) {<br>		schedule.courses.push($(this).val());<br>		$(this).hide();<br>	});
+}
+</pre>
+                            </code>
+                        </li>
+                        <li>
+                            <p>This is the snippet that is added to the HTML file to make the behavior display.  A new form with a place to hold the student name and the select list structure we create in Javascript.</p>
+                            <code>
+<pre class="prettyprint linenums">&lt;form class=&quot;form-horizontal&quot; action=&quot;#&quot; id=&quot;scheduleForm&quot; method=&quot;&quot;&gt;<br>&lt;h2 class=&quot;lead&quot; id=&quot;studentNameDisplay&quot;&gt;&lt;/h2&gt;<br> &lt;legend&gt;Create your schedule&lt;/legend&gt;<br> &lt;div id=&quot;scheduleDisplay&quot;&gt;&lt;/div&gt;<br>&lt;/form&gt;</pre>
+                            </code>
+                      </li></ol>
+               </div></div>
+               <div class="row">
+               <div class="span12">
+               <h2>Tutorial continued in lecture of October 23 2012</h2>
+               <p><em>These code snippets are added to the existing program and functions as appropriate.</em>  </p>
+               </div>
+               </div>
+                <div class="row">
+               <div class="span12">
+               <ol>
+               <li>
+               <p>At this point, our form is a good start, but there is still alot we can do to add to the user experience and improve the data management.   In these next steps we will improve the data structure of the student schedule and fine tune the form features to take full advantage of HTML5 standards.</p>
+               <p>To improve the data flow of the form, we are going to replace our logic for adding the section number to the schedule.   Instead we'll add the course and section object from the SRJC schedule directly to the students schedule element.    This implementation enables our output to include more information about the courses selected by the student.</p>
+               <p>We first change the option value of the select lists to return just the index number - of the option.  We then change our select list event handler to use this index to get the section value.  We get the course index by determining the index value of the select list in the form.  In other words - we set the DOM up using the indexing of the JSON object, - giving us the ability to then use the DOM indexing to determine which nodes of the object were selected.  This turns out to be a pretty nice pattern for FORM / Data interaction. Finally we push the section information as a new member of the array of courses in the student's schedule. We now have a complete object of student and class selection information - a transaction.</p>
+                          
+                            <code>
+<pre class="prettyprint linenums">
+...<br>html += "&lt;option value="+  iii +">"+ courses.course[ii].section[iii].instructor +"&lt;/option&gt;";
+...<br>	$(&quot;#scheduleDisplay select&quot;).change(function(e) {<br>      var newSection = courses.course[$(&quot;#scheduleDisplay select&quot;).index($(this))].section[$(this).val()];<br>		newSection.course = courses.course[$(&quot;#scheduleDisplay select&quot;).index($(this))];<br>		schedule.courses.push(newSection);<br>		...<br>	});
+}
+</pre>
+                            </code>
+               </li>
+               <li>
+               <p>Sometimes a simple addition can provide alot of value to the user.   Let's add the autofocus attribute to our student name input element so the field is focused when the page loads.</p>
+               
+               
+               
+             
+                          
+                             <code>
+<pre class="prettyprint linenums">
+ ...
+      &lt;input type="text" id="inputName" placeholder="Student Name" required  autofocus pattern="^(\w+)\s+(?:(\w+)\s+){0,1}(\w+){0,1}$"&gt;
+   ...
+</pre>
+                            </code>
+               </li>
+                   <li>
+               <p>The validation of our input fields could use a nicer feedback feature.    Although still a cutting edge feature without complete browser support, let's explore how the DOM has expanded with HTML5 to support custom validation behaviors without the need of a specialized library or plugin.</p>
+               <p>We'll add this behavior to a jquery.blur() function on the Name field.    When we enter a value and leave the field, we'll check to see if the pattern match validates and if not, we'll set a new validation message.    Setting an the custom validity to an empty string will validate the element.</p>
+                <p>This doesn't really add new behavior, it just changes the message.   The validation still occurs on the form submission.    In fact it occurs before the jquery.submit( ) function fires, so we cannot put this conditional statement in that function.</p>
+                          
+                            <code>
+<pre class="prettyprint linenums">
+$('#inputName').blur(function() {	
+	if (this.validity.patternMismatch === true) {
+		this.setCustomValidity('First Middle and Last Names only please');
+	} else {
+		this.setCustomValidity('');
+	}
+});
+</pre>
+                            </code>
+               </li>
+               
+                <li>
+               <p>As another enhancement to the page, we will add a submit button to the schedule selector form and create a JSON object of the schedule object.   In this project, we will simply display that JSON structure in a page element.  Create the button in the HTML page:</p>
+                          
+                            <code>
+<pre class="prettyprint linenums">&lt;div id=&quot;scheduleDisplay&quot;&gt;&lt;/div&gt;
+...<br> &lt;div class=&quot;control-group&quot;&gt;<br>    &lt;div class=&quot;controls&quot;&gt;<br>      &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot; id=&quot;makeSchedule&quot; form=&quot;scheduleForm&quot;&gt;Submit Schedule&lt;/button&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;
+...<br>&lt;/form&gt;
+&lt;div id=&quot;outputSchedule&quot;&gt;&lt;/div&gt;</pre>
+                            </code>
+                             <p>This submit function traverses the schedule object to create a new HTML string containing the key components of our schedule information.   We then append this to the DOM below the form and hide the form. </p>
+                          
+                            <code>
+<pre class="prettyprint linenums">
+$('#scheduleForm').submit(function () {
+    'use strict';
+    html = '';
+	html += schedule.studentName + schedule.studentEmail;
+	for (ii = 0; ii < schedule.courses.length; ii += 1) {
+		html += "<br>" + schedule.courses[ii].instructor + schedule.courses[ii].room;
+		if ( schedule.courses[ii].day.length >0 ) {
+		for (iii=0; iii < schedule.courses[ii].day.length; iii += 1) {
+			html +=  "  " + schedule.courses[ii].day[iii];
+	     }
+		} else {
+			html += "  " + schedule.courses[ii].day;
+		}
+	}
+	$("#outputSchedule").append(html);
+	$(this).hide();
+    return false;
+});
+</pre>
+                            </code>
+               </li>
+               </ol>
+               <h3>The final Javascript code</h3>
+                         <code>
+<pre class="prettyprint linenums">
+var schedule = {};
+var courses = [];
+schedule.courses = [];
+var html = '';
+var ii;
+var iii;
+var displaySchedule = function () {
+    'use strict';
+    $('#studentForm').hide();
+    $('#studentNameDisplay').html(schedule.studentName);
+    html = "";
+	for (ii = 0; ii &lt; courses.course.length; ii += 1) {
+		html += "&lt;h3&gt;" + courses.course[ii].title + "&lt;/h3&gt;";
+		html += "&lt;select size=3&gt;";
+		for (iii = 0; iii &lt; courses.course[ii].section.length; iii += 1) {
+			html += "&lt;option value=" +  iii + "&gt;" + courses.course[ii].section[iii].instructor + "&lt;/option&gt;";
+		}
+		html += "&lt;/select&gt;";
+	}
+	$("#scheduleDisplay").append(html);
+	$("#scheduleDisplay select").change(function (e) {
+		var newSection = courses.course[$("#scheduleDisplay select").index($(this))].section[$(this).val()];
+		newSection.course = courses.course[$("#scheduleDisplay select").index($(this))];
+		schedule.courses.push(newSection);
+		$(this).hide();
+	});
+}
+$.getJSON('classes.json', function (data) {
+    'use strict';
+    courses = data;
+});
+$('#studentForm').submit(function () {
+    'use strict';
+    schedule.studentName = $('#inputName').val();
+    schedule.studentEmail = $('#inputEmail').val();
+    displaySchedule();
+    return false;
+});
+$('#inputName').blur(function () {
+    'use strict';
+    if (this.validity.patternMismatch === true) {
+        this.setCustomValidity('First Middle and Last Names only please');
+	} else {
+	    this.setCustomValidity('');
+	}
+});
+$('#scheduleForm').submit(function () {
+    'use strict';
+    html = '';
+	html += schedule.studentName + schedule.studentEmail;
+	for (ii = 0; ii &lt; schedule.courses.length; ii += 1) {
+		html += "&lt;br&gt;" + schedule.courses[ii].instructor + schedule.courses[ii].room;
+		if ( schedule.courses[ii].day.length &gt;0 ) {
+		for (iii=0; iii &lt; schedule.courses[ii].day.length; iii += 1) {
+			html +=  "  " + schedule.courses[ii].day[iii];
+	     }
+		} else {
+			html += "  " + schedule.courses[ii].day;
+		}
+	}
+	$("#outputSchedule").append(html);
+	$(this).hide();
+    return false;
+});
+
+</pre>
+                            </code>        
+               
+               
+               </div>
+               </div>
+                <div class="row">
+                <div class=span12>
+                <h2>Assignment</h2>
+                <ol>
+                <li>Starting with<a href="../../examples/courses-start/courses-start.zip"> the starter files</a>, get this tutorial example to work.   Remember that the getJSON call will only work on a server system, so upload you page to test it. </li>
+                <li>Improve the display of the confirmation page. Replace the day integer with the actual name of the day of the week.   Add the section number to the display.Add page layout and style ( you can use bootstrap classes)</li><br>
+                  Do at least two of the following improvements to the project:
+                <li>Add 1 additional course with at least 2 sections to the JSON file.</li>
+                <li>Add a data element for credits for each section. Update the JSON file and display it on the confirmation page.</li>
+                <li>Add a new feature to enable a student to order a parking pass with the registration form. This can be a checkbox or radio button on first form with a boolean data element added to the schedul object.</li>
+                
+                </ol>
+                </div>
+                </div>
+               
+            <div class="row comments">
+                <div class=span12>
+                    <h3>Comments</h3>
+                    <p>Please use this discussion form appropriately to ask 
+                        questions of the instructor or to share information that 
+                        is of interest to the class.</p>
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_shortname = 'javascriptcs5511';
+                        (function() {
+                            var dsq = document.createElement('script'); 
+                            dsq.type = 'text/javascript'; 
+                            dsq.async = true;
+                            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || 
+                            document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>
+                        Please enable JavaScript to view the 
+                        <a href="http://disqus.com/?ref_noscript">comments 
+                        powered by Disqus.</a>
+                    </noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">
+                        comments powered by 
+                        <span class="logo-disqus">Disqus</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    
+    <script src=../../bootstrap/js/jquery.js></script>
+        <script src=../../bootstrap/js/bootstrap.js></script>
+        <script src=../../bootstrap/js/fall2012.js></script>
+        <script src=../../lib/prettify/prettify.js></script>
+        <script>
+            $(function() {
+                prettyPrint();
+            });
+        </script>
+    </body>
+</html>

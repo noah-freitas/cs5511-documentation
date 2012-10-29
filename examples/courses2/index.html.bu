@@ -9,15 +9,14 @@
 
 <body>
 <div class="container">
-<form class="form-horizontal" action="#" id="studentForm" method="">
-    <legend>Schedule your class for Santa Rosa Junior College</legend>
+<form class="form-horizontal" action="#" id="studentForm">
+    <legend>Learn Web Design Online &#64; Santa Rosa Junior College</legend>
     <div class="control-group">
     <label class="control-label" for="inputName">Name</label>
     <div class="controls">
       <input type="text" id="inputName" placeholder="Student Name" required pattern="^(\w+)\s+(?:(\w+)\s+){0,1}(\w+){0,1}$">
     </div>
-</div>
-<div class="control-group">
+
     <label class="control-label" for="inputEmail">Email</label>
     <div class="controls">
       <input type="email" id="inputEmail" placeholder="Email" required>
@@ -29,12 +28,7 @@
     </div>
   </div>
 </form>
-<form class="form-horizontal" action="#" id="scheduleForm" method="">
-<h2 class="lead" id="studentNameDisplay"></h2>
- <legend>Create your schedule</legend>
- <div id="scheduleDisplay"></div>
-</form>
-
+ <section id="schedule"><section id="courseList"></section><section id="sectionList"></section></section>
 </div>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="courses.js"></script>

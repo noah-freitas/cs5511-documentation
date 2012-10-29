@@ -1,0 +1,13 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.btn {
+ font-size:250%;
+ width"200px;
+ height:100px;
+ padding-left:10px;
+}
+.lead {
+	font-size:350%;
+	padding: 30px 10px;
+}

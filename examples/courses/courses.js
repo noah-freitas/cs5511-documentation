@@ -1,37 +1,33 @@
-// JavaScript Document
+var schedule = new Object();
 var courses = [];
-var mySchedule = new Object();
-var courseNumber = 0;
-var loadSchedule = function () {
-	 var that = this;	
-	  $.getJSON('classes.json',function(data) {           
-	      that.courses = data;
+schedule.courses = [];
+var html = '';
+var ii;
+var iii;
+$.getJSON('classes.json',function(data) {           
+	      courses = data;
 	 });
- } 
-var showSchedule = function() {
-	var html = "<select size="+courses.course.length+ ">";
-	for (ii = 0; ii < courses.course.length; ii += 1)	 {
-		 html += "<option value="+ ii +">"+ courses.course[ii].title +"</option>"
-	}
-    html += "</select>";
-	$("#courseList").append(html);
-	$("#courseList select").change(function(e) {
-		 $("#sectionList").html("");
-		 courseNumber = e.target.value;
-		 var html = "<select size="+courses.course[courseNumber].section.length+ ">";
-		 for (ii = 0; ii < courses.course[courseNumber].section.length; ii += 1)	 {
-			 html += "<option value="+ ii +">"+ courses.course[courseNumber].section[ii].instructor +"</option>"
-		 };
-		 html += "</select>";
-	    $("#sectionList").append(html);
-		});
-	$("#schedule").show();
-}
-loadSchedule();
-$("#schedule").hide();
-
-$("#getStudent").click(function(e) {
-	mySchedule.studentName = $("#inputName").val();
-	mySchedule.studentEmail = $("#inputEmail").val();	
-	showSchedule();	
+$('#studentForm').submit(function() {
+  schedule.studentName = $('#inputName').val();
+  schedule.studentEmail = $('#inputEmail').val();
+  displaySchedule();
+  return false;
 });
+var displaySchedule = function() {
+	$('#studentForm').hide();
+	$('#studentNameDisplay').html(schedule.studentName);
+    html = "";
+	for (ii = 0; ii < courses.course.length; ii += 1)	 {
+		 html += "<h3>"+ courses.course[ii].title +"</h3>"
+		 html += "<select size=3>";
+		 for (iii = 0; iii < courses.course[ii].section.length; iii += 1) {
+			html += "<option value="+  iii +">"+ courses.course[ii].section[iii].instructor +"</option>";
+		 }
+		 html += "</select>";
+	}
+	$("#scheduleDisplay").append(html);
+	$("#scheduleDisplay select").change(function(e) {
+		schedule.courses.push($(this).val());
+		$(this).hide();
+	});
+}

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <meta charset=utf-8>
+        <title>Working with Text and Data Visualization</title>
+        <link href=../../bootstrap/css/bootstrap.css rel=stylesheet>
+        <link href=../../lib/prettify/prettify.css rel=stylesheet>
+        <link href=../../bootstrap/css/fall2012.css rel=stylesheet>
+       
+    </head>
+    <body>
+        <div class=container>
+            <div class=row>
+                <h2>Project 6: Working with Text, Regular Expressions, AJAX and Data Visualization with Google Charts</h2>
+            </div>
+            <div class=row>
+                <div class=span12>
+                    <div class=well>
+                        <h4>This project is due on November 12 at midnight.</h4>
+                        <p><a href="../../examples/courses-start/courses-start.zip">Download the starter files</a></p>
+                      <h4>What you will learn in this project</h4>
+       <p>This project demonstrates a  technique using a Javascript Regex( ) object to count instances of a given set of keywords within a document. The document is loaded using the AJAX function of JQuery core.  Information about the keyword counts are loaded into a Google Charts table and displayed in a Google GeoChart.  We use the three presidential debates and a set of mentioned countries for the demonstration.  </p>            
+                        <h3>Resources</h3>
+                        <ul>
+                        <li></li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+             
+            
+            <div class=row>
+                <div class=span12>
+                       <ol><li>  
+                  <p>Start by downloading and un-archiving <a href="../../examples/courses/courses-start.zip">the starter files</a>, which include the jquery and bootstrap libraries a starting HTML5 page and a JSON data file.  The page includes a .container element within which we will build all of our content.</p>   
+                            <code>
+<pre class="prettyprint linenums">
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;Presidential Debate Global Heatmaps&lt;/title&gt;
+&lt;script type='text/javascript' src='https://www.google.com/jsapi'&gt;&lt;/script&gt;
+&lt;link href="../../bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"&gt;
+&lt;link href="wordcount.css" rel="stylesheet" type="text/css"&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;div class="container"&gt;
+&lt;h1 class="lead"&gt;Global Heatmap of the Presidential Debates&lt;/h1&gt;
+&lt;div class="btn-group"&gt;
+&lt;legend&gt;choose a debate to analyze.&lt;/legend&gt;
+  &lt;button class="btn btn-primary" id="debate1"&gt;Debate 1&lt;/button&gt;
+  &lt;button class="btn btn-primary" id="debate2"&gt;Debate 2&lt;/button&gt;
+  &lt;button class="btn btn-primary" id="debate3"&gt;Debate 3&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div id="mentionmap"&gt;&lt;/div&gt;
+&lt;div id="transcript"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script src="jquery.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="wordcount.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</pre>
+                            </code>
+                        </li>
+                        <li>
+                          <p>We need to create behaviors that retrieve the course schedule information and  accept the student information form submission information. First we'll define our main data structures - our schedule, which will represent the student and her course selections.Note how we use a var keyword to instantiate the shcedule object, but do not use the keyword to add a property to the object. The courses is an array to store the  SRJC schedule information in the sample JSON file.</p>
+                          <p>Next we'll set up two event handlers - a jquery.getJSON( ) event that retrieves the SRJC class schedule (a subset) in JSON format. </p>
+                  </li>
+                        <li>
+                          <p>We'll also set up an event handler on the student information submission form. </p>
+                          <p>As you can see events are a bit simpler to code in JQuery - many basic events are implemented as JQuery methods, which take a function as an argument and which are wired to elements defined in the JQuery selector.  The getJSON( ) method needs no selector.</p>
+                          <p>When the page loads, getJSON will open a local file and parse the information into a Javascript object. The returned data object can be passed as an argument to the event handler and then assigned to the array we defined previously.</p>
+                        </li>
+                        <li>The form submission event is wired to the form element.  On submission, it assigns the input values for both fields to the schedule object - creating new properties dynamically.  It then calls a function that we will define in the next step, and finally calls return false to override any default form submission behavior defined in HTML or other services.</li>
+                        <li>                          <code>
+                        <pre class="prettyprint linenums">var schedule = new Object();<br>schedule.courses = [];<br>var courses = [];
+$.getJSON('classes.json',function(data) {           <br>	      courses = data;<br>	 });<br>$('#studentForm').submit(function() {<br>  schedule.studentName = $('#inputName').val();<br>  schedule.studentEmail = $('#inputEmail').val();<br>  displaySchedule();<br>  return false;<br>});</pre>
+                        </code>
+                          
+                        </li>
+                        <li>
+                            <p>We define the displaySchedule function next.  First we hide the student input form and  display the students name on the page as static information. </p>
+                       
+                          <p>We will now write the code to pull structured information from the JSON object and display it as a set of select lists for the student to choose from the list of sections for each of a set of courses. To do so, we create nested iterations by  doing a loop within a loop The outer for loop goes through each course in the JSON object, and the inner loop goes through each section for each of those courses.  Each select option displays the instructor  but returns the section number as its value attribute.   We add this structure to the page.  The HTML is created as a string  and then added to the DOM using using the jquery.append() method.    </p><p>The select lists become interactive when we add  event to them - in this case we add a jquery.change( ) method to all the select lists in our schedule form.   When a select list is changed, push the value (the section number) into the array we created as a property of the schedule object.   Then hide the select list - you cannot select more than one section of a course.</p>
+                          
+                          <code>
+  <pre class="prettyprint linenums">
+var displaySchedule = function() {
+	$('#studentForm').hide();
+	$('#studentNameDisplay').html(schedule.studentName);
+    html = "";
+	for (ii = 0; ii < courses.course.length; ii += 1)	 {
+		 html += "&lt;h3&gt;"+ courses.course[ii].title +"&lt;/h3&gt;"
+		 html += "&lt;select size=3&gt;";
+		 for (iii = 0; iii < courses.course[ii].section.length; iii += 1) {
+			html += "&lt;option value="+  courses.course[ii].section[iii].sectionNumber +">"+ courses.course[ii].section[iii].instructor +"&lt;/option&gt;";
+		 }
+		 html += "&lt;/select&gt;";
+	}
+	$(&quot;#scheduleDisplay&quot;).append(html);<br>	$(&quot;#scheduleDisplay select&quot;).change(function(e) {<br>		schedule.courses.push($(this).val());<br>		$(this).hide();<br>	});
+}
+</pre>
+                          </code>
+                        </li>
+                        <li>
+                            <p>This is the snippet that is added to the HTML file to make the behavior display.  A new form with a place to hold the student name and the select list structure we create in Javascript.</p>
+                            <code>
+<pre class="prettyprint linenums">&lt;form class=&quot;form-horizontal&quot; action=&quot;#&quot; id=&quot;scheduleForm&quot; method=&quot;&quot;&gt;<br>&lt;h2 class=&quot;lead&quot; id=&quot;studentNameDisplay&quot;&gt;&lt;/h2&gt;<br> &lt;legend&gt;Create your schedule&lt;/legend&gt;<br> &lt;div id=&quot;scheduleDisplay&quot;&gt;&lt;/div&gt;<br>&lt;/form&gt;</pre>
+                            </code>
+                      </li>
+               <li>
+               <p>At this point, our form is a good start, but there is still alot we can do to add to the user experience and improve the data management.   In these next steps we will improve the data structure of the student schedule and fine tune the form features to take full advantage of HTML5 standards.</p>
+               <p>To improve the data flow of the form, we are going to replace our logic for adding the section number to the schedule.   Instead we'll add the course and section object from the SRJC schedule directly to the students schedule element.    This implementation enables our output to include more information about the courses selected by the student.</p>
+               <p>We first change the option value of the select lists to return just the index number - of the option.  We then change our select list event handler to use this index to get the section value.  We get the course index by determining the index value of the select list in the form.  In other words - we set the DOM up using the indexing of the JSON object, - giving us the ability to then use the DOM indexing to determine which nodes of the object were selected.  This turns out to be a pretty nice pattern for FORM / Data interaction. Finally we push the section information as a new member of the array of courses in the student's schedule. We now have a complete object of student and class selection information - a transaction.</p>
+                          
+                            <code>
+<pre class="prettyprint linenums">
+...<br>html += "&lt;option value="+  iii +">"+ courses.course[ii].section[iii].instructor +"&lt;/option&gt;";
+...<br>	$(&quot;#scheduleDisplay select&quot;).change(function(e) {<br>      var newSection = courses.course[$(&quot;#scheduleDisplay select&quot;).index($(this))].section[$(this).val()];<br>		newSection.course = courses.course[$(&quot;#scheduleDisplay select&quot;).index($(this))];<br>		schedule.courses.push(newSection);<br>		...<br>	});
+}
+</pre>
+                            </code>
+               </li>
+               <li>
+               <p>Sometimes a simple addition can provide alot of value to the user.   Let's add the autofocus attribute to our student name input element so the field is focused when the page loads.</p>
+               
+               
+               
+             
+                          
+                             <code>
+<pre class="prettyprint linenums">
+ ...
+      &lt;input type="text" id="inputName" placeholder="Student Name" required  autofocus pattern="^(\w+)\s+(?:(\w+)\s+){0,1}(\w+){0,1}$"&gt;
+   ...
+</pre>
+                            </code>
+               </li>
+                   <li>
+               <p>The validation of our input fields could use a nicer feedback feature.    Although still a cutting edge feature without complete browser support, let's explore how the DOM has expanded with HTML5 to support custom validation behaviors without the need of a specialized library or plugin.</p>
+               <p>We'll add this behavior to a jquery.blur() function on the Name field.    When we enter a value and leave the field, we'll check to see if the pattern match validates and if not, we'll set a new validation message.    Setting an the custom validity to an empty string will validate the element.</p>
+                <p>This doesn't really add new behavior, it just changes the message.   The validation still occurs on the form submission.    In fact it occurs before the jquery.submit( ) function fires, so we cannot put this conditional statement in that function.</p>
+                          
+                            <code>
+<pre class="prettyprint linenums">
+$('#inputName').blur(function() {	
+	if (this.validity.patternMismatch === true) {
+		this.setCustomValidity('First Middle and Last Names only please');
+	} else {
+		this.setCustomValidity('');
+	}
+});
+</pre>
+                            </code>
+               </li>
+               
+                <li>
+               <p>As another enhancement to the page, we will add a submit button to the schedule selector form and create a JSON object of the schedule object.   In this project, we will simply display that JSON structure in a page element.  Create the button in the HTML page:</p>
+                          
+                            <code>
+<pre class="prettyprint linenums">&lt;div id=&quot;scheduleDisplay&quot;&gt;&lt;/div&gt;
+...<br> &lt;div class=&quot;control-group&quot;&gt;<br>    &lt;div class=&quot;controls&quot;&gt;<br>      &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot; id=&quot;makeSchedule&quot; form=&quot;scheduleForm&quot;&gt;Submit Schedule&lt;/button&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;
+...<br>&lt;/form&gt;
+&lt;div id=&quot;outputSchedule&quot;&gt;&lt;/div&gt;</pre>
+                            </code>
+                             <p>This submit function traverses the schedule object to create a new HTML string containing the key components of our schedule information.   We then append this to the DOM below the form and hide the form. </p>
+                          
+                            <code>
+<pre class="prettyprint linenums">
+$('#scheduleForm').submit(function () {
+    'use strict';
+    html = '';
+	html += schedule.studentName + schedule.studentEmail;
+	for (ii = 0; ii < schedule.courses.length; ii += 1) {
+		html += "<br>" + schedule.courses[ii].instructor + schedule.courses[ii].room;
+		if ( schedule.courses[ii].day.length >0 ) {
+		for (iii=0; iii < schedule.courses[ii].day.length; iii += 1) {
+			html +=  "  " + schedule.courses[ii].day[iii];
+	     }
+		} else {
+			html += "  " + schedule.courses[ii].day;
+		}
+	}
+	$("#outputSchedule").append(html);
+	$(this).hide();
+    return false;
+});
+</pre>
+                            </code>
+               </li>
+               </ol>
+               <h3>The final Javascript code</h3>
+                         <code>
+<pre class="prettyprint linenums">
+var countries = [ // {country:"America",abbr:"US"},
+        {country: "Egypt", abbr: "EG"},
+        {country: "Afghanistan", abbr: "AF"},
+        {country: "Iran", abbr: "IR"},
+        {country: "Iraq", abbr: "IQ"},
+        {country: "China", abbr: "CN"},
+        {country: "Russia", abbr: "RU"},
+        {country: "Greece", abbr: "GR"},
+        {country: "Pakistan", abbr: "PK"},
+        {country: "Libya", abbr: "LY"},
+        {country: "Turk", abbr: "TR"},
+        {country: "Mali", abbr: "ML"},
+        {country: "Qatar", abbr: "QA"},
+        {country: "Yemen", abbr: "YE"},
+        {country: "Saudi", abbr: "SA"},
+        {country: "North Korea", abbr: "KP"},
+        {country: "Japan", abbr: "JP"},
+        {country: "Syria", abbr: "SY"},
+        {country: "Israel", abbr: "IL"}];
+var text = "";
+var ii = 0;
+function drawMentionMap() {
+	'use strict';
+    var data = new google.visualization.DataTable(),
+	    options = {colorAxis: {colors: ['pink', 'red']}},
+		chart;
+    data.addColumn('string', 'Country');
+    data.addColumn('number', 'Mentions');
+    data.addRows(countries.length);
+    for (ii = 0; ii < countries.length; ii += 1) {
+	    if (text.match(new RegExp(countries[ii].country, "g"))) {
+	        data.setCell(ii, 0, countries[ii].abbr);
+	        data.setCell(ii, 1, text.match(new RegExp(countries[ii].country, "g")).length);
+	    }
+    }
+    chart = new google.visualization.GeoChart(document.getElementById('mentionmap'));
+    chart.draw(data, options);
+}
+google.load('visualization', '1', {'packages': ['geochart']});
+$(".btn-primary").click(function () {
+	'use strict';
+	var fileName = $(this).attr('id') + ".html";
+	$.ajax({
+        url: fileName,
+        success: function (data) {
+		    $("#transcript").html("");
+            $("#transcript").append(data);
+		    text = $("#transcript").text();
+		    drawMentionMap();
+        }
+    });
+});
+</pre>
+                            </code>        
+               
+               
+               </div>
+               </div>
+                <div class="row">
+                <div class=span12>
+                <h2>Assignment</h2>
+                <ol>
+               
+                
+                </ol>
+                </div>
+                </div>
+               
+            <div class="row comments">
+                <div class=span12>
+                    <h3>Comments</h3>
+                    <p>Please use this discussion form appropriately to ask 
+                        questions of the instructor or to share information that 
+                        is of interest to the class.</p>
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_shortname = 'javascriptcs5511';
+                        (function() {
+                            var dsq = document.createElement('script'); 
+                            dsq.type = 'text/javascript'; 
+                            dsq.async = true;
+                            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || 
+                            document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>
+                        Please enable JavaScript to view the 
+                        <a href="http://disqus.com/?ref_noscript">comments 
+                        powered by Disqus.</a>
+                    </noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">
+                        comments powered by 
+                        <span class="logo-disqus">Disqus</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    
+    <script src=../../bootstrap/js/jquery.js></script>
+        <script src=../../bootstrap/js/bootstrap.js></script>
+        <script src=../../bootstrap/js/fall2012.js></script>
+        <script src=../../lib/prettify/prettify.js></script>
+        <script>
+            $(function() {
+                prettyPrint();
+            });
+        </script>
+    </body>
+</html>
