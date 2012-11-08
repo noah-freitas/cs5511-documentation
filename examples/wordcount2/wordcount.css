@@ -1,0 +1,28 @@
+@charset "UTF-8";
+/* CSS Document */
+.container {
+   width:800px;
+}
+.google-visualization-table-td , table.google-visualization.table.table .google-visualization-table-td-number  {
+	text-align:center;
+}
+.btn {
+ font-size:150%;
+ width:100px;
+ height:50px;
+ padding-left:10px;
+}
+.lead {
+	font-size:150%;
+	padding: 30px 10px;
+}
+#mentionwrapper {
+	position:relative;
+}
+#mentionpie {
+	position:absolute;
+	top:20px;
+	left:20px;
+	z-index:500;
+	opacity:.85;
+}
