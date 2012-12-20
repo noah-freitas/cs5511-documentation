@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <meta charset=utf-8>
+        <title>JQuery Mobile</title>
+        <link href=../../bootstrap/css/bootstrap.css rel=stylesheet>
+        <link href=../../lib/prettify/prettify.css rel=stylesheet>
+        <link href=../../bootstrap/css/fall2012.css rel=stylesheet>
+       
+    </head>
+    <body>
+        <div class=container>
+            <div class=row>
+                <h2>Project 7: Building a Multipage Mobile  Website with  Geolocation </h2>
+            </div>
+            <div class=row>
+                <div class=span12>
+                    <div class=well>
+                        <h4>This project is due on December 13 at midnight.</h4>
+                       
+                      <h4>What you will learn in this project</h4>
+       <p>How to use the online JQuery Mobile tools to create a mobile mini-website quickly.</p>
+       <p>How to program a JQuery mobile applications with the Geolocation API and Google GeoCoding</p>
+        <p>How to program and track mobile user interactions</p>
+       
+       <p><a href="../../examples/marys-inclass/index.html">Here's a working example from our demonstration on November 27.</a></p>
+      
+<h3>Resources</h3>
+                        <ul>
+                        <li><a href="http://jquerymobile.com/">JQuery Mobile Website</a></li>
+                        <li><a href="https://developers.google.com/maps/documentation/javascript/geocoding">Google Maps Javascript GeoCoding</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+             
+            
+            <div class=row>
+                <div class=span12>
+                       <h3>JQuery Mobile Library</h3> 
+                      <p>Download the <a href="view-source:http://jquerymobile.com/demos/1.2.0/docs/pages/multipage-template.html">JQuery Mobile multipage template</a> and save the file as index.html in your project folder.  The template includes hosted links to the core mobile library files and jquery core.</p> 
+                      <p>  Change the page title.</p> 
+                      <p>Alternately, you can download the <a href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.zip">full library zip file</a>.</p>
+                      <h3>Designing pages with Codiqa</h3> 
+                  <p>Use the drag and drop widget designer to create a 'moble app'..</p>
+                  <p>The download includes an html, css and javascript file.</p>
+                 
+                      
+                           <p>For this project we are going to design three pages and paste just the page code into our index file which we created from the multipage template.</p>
+                           <p>On the homepage, add the banner image, another image, a footer and two buttons to move to the other pages.</p>   
+                            <p>On the Menu page, add a header, a nav bar to each of the two other pages, a footer and a collapsible accordion for each meal category.</p>   
+                             <p>On the Locations page, add a header, a nav bar to each of the two other pages, a footer and four buttons for each of four locations, with the address in the text and a link using the tel: protocol.</p>  
+                       
+                  <h3>JQuery Mobile ThemeRoller</h3> 
+                  <p>The JQuery Mobile Themeroller enables you to create a theme - composed of a stylesheet (both minified and structured) and a set of images.</p>
+                  <p>Link the stylesheet to your mobile page below the JQuery Mobile standard stylesheet.</p>
+               
+                 <h3>Writing custom JQuery behaviors for JQuery Mobile websites</h3> 
+                      <p>In JQuery we generally wrap our event binding code in a document.ready( ) event handler to ensure the elements we are refering to are loaded onto the page.   As you have seen, a JQuery Mobile website is structured and operates  a bit differently, where 'pages' are actually regions of a document and are loaded using AJAX.     This makes for more efficient pageloads in low bandwidth situations.   Therefore, the 'entry point' for some of our custom code would not be document.ready( ), it would be based on this event pattern, designed to fire with a Mobile 'Virtual page load'.</p>   
+                           <code>
+  <pre class="prettyprint linenums">
+$( document ).live( "pageinit", function( event, data ){
+
+
+});
+</pre>
+                           </code>
+                                  
+               <p>At this point, however, we are setting events on page elements that we do not want to reset with every virtual page load, so we will in fact use document.ready( ) (the physical page load event) as the event to set our initial events, which are unique and persistent through the page's  states.   </p>
+                <p>First let's create a swipe behavior that navigates from Home to the Menu page.   </p>
+ <code>
+  <pre class="prettyprint linenums">
+  $(document).ready(function() {
+   $('#one').bind('swipeleft', function(e){
+	  $.mobile.changePage( "#two" );
+   });  
+  });  
+   </pre>
+                           </code>
+                           <p>We test that to ensure it is working, and we can then add the remainder of the swipe navigation events.</p>
+    <code>
+  <pre class="prettyprint linenums">                       
+   $('#two').bind('swipeleft', function(e){
+	   $.mobile.changePage( "#three" );
+   });
+   $('#two').bind('swiperight', function(e){
+	   $.mobile.changePage( "#one" );
+   });
+   $('#three').bind('swiperight', function(e){
+	   $.mobile.changePage( "#two" );
+   });
+     </pre>
+                           </code>
+                           <p>The Codiqa map is a static image.   Let's add a TAP event to the image to load Google Maps into our browser.  Again, let's set this in document.ready( ) so it is not set redundantly with each virtual pageload.</p>
+    <code>
+  <pre class="prettyprint linenums">                       
+    $('#srmap').bind('tap', function(e){
+		window.open("https://maps.google.com/maps?q=santa+rosa+ca");
+	});
+     </pre>
+                           </code>
+                             <p>Now we are going to write a Javascript program for the Location page (virtual page load) that uses geolocation and geocoding to indicate the nearest branch.  First let's create an event handler for the virtual loading of the location page.    The event handler will call the browser's geolocation api to get the current position of the device.    The argument of this function call is the success callback function, at the point let's alert our coordinates.</p>
+    <code>
+  <pre class="prettyprint linenums">                       
+$("#three").live('pageinit',function(event,data) {
+  navigator.geolocation.getCurrentPosition(getLocations);
+});
+function getLocations(position) {
+	var lat = position.coords.latitude;
+	var lon = position.coords.longitude;
+	alert(String(lat) + String(lon));
+}
+     </pre>
+                           </code>
+                           <p> We're  going to be using the Google Maps API, so let's load that in the head of the HTML document.</p>
+                            <code>
+                            
+  <pre class="prettyprint linenums">&lt;script type=&quot;text/javascript&quot; src=&quot;https://maps.googleapis.com/maps/api/js?sensor=true&quot;&gt;&lt;/script&gt;
+</pre>
+                           </code>
+                           
+   <p>Here is the code to accomplish the geocoding.    We geocode each location address and get the latitude and longitude from the geocode api results.   We then calculate the distance in miles using the calculateDistance function that we found online.  (along with the toRad( ) function).   </p>                        
+                           
+<code>
+                            
+  <pre class="prettyprint linenums">                     
+function getLocations(position) {
+	var lat = position.coords.latitude;
+	var lon = position.coords.longitude;
+	var geocoder = new google.maps.Geocoder();
+	$('a.branch').each(function() {
+		var that = this;
+		var officeAddress = $(this).text();	    
+		geocoder.geocode( { 'address': officeAddress}, function(results, status) {
+			var officeLat = results[0].geometry.location.lat();
+			var officeLng = results[0].geometry.location.lng();
+			var officeDistance = calculateDistance(lat, lon, officeLat, officeLng);
+			that.innerHTML = that.innerHTML + "<br>" + officeDistance + "miles as the crow flies";
+		});	
+	});
+}
+// Returns the distance between two points in miles rounded to the nearest tenth.
+function calculateDistance(lat1, lon1, lat2, lon2) {
+	var R =  3959;
+	var dLat = toRad(lat2-lat1);
+	var dLon = toRad(lon2-lon1);
+	var lat1 = toRad(lat1);
+	var lat2 = toRad(lat2);
+	
+	var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+	Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	return Math.round(R * c * 10)/10;
+}
+ 
+function toRad(deg) {
+    return deg * Math.PI / 180;
+}                    
+</pre>
+                           </code>                     
+                           
+               </div>
+               </div>
+                <div class="row">
+                <div class=span12>
+                <h2>Assignment</h2>
+                <ul>
+               <li>Create a webpage designed to display perfectly on a smartphone.    You can use either JQuery Mobile, or a responsive approach such as Bootstrap.  Using the navigator( ) geolocation feature, request the browser location and provide a listing of at least 10 places (base score 7 points based on class tutorial) in ascending order by distance (+1 point).    For example, you could list 10 wineries, restaurants, movie theaters, parks, hiking trails...  The information can be maintained in either a Javascript object, a JSON file, in semantics on your page, or from a web service (+ 1 point).  Using Google Maps, draw a map on the page (+1 point for for live map with markers.)    </li>
+                
+                </ul>
+                </div>
+                </div>
+               
+            <div class="row comments">
+                <div class=span12>
+                    <h3>Comments</h3>
+                    <p>Please use this discussion form appropriately to ask 
+                        questions of the instructor or to share information that 
+                        is of interest to the class.</p>
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_shortname = 'javascriptcs5511';
+                        (function() {
+                            var dsq = document.createElement('script'); 
+                            dsq.type = 'text/javascript'; 
+                            dsq.async = true;
+                            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || 
+                            document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>
+                        Please enable JavaScript to view the 
+                        <a href="http://disqus.com/?ref_noscript">comments 
+                        powered by Disqus.</a>
+                    </noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">
+                        comments powered by 
+                        <span class="logo-disqus">Disqus</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    
+    <script src=../../bootstrap/js/jquery.js></script>
+        <script src=../../bootstrap/js/bootstrap.js></script>
+        <script src=../../bootstrap/js/fall2012.js></script>
+        <script src=../../lib/prettify/prettify.js></script>
+        <script>
+            $(function() {
+                prettyPrint();
+            });
+        </script>
+    </body>
+</html>

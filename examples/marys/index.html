@@ -1,0 +1,125 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<title>Mary's Pizza Shack</title> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <link rel="stylesheet" href="marys.css" />
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+    <script src="marys.js"></script>
+</head> 
+
+	
+<body> 
+
+<!-- Start of first page: #one -->
+<div data-role="page" id="one">
+            <div data-role="content">
+                <div style="">
+                    <img style="width: 288px; height: 100px" src="http://www.santarosa.edu/~jperetz/fall2012/examples/marys/images/marys.jpg" />
+                </div>
+                <h2>
+                    Italian Comfort Food
+                </h2>
+                <div style="">
+                    <img style="width: 288px; height: 100px" src="http://www.santarosa.edu/~jperetz/fall2012/examples/marys/images/happyhour_slider.png" />
+                </div>
+                <a data-role="button" href="#two" data-icon="check" data-iconpos="left">
+                    Menu
+                </a>
+                <a data-role="button" href="#three" data-icon="star" data-iconpos="left">
+                    Locations
+                </a>
+            </div>
+            <div data-theme="a" data-role="footer" data-position="fixed">
+                <h3>
+                    We Deliver Anywhere
+                </h3>
+            </div>
+        </div><!-- /page one -->
+
+
+<!-- Start of second page: #two -->
+<div data-role="page" id="two">
+            <div data-theme="" data-role="header">
+                <h3>
+                    Our Menu
+                </h3>
+            </div>
+            <div data-role="content">
+            <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li>
+                    <a href="#one" data-theme="" data-icon="">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#three" data-theme="" data-icon="">
+                        Locations
+                    </a>
+                </li>
+            </ul>
+        </div>
+                <div data-role="collapsible-set">
+                    <div data-role="collapsible" data-collapsed="false">
+                        <h3>
+                            Appetizers
+                        </h3>
+                        <ul>
+                        <li>Caesar's Salad</li>
+                        </ul>
+                    </div>
+                    <div data-role="collapsible" data-collapsed="false">
+                        <h3>
+                            Pizza
+                        </h3>
+                    </div>
+                    <div data-role="collapsible" data-collapsed="false">
+                        <h3>
+                            Pasta
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /page two -->
+
+
+<!-- Start of third page: #popup -->
+<div data-role="page" id="three">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    Our Locations
+                </h3>
+               
+            </div>
+            <div data-role="content"> 
+            <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li>
+                    <a href="#one" data-theme="" data-icon="">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#two" data-theme="" data-icon="">
+                        Menu
+                    </a>
+                </li>
+            </ul>
+        </div>
+            
+            <img id="srmap" src="https://maps.googleapis.com/maps/api/staticmap?center=3084 Marlow Rd Santa Rosa CA&amp;zoom=9&amp;size=288x200&amp;markers=3084 Marlow Rd Santa Rosa CA||535 Summerfield Rd Santa Rosa CA|615 Fourth St Santa Rosa CA|9010 Brooks Rd Windsor CA&amp;sensor=false" width="288" height="200" />
+                <a data-role="button" href="tel:7075381888" class="branch" data-distance=0>535 Summerfield Rd Santa Rosa CA</a>
+                <a data-role="button" href="tel:7075731100" class="branch" data-distance=0>3084 Marlow Rd Santa Rosa CA</a>
+                <a data-role="button" href="tel:7075711959" class="branch" data-distance=0>615 Fourth St Santa Rosa CA</a>
+                <a data-role="button" href="tel:7078360900" class="branch" data-distance=0>9010 Brooks Rd Windsor CA</a>
+            </div>
+        </div><!-- /page popup -->
+
+</body>
+</html>

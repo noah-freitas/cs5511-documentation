@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <meta charset=utf-8>
+        <title>JQuery Mobile 2</title>
+        <link href=../../bootstrap/css/bootstrap.css rel=stylesheet>
+        <link href=../../lib/prettify/prettify.css rel=stylesheet>
+        <link href=../../bootstrap/css/fall2012.css rel=stylesheet>
+       
+    </head>
+    <body>
+        <div class=container>
+            <div class=row>
+                <h2>Project 7 - B: Building a Mobile Search Slideshow Application</h2>
+            </div>
+            <div class=row>
+                <div class=span12>
+                    <div class=well>
+                        <h4>This project is an alternative to Project 7, which is due on December 13 at midnight.</h4>
+                       
+                      <h4>What you will learn in this project</h4>
+       <p>How to use RESTful (http-based) APIs with JSON results on Flickr.com.</p>
+       <p>How to create a dynamic mobile slideshow app with JQuery Mobile.</p>
+       <p><a href="../../examples/flickr/index.html">Here's a working example for our demonstration on December 4.</a></p>
+      
+<h3>Resources</h3>
+                        <ul>
+                        <li><a href="http://jquerymobile.com/">JQuery Mobile Website</a></li>
+                        <li><a href="http://www.flickr.com/services/api/">Flickr API Docs</a></li>
+                        <li>Redirecting  mobile visitors with<a href="http://www.handsetdetection.com/"> handsetdetection.com</a></li>
+                        <li>...with <a href="http://stackoverflow.com/questions/10193630/htaccess-to-redirect-users-to-mobile-site-but-still-allow-requests-from-the-mobi">apache</a></li>
+                        <li>...with <a href="http://stackoverflow.com/questions/6660649/mobile-or-desktop-browser-detection-and-redirect-to-respective-web-page">php</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+             
+            
+            <div class=row>
+                <div class=span12>
+                       <h3>JQuery Mobile Library</h3> 
+                      <p>Download the <a href="view-source:http://jquerymobile.com/demos/1.2.0/docs/pages/multipage-template.html">JQuery Mobile multipage template</a> and save the file as index.html in your project folder.  The template includes hosted links to the core mobile library files and jquery core.</p> 
+                      <p>  Change the page title and the page one header. Remove pages two and popup page. Add a textfield and a button to page one. Create a javascript source file and add the script tag to the page head.</p>
+                  <h3>Using the Flickr API to create an image search slideshow</h3> 
+                      <p>All of the functional code is wrapped in our document ready function to load when the physical page loads.</p>
+                      <p>First we bind to the vclick event of our search button for the core of the program. We'll get back to this in a sec.  Then we bind a swipeleft on the home page to go to the first result page (which doesn't exist yet, but will be created in the vclick bind mentioned above. </p>
+                      <p>When we click on the button, we remove any elements with a class of flickr, to 'refresh' our search results.</p>
+                      <p>We assign the value of the input text element to a variable.</p>
+                      <p>We create our flickr API http request string.</p>
+                      <p>We use the getJSON function to pass the request to Flickr and define our callback function (with an index variable and photo object as parameters).</p>
+                      <p>We use JQuery to iterate through the items in the result set and build a virtual JQuery Mobile page for each photo in the result.</p>
+                      <p>Each page has the title, image and tags from the API result.</p>
+                      <p>We bind swipe navigation events for each page, appropriately testing for the first and last pages to get the correct behavior.</p>
+                      <p>We use a POP transition for each page navigation.</p>
+                      <p>Once the pages are created, we change the active page to the first photo in the results.</p>
+                      <p>Theme and deploy your application as appropriate.</p>
+                      <p>Explore phonegap to integrate with native smartphone features.</p>   
+                           <code>
+  <pre class="prettyprint linenums">$(document).ready(function() {	<br>  $(&quot;#searchPix&quot;).bind(&quot;vclick&quot;,function(e) {<br>	  $(&quot;.flickr&quot;).remove();<br>	   var terms = $(&quot;#term&quot;).val();<br>	   var flickrURL = &quot;http://api.flickr.com/services/feeds/photos_public.gne?format=json&amp;method=flickr.photos.search&amp;tags=&quot;+ terms +&quot;&amp;jsoncallback=?&quot;;<br>	   $.getJSON(flickrURL,function(data) {<br>		   $.each(data.items,function(i, photo) {<br>			   pageHTML=&quot;&lt;div class=flickr data-role=page id=page&quot;+i+&quot;&gt;&lt;div data-role=header&gt;&lt;h1&gt;&quot;+photo.title+&quot;&lt;/h1&gt;&lt;/div&gt;&lt;p&gt;photo&quot;+(i+1)+&quot;&lt;/p&gt;&lt;img width=260 height=260 src=&quot;+photo.media.m+&quot; /&gt;&lt;p&gt;&quot;+photo.tags+&quot;&lt;/p&gt;&lt;a data-role=button href=#one&gt;Home&lt;/a&gt;&lt;/div&gt;&quot;;<br>			   $(&quot;body&quot;).append(pageHTML);<br>			   if (i&gt;0) {<br>			   $(&quot;#page&quot;+i).bind(&quot;swiperight&quot;,function() {<br>				   $.mobile.changePage(&quot;#page&quot;+(i-1),<br>	                {transition: &quot;pop&quot;} );<br>			   });<br>			   } else {<br>				$(&quot;#page&quot;+i).bind(&quot;swiperight&quot;,function() {<br>				   $.mobile.changePage(&quot;#one&quot;,<br>	                {transition: &quot;pop&quot;} );<br>			   });   <br>			   }<br>			   if (i&lt;data.items.length) {<br>			   $(&quot;#page&quot;+i).bind(&quot;swipeleft&quot;,function() {<br>				   $.mobile.changePage(&quot;#page&quot;+(i+1) ,<br>	                {transition: &quot;pop&quot;});<br>			   });<br>			   }<br>		   });<br>		    $.mobile.changePage(&quot;#page0&quot;,<br>	                {transition: &quot;pop&quot;});<br>	   });	   <br>  });<br>  $(&quot;#one&quot;).bind(&quot;swipeleft&quot;,function() {<br>	   $.mobile.changePage(&quot;#page0&quot;,<br>	                {transition: &quot;pop&quot;});<br>  });<br>});</pre>
+                           </code>
+                                  
+                             
+                           
+              </div>
+               </div>
+                <div class="row">
+                <div class=span12>
+                
+                </div>
+                </div>
+               
+            <div class="row comments">
+                <div class=span12>
+                    <h3>Comments</h3>
+                    <p>Please use this discussion form appropriately to ask 
+                        questions of the instructor or to share information that 
+                        is of interest to the class.</p>
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_shortname = 'javascriptcs5511';
+                        (function() {
+                            var dsq = document.createElement('script'); 
+                            dsq.type = 'text/javascript'; 
+                            dsq.async = true;
+                            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || 
+                            document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>
+                        Please enable JavaScript to view the 
+                        <a href="http://disqus.com/?ref_noscript">comments 
+                        powered by Disqus.</a>
+                    </noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">
+                        comments powered by 
+                        <span class="logo-disqus">Disqus</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    
+    <script src=../../bootstrap/js/jquery.js></script>
+        <script src=../../bootstrap/js/bootstrap.js></script>
+        <script src=../../bootstrap/js/fall2012.js></script>
+        <script src=../../lib/prettify/prettify.js></script>
+        <script>
+            $(function() {
+                prettyPrint();
+            });
+        </script>
+    </body>
+</html>

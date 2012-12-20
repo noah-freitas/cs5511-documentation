@@ -1,0 +1,156 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<title>Mary's Pizza Shack</title> 
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <link rel="stylesheet" href="marys.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+    <script src="marys.js"></script>
+</head> 
+
+	
+<body> 
+
+<!-- Start of first page: #one -->
+<div data-role="page" id="one">
+    <div data-role="content">
+        <a href="##">
+            <div>
+                <img style="width: 288px; height: 100px" src="http://www.santarosa.edu/~jperetz/fall2012/examples/marys/images/marys.jpg">
+            </div>
+        </a>
+        <h3>
+            Italian Comfort Food
+        </h3>
+        <div style="">
+            <img style="width: 288px; height: 100px" src="http://www.santarosa.edu/~jperetz/fall2012/examples/marys/images/happyhour_slider.png">
+        </div>
+        <a data-role="button" href="#two" data-icon="check" data-iconpos="left">
+            Our Menu
+        </a>
+        <a data-role="button" href="#three" data-icon="star" data-iconpos="left">
+            Our Locations
+        </a>
+    </div>
+    <div data-theme="a" data-role="footer" data-position="fixed">
+        <h3>
+            We Deliver Anywhere
+        </h3>
+    </div>
+     </div><!-- /page one -->
+
+
+<!-- Start of second page: #two -->
+<div data-role="page" id="two">
+    <div data-theme="a" data-role="header">
+        <h3>
+            Our Menu
+        </h3>
+    </div>
+    <div data-role="content">
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li>
+                    <a href="#one" data-theme="" data-icon="">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#three" data-theme="" data-icon="">
+                        Our Locations
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <h2>
+            Dishes
+        </h2>
+        <div data-role="collapsible-set">
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>
+                    Appetizers
+                </h3>
+                <ul>
+                <li>Caesar's Salad</li>
+                 <li>Cheesesticks</li>
+                </ul>
+            </div>
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>
+                    Pizzas
+                </h3>
+                <ul>
+                <li>Pepperoni</li>
+                 <li>Vegetarian</li>
+                  <li>Da Woiks</li>
+                </ul>
+            </div>
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>
+                    Pastas
+                </h3>
+            </div>
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>
+                    Desserts
+                </h3>
+            </div>
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>
+                    Our Special Cocktails
+                </h3>
+            </div>
+        
+        </div>
+        </div>
+        </div><!-- /page two -->
+
+
+<!-- Start of third page: #popup -->
+<div data-role="page" id="three">
+    <div data-theme="a" data-role="header">
+        <h3>
+            Our Locations
+        </h3>
+    </div>
+    <div data-role="content">
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li>
+                    <a href="#one" data-theme="" data-icon="">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#two" data-theme="" data-icon="">
+                        Our Menu
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <img id="srmap" src="https://maps.googleapis.com/maps/api/staticmap?center=615 Fourth St Santa Rosa CA&amp;zoom=10&amp;size=270x200&amp;markers=535 Summerfield Rd Santa Rosa CA|615 Fourth St Santa Rosa CA|101 Golf Course Dr Rohnert Park CA&amp;sensor=false"
+        width="270" height="200">
+        <a class="branch" data-role="button" href="tel:7073333333">
+            535 Summerfield Rd Santa Rosa CA
+        </a>
+        <a class="branch" data-role="button" href="tel:7074444444">
+            615 Fourth St Santa Rosa CA
+        </a>
+        <a class="branch" data-role="button" href="tel:707555555">
+            101 Golf Course Dr Rohnert Park CA
+        </a>
+    </div>
+    <div data-theme="a" data-role="footer" data-position="fixed">
+        <h3>
+            Click On A Location to Call
+        </h3>
+    </div>
+    </div><!-- /page popup -->
+
+</body>
+</html>
